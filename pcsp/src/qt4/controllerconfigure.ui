@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>controllerConfigureClass</class>
+ <widget class="QWidget" name="controllerConfigureClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>643</width>
+    <height>404</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Configure Controller</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="pcsp.qrc">
+    <normaloff>:/../../Resources/Resources/pcsp.ico</normaloff>:/../../Resources/Resources/pcsp.ico</iconset>
+  </property>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>10</y>
+     <width>321</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>10</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Current controller:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>41</y>
+     <width>611</width>
+     <height>321</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="pcsp.qrc">:/../../Resources/Resources/controls.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_L1">
+   <property name="geometry">
+    <rect>
+     <x>22</x>
+     <y>44</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_right">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>80</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>370</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>370</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_up">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>116</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_left">
+   <property name="geometry">
+    <rect>
+     <x>16</x>
+     <y>144</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_down">
+   <property name="geometry">
+    <rect>
+     <x>17</x>
+     <y>172</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_AnalogUp">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>252</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_AnalogLeft">
+   <property name="geometry">
+    <rect>
+     <x>17</x>
+     <y>274</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_AnalogRight">
+   <property name="geometry">
+    <rect>
+     <x>81</x>
+     <y>274</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_AnalogDown">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>296</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_home">
+   <property name="geometry">
+    <rect>
+     <x>152</x>
+     <y>282</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_soundmin">
+   <property name="geometry">
+    <rect>
+     <x>202</x>
+     <y>302</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_soundplus">
+   <property name="geometry">
+    <rect>
+     <x>236</x>
+     <y>278</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_R1">
+   <property name="geometry">
+    <rect>
+     <x>545</x>
+     <y>43</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_square">
+   <property name="geometry">
+    <rect>
+     <x>536</x>
+     <y>89</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_triangle">
+   <property name="geometry">
+    <rect>
+     <x>545</x>
+     <y>115</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_o">
+   <property name="geometry">
+    <rect>
+     <x>554</x>
+     <y>144</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_x">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>172</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_hold">
+   <property name="geometry">
+    <rect>
+     <x>551</x>
+     <y>214</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_start">
+   <property name="geometry">
+    <rect>
+     <x>514</x>
+     <y>246</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_select">
+   <property name="geometry">
+    <rect>
+     <x>456</x>
+     <y>267</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_soundtoggle">
+   <property name="geometry">
+    <rect>
+     <x>373</x>
+     <y>280</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="button_screen">
+   <property name="geometry">
+    <rect>
+     <x>343</x>
+     <y>305</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;None&gt;</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="pcsp.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>button_L1</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_L1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>60</x>
+     <y>44</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>122</x>
+     <y>-18</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_right</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_right()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>78</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>150</x>
+     <y>-12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_up</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_up()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>43</x>
+     <y>120</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>134</x>
+     <y>10</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_left</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_left()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>70</x>
+     <y>148</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>88</x>
+     <y>14</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_down</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_down()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>58</x>
+     <y>185</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>14</x>
+     <y>10</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_R1</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_L2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>595</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>558</x>
+     <y>9</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_square</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_square()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>561</x>
+     <y>93</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>614</x>
+     <y>11</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_triangle</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_triangle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>596</x>
+     <y>121</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>525</x>
+     <y>23</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_o</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_circle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>577</x>
+     <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>539</x>
+     <y>29</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_x</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_cross()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>603</x>
+     <y>183</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>389</x>
+     <y>34</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_home</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_home()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>188</x>
+     <y>300</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>132</x>
+     <y>384</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_select</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_select()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>513</x>
+     <y>281</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>401</x>
+     <y>387</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_start</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_start()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>533</x>
+     <y>257</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>421</x>
+     <y>371</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_save()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>477</x>
+     <y>384</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>332</x>
+     <y>381</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_cancel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>584</x>
+     <y>384</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>633</x>
+     <y>371</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_AnalogUp</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_Aup()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>93</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>182</x>
+     <y>377</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_AnalogDown</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_Adown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>84</x>
+     <y>313</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>71</x>
+     <y>381</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_AnalogLeft</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_Aleft()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>43</x>
+     <y>288</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>110</x>
+     <y>394</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_AnalogRight</sender>
+   <signal>clicked()</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>click_button_Aright()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>118</x>
+     <y>282</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>260</x>
+     <y>396</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox</sender>
+   <signal>activated(int)</signal>
+   <receiver>controllerConfigureClass</receiver>
+   <slot>changeDevice(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>363</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>475</x>
+     <y>27</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>click_button_L1()</slot>
+  <slot>click_button_right()</slot>
+  <slot>click_button_left()</slot>
+  <slot>click_button_up()</slot>
+  <slot>click_button_down()</slot>
+  <slot>click_button_L2()</slot>
+  <slot>click_button_square()</slot>
+  <slot>click_button_cross()</slot>
+  <slot>click_button_triangle()</slot>
+  <slot>click_button_circle()</slot>
+  <slot>click_button_home()</slot>
+  <slot>click_button_select()</slot>
+  <slot>click_button_start()</slot>
+  <slot>click_button_save()</slot>
+  <slot>click_button_cancel()</slot>
+  <slot>click_button_Aup()</slot>
+  <slot>click_button_Adown()</slot>
+  <slot>click_button_Aleft()</slot>
+  <slot>click_button_Aright()</slot>
+  <slot>changeDevice(int)</slot>
+ </slots>
+</ui>

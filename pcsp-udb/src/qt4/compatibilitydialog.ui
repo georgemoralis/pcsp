@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>compatibilityDialogClass</class>
+ <widget class="QDialog" name="compatibilityDialogClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>510</width>
+    <height>298</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>compatibilityDialog</string>
+  </property>
+  <widget class="QComboBox" name="compCombo">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>30</y>
+     <width>141</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Select PCSP version:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>431</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>WARNING: Chaning the current version , requires a restart
+ for the new compatibility list to be loaded.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>130</y>
+     <width>471</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>You can also create a new table on database for new version:
+ Rules:
+ 1)If it is a release version name should be vX.X.X         Example : v0.3.0
+ 2)If it is a beta version name should be vX.X.XrevXXX   Example : v0.3.0rev1300</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="createTableButton">
+   <property name="geometry">
+    <rect>
+     <x>334</x>
+     <y>220</y>
+     <width>131</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create Table</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="saveButton">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>270</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>270</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>createTableButton</sender>
+   <signal>clicked()</signal>
+   <receiver>compatibilityDialogClass</receiver>
+   <slot>createTable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>254</x>
+     <y>152</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveButton</sender>
+   <signal>clicked()</signal>
+   <receiver>compatibilityDialogClass</receiver>
+   <slot>saveButton()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>367</x>
+     <y>281</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>254</x>
+     <y>158</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>compatibilityDialogClass</receiver>
+   <slot>cancelButton()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>281</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>254</x>
+     <y>158</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>createTable()</slot>
+  <slot>cancelButton()</slot>
+  <slot>saveButton()</slot>
+ </slots>
+</ui>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>settingsDialogClass</class>
+ <widget class="QDialog" name="settingsDialogClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>482</width>
+    <height>316</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <property name="windowFilePath">
+   <string/>
+  </property>
+  <widget class="QStackedWidget" name="pagesWidget">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>20</y>
+     <width>331</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="currentIndex">
+    <number>2</number>
+   </property>
+   <widget class="QWidget" name="videoOptions"/>
+   <widget class="QWidget" name="soundOptions"/>
+   <widget class="QWidget" name="memcardOptions">
+    <widget class="QCheckBox" name="disableMemStickCheck">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>311</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Disable Memcard insert ( no memstick inserted behaviour)</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QListWidget" name="optionsList">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>101</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>48</width>
+     <height>48</height>
+    </size>
+   </property>
+   <property name="resizeMode">
+    <enum>QListView::Adjust</enum>
+   </property>
+   <property name="spacing">
+    <number>4</number>
+   </property>
+   <property name="viewMode">
+    <enum>QListView::IconMode</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="SaveButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>280</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="CancelButton">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>280</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../src/qt4/pcsp.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>optionsList</sender>
+   <signal>currentItemChanged(QListWidgetItem*,QListWidgetItem*)</signal>
+   <receiver>settingsDialogClass</receiver>
+   <slot>changePage(QListWidgetItem*,QListWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>64</x>
+     <y>216</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>273</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SaveButton</sender>
+   <signal>pressed()</signal>
+   <receiver>settingsDialogClass</receiver>
+   <slot>SaveAction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>335</x>
+     <y>292</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>302</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CancelButton</sender>
+   <signal>pressed()</signal>
+   <receiver>settingsDialogClass</receiver>
+   <slot>SaveAction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>422</x>
+     <y>296</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>466</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>changePage(QListWidgetItem*,QListWidgetItem*)</slot>
+  <slot>SaveAction()</slot>
+  <slot>CancelAction()</slot>
+ </slots>
+</ui>

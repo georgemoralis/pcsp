@@ -1,0 +1,10 @@
+Import('env')
+import sys
+
+files = [
+  "GLee.c",
+]
+
+env_main = env.Clone()
+env_main.Append(CXXFLAGS = [ '-fPIC' ])
+env_main.StaticLibrary(target = (env['local_libs'] + "glee"), source = files)

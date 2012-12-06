@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/../../Resources">
+        <file>../../Resources/settings48x48.png</file>
+        <file>../../Resources/screenshot.png</file>
+        <file>../../Resources/video48x48.png</file>
+        <file>../../Resources/sound48x48.png</file>
+        <file>../../Resources/PlayIcon.png</file>
+        <file>../../Resources/memcard48x48.png</file>
+        <file>../../Resources/PauseIcon.png</file>
+        <file>../../Resources/StepIntoIcon.png</file>
+        <file>../../Resources/StepOutIcon.png</file>
+        <file>../../Resources/StepOverIcon.png</file>
+        <file>../../Resources/controls.png</file>
+        <file>../../Resources/pic1.png</file>
+        <file>../../Resources/icon0.png</file>
+        <file>../../Resources/pcsplogo.png</file>
+        <file>../../Resources/psp.png</file>
+        <file>../../Resources/umd.png</file>
+        <file>../../Resources/memorycard.png</file>
+        <file>../../Resources/open_file.png</file>
+        <file>../../Resources/pause.png</file>
+        <file>../../Resources/play.png</file>
+        <file>../../Resources/quit.png</file>
+        <file>../../Resources/reset.png</file>
+        <file>../../Resources/pcsp.ico</file>
+    </qresource>
+    <qresource prefix="/controllers">
+        <file alias="joypad.png">../../Resources/gamepad-32.png</file>
+        <file alias="keyboard.png">../../Resources/keyboard-32.png</file>
+    </qresource>
+    <qresource prefix="/shaders">
+        <file alias="fstage.glsl">../opengl/gl_FragmentProcessor.glsl</file>
+        <file alias="vstage.glsl">../opengl/gl_VertexProcessor.glsl</file>
+    </qresource>
+</RCC>

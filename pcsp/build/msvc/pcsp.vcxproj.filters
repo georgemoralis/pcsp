@@ -1,0 +1,1766 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Qt4 Source Files">
+      <UniqueIdentifier>{85731035-b094-49fa-aff9-af30d89571a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files">
+      <UniqueIdentifier>{b502e15e-db60-41d5-9340-590547233750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE">
+      <UniqueIdentifier>{57177ac0-4484-433e-b773-e716c23ba148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\kernel">
+      <UniqueIdentifier>{5297724e-7049-4e20-aa77-cab9d914a2b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules">
+      <UniqueIdentifier>{31bd11c4-9cca-461a-960c-6088f0492630}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceGe_user">
+      <UniqueIdentifier>{9357a073-d903-4ca9-80c3-6ce6864292a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceGe_user\helper">
+      <UniqueIdentifier>{68d4b9b2-21bc-4168-b279-c01141407ec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceGe_user\helper\Textures">
+      <UniqueIdentifier>{a9f21872-539f-4d07-bdcc-e8ee597882bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceGe_user\helper\Vertex">
+      <UniqueIdentifier>{2f4313e3-e3c2-4708-8e7d-084512bc8564}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceGe_user\helper\Math">
+      <UniqueIdentifier>{749b30ef-24ef-42fa-927b-9f9a8a01cb7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceCtrl">
+      <UniqueIdentifier>{f47381d5-3d7f-4e31-9e44-b58df655180d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceDisplay">
+      <UniqueIdentifier>{5e5ab8de-2ed3-4cbc-8dc9-36ebd8d4bfb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\InterruptManager">
+      <UniqueIdentifier>{40fcd11d-d269-4bdf-a1f8-d3bb53f2113b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\ThreadManForUser">
+      <UniqueIdentifier>{9108cd52-5e18-4aef-b90b-2a8916476053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\SysMemUserForUser">
+      <UniqueIdentifier>{3f8a57d8-0d2c-4fe2-a493-2291fcb91db7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\IoFileMgrForUser">
+      <UniqueIdentifier>{d95f9520-adda-4976-9aa5-f849a10ed2bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceAtrac3plus">
+      <UniqueIdentifier>{8a7179c9-12f3-4ea8-acca-43c32dade031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceDmac">
+      <UniqueIdentifier>{c39a14b7-8749-4486-b383-f7eae940e9b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceUtility">
+      <UniqueIdentifier>{56608032-6537-4139-833c-8065abb4f18f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\scePower">
+      <UniqueIdentifier>{b7b5543c-44e1-49ff-bacb-d1a8eb2ad62e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceRtc">
+      <UniqueIdentifier>{c04a291f-8cc5-4378-ad91-26c047904e81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceImpose">
+      <UniqueIdentifier>{f3c5c4bd-4186-4499-9c7c-37adc8c6b409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceMpeg">
+      <UniqueIdentifier>{a931e894-8a45-4f17-aa6d-bc42966e20f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceSuspendForUser">
+      <UniqueIdentifier>{cb735a4f-cd65-440e-b1ff-8f1fc10a0a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\StdioForUser">
+      <UniqueIdentifier>{455ef143-3338-430b-84f0-cbf21b4c613a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceUmdUser">
+      <UniqueIdentifier>{14bd1c0d-0d95-4b12-88b2-88a417a83b55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceSasCore">
+      <UniqueIdentifier>{82510f82-3a4b-4abb-8435-3af1e637c95f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceAudio">
+      <UniqueIdentifier>{4c9107a4-4d6e-4f70-a2d6-0ad4a6194efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\UtilsForUser">
+      <UniqueIdentifier>{837e0d14-c439-453f-bd88-980e1e415117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\Kernel_Library">
+      <UniqueIdentifier>{2902a164-f8d7-4175-b5f1-3ae5c1e3be4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\LoadExecForUser">
+      <UniqueIdentifier>{10df05f3-dad1-4466-abbb-35a66cc245c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\ModuleMgrForUser">
+      <UniqueIdentifier>{85bec931-c6cb-45ae-ad69-d5ea8de0b194}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\scePsmf">
+      <UniqueIdentifier>{e1b3ba87-ce4a-4d28-abf6-c83a2ed363e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\scePsmfPlayer">
+      <UniqueIdentifier>{f97156ed-d576-4863-ab14-bd98a8e20d7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceDeflt">
+      <UniqueIdentifier>{5038eb5e-8360-4d38-923b-8d98a653bfcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceFont">
+      <UniqueIdentifier>{ec154131-f62c-4d36-8817-962e425d07ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\HLE\modules\sceMp3">
+      <UniqueIdentifier>{6d583c5e-3f73-4d41-bc3d-c8698d2acffa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\FileSystem">
+      <UniqueIdentifier>{d5629f6a-87c7-407e-86f3-3df6076cd4ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\FileSystem\umd">
+      <UniqueIdentifier>{57db49f5-6efd-4534-a3ed-5baeaae404c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\FileSystem\isoFS">
+      <UniqueIdentifier>{356a6ace-a1ed-4d15-8fbf-6a9f2fc720c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\FileSystem\memstick">
+      <UniqueIdentifier>{b8b8b919-3bee-49f1-b79a-b98358c418e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\FileSystem\generic">
+      <UniqueIdentifier>{4f1c1986-abe6-4320-aa56-2dfb28971848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\Loaders">
+      <UniqueIdentifier>{de0a4daa-9a3b-496b-99c8-43a19a664bd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\Loaders\psf">
+      <UniqueIdentifier>{608a1296-c96b-4dfe-b59c-98cf23e273bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\Loaders\pbp">
+      <UniqueIdentifier>{6111ad7c-3e9a-4ae4-aa65-13fb190d2622}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\Allegrex">
+      <UniqueIdentifier>{8046af95-ad59-4d0f-9fc9-861016c22fb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\Renderer">
+      <UniqueIdentifier>{bba94ed3-c2ca-4475-af2c-989dc431454c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\OpenGL">
+      <UniqueIdentifier>{cab913f3-68f8-48a1-8efd-b50616eaa016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\OpenGL\shader">
+      <UniqueIdentifier>{2d996c67-2712-459d-ae52-decd00ce297b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\OpenGL\glew">
+      <UniqueIdentifier>{a005fdba-1a8b-41bd-a413-1219cbaa5987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\Games">
+      <UniqueIdentifier>{0cbcc2a8-de71-4794-8e7b-65be5e704af6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\Games\ULJM05011">
+      <UniqueIdentifier>{f86cf3de-879c-4174-bf18-802705d9e193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\Hardware">
+      <UniqueIdentifier>{f8d5eb38-06c4-4205-853e-8fc2df4a6a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Emulator Files\Hardware\Crypto">
+      <UniqueIdentifier>{2f815afa-67bd-4d8b-9526-08045a953afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wtf">
+      <UniqueIdentifier>{fd3f9bcb-fc60-4a86-993a-108d0f6f5fa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wtf\hle">
+      <UniqueIdentifier>{575d9543-e15a-4f18-8b21-e0c99cd19d43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common Files">
+      <UniqueIdentifier>{3c0dce13-bd82-4123-b31a-c296f11cb171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{767bf310-cf86-465e-b3e7-38b977c1f9da}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{7a295731-88f6-4692-a685-b2e71e49592f}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release Debuggable">
+      <UniqueIdentifier>{240c2b73-54f3-4839-9043-631ba53dbfde}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release - ULJM05011">
+      <UniqueIdentifier>{f87677b0-4ea9-4786-bece-f453546ec712}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug LITE THREADMAN">
+      <UniqueIdentifier>{8201a436-9df3-4bf5-a80a-89055a6f66ad}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Debugger Files">
+      <UniqueIdentifier>{cad2797b-9514-4aa1-92d4-daefaed60c50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debugger Files\qt4">
+      <UniqueIdentifier>{1cef3b91-4080-4a5d-ab5d-d7301daf2105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debugger Files\Resource">
+      <UniqueIdentifier>{06acc02b-0c01-4046-937d-a0cf0be4f58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\main.cpp">
+      <Filter>Main Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stdafx.cpp">
+      <Filter>Main Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\aboutdialog.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\controllerconfigure.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\controllergetbutton.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\mainwindow.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\memorycard.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\memorycardloadbutton.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\memorycardpic1label.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\memorycardpsflineedit.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\qinputsystem.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\qlistload.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\qlistsave.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\qoskdialog.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\qpspscreen.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\settings.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\qt4\settingsdialog.cpp">
+      <Filter>Qt4 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\emulator.cpp">
+      <Filter>Emulator Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\log.cpp">
+      <Filter>Emulator Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\memory\memory.cpp">
+      <Filter>Emulator Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sc_thread.cpp">
+      <Filter>Emulator Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\symbolmap.cpp">
+      <Filter>Emulator Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\system.cpp">
+      <Filter>Emulator Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel.cpp">
+      <Filter>Emulator Files\HLE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\syscalls.cpp">
+      <Filter>Emulator Files\HLE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_audio.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_callback.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_eventflag.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_eventhandler.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_fpl.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_module.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_msgbox.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_msgpipe.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_object.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_partition.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_semaphore.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_thread.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_threadqueue.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_timer.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_vpl.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_vsync.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\kernel\kernel_waitqueue.cpp">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\ge\sceGe_user.cpp">
+      <Filter>Emulator Files\HLE\modules\sceGe_user</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\ge\ge_Context.cpp">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\ge\ge_DisplayListInterpreter.cpp">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\ge\ge_TextureDecoder.cpp">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\ge\ge_TextureManager.cpp">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\ge\ge_Decoder.cpp">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper\Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\ge\ge_Matrix.cpp">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\ctrl\sceCtrl.cpp">
+      <Filter>Emulator Files\HLE\modules\sceCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\display\sceDisplay.cpp">
+      <Filter>Emulator Files\HLE\modules\sceDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\interruptman\interruptman.cpp">
+      <Filter>Emulator Files\HLE\modules\InterruptManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\interruptman\InterruptManager.cpp">
+      <Filter>Emulator Files\HLE\modules\InterruptManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\ThreadManForUser\ThreadManForUser.cpp">
+      <Filter>Emulator Files\HLE\modules\ThreadManForUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\sysmem\sysmem.cpp">
+      <Filter>Emulator Files\HLE\modules\SysMemUserForUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\iofilemgr\IoFileMgrForUser.cpp">
+      <Filter>Emulator Files\HLE\modules\IoFileMgrForUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\sceAtrac3plus\sceAtrac3plus.cpp">
+      <Filter>Emulator Files\HLE\modules\sceAtrac3plus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\dmac\sceDmac.cpp">
+      <Filter>Emulator Files\HLE\modules\sceDmac</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\utility\sceUtility.cpp">
+      <Filter>Emulator Files\HLE\modules\sceUtility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\utility\sceUtilityMsgDialog.cpp">
+      <Filter>Emulator Files\HLE\modules\sceUtility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\utility\sceUtilityOSK.cpp">
+      <Filter>Emulator Files\HLE\modules\sceUtility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\utility\sceUtilitySave.cpp">
+      <Filter>Emulator Files\HLE\modules\sceUtility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\power\scePower.cpp">
+      <Filter>Emulator Files\HLE\modules\scePower</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\rtc\sceRtc.cpp">
+      <Filter>Emulator Files\HLE\modules\sceRtc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\impose\sceImpose.cpp">
+      <Filter>Emulator Files\HLE\modules\sceImpose</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\sceMpeg\sceMpeg.cpp">
+      <Filter>Emulator Files\HLE\modules\sceMpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\sceSuspendForUser\sceSuspendForUser.cpp">
+      <Filter>Emulator Files\HLE\modules\sceSuspendForUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\StdioForUser\StdioForUser.cpp">
+      <Filter>Emulator Files\HLE\modules\StdioForUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\sceUmdUser\sceUmdUser.cpp">
+      <Filter>Emulator Files\HLE\modules\sceUmdUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\sceSasCore\sceSasCore.cpp">
+      <Filter>Emulator Files\HLE\modules\sceSasCore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\sceAudio\sceAudio.cpp">
+      <Filter>Emulator Files\HLE\modules\sceAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\UtilsForUser\UtilsForUser.cpp">
+      <Filter>Emulator Files\HLE\modules\UtilsForUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\Kernel_Library\Kernel_Library.cpp">
+      <Filter>Emulator Files\HLE\modules\Kernel_Library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\LoadExecForUser\LoadExecForUser.cpp">
+      <Filter>Emulator Files\HLE\modules\LoadExecForUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\ModuleMgrForUser\ModuleMgrForUser.cpp">
+      <Filter>Emulator Files\HLE\modules\ModuleMgrForUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\scePsmf\scePsmf.cpp">
+      <Filter>Emulator Files\HLE\modules\scePsmf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\scePsmfPlayer\scePsmfPlayer.cpp">
+      <Filter>Emulator Files\HLE\modules\scePsmfPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\sceDeflt\sceDeflt.cpp">
+      <Filter>Emulator Files\HLE\modules\sceDeflt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\sceFont\sceFont.cpp">
+      <Filter>Emulator Files\HLE\modules\sceFont</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hle\modules\sceMp3\sceMp3.cpp">
+      <Filter>Emulator Files\HLE\modules\sceMp3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filesystem\blockDevice.cpp">
+      <Filter>Emulator Files\FileSystem\umd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filesystem\isofilesystem.cpp">
+      <Filter>Emulator Files\FileSystem\umd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filesystem\iso\IsoFile.cpp">
+      <Filter>Emulator Files\FileSystem\isoFS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filesystem\iso\IsoFS.cpp">
+      <Filter>Emulator Files\FileSystem\isoFS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filesystem\memstickfilesystem.cpp">
+      <Filter>Emulator Files\FileSystem\memstick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filesystem\metafilesystem.cpp">
+      <Filter>Emulator Files\FileSystem\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\loaders\elf.cpp">
+      <Filter>Emulator Files\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wtf\core\elf\ElfReader.cpp">
+      <Filter>Emulator Files\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\loaders\loaders.cpp">
+      <Filter>Emulator Files\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\loaders\psf.cpp">
+      <Filter>Emulator Files\Loaders\psf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\loaders\pbp.cpp">
+      <Filter>Emulator Files\Loaders\pbp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\al\al.cpp">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\al\al_context.cpp">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\al\al_emitter.cpp">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\al\al_generate.cpp">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\al\host_x86.cpp">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\renderer.cpp">
+      <Filter>Emulator Files\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\opengl\gl_Core.cpp">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\opengl\gl_ShaderPreprocessor.cpp">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\3rdparty\glew\src\glew.c">
+      <Filter>Emulator Files\OpenGL\glew</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-000.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-001.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-002.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-003.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-004.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-005.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-006.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-007.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-008.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-009.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-010.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-011.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-012.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-013.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-014.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-015.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-016.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-017.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-018.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-019.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-020.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-021.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-022.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-023.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game-024.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\games\ULJM05011 - Puzzle Bobble Pocket\src\game.cpp">
+      <Filter>Emulator Files\Games\ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hardware\memorystick.cpp">
+      <Filter>Emulator Files\Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hardware\crypto\cmac.cpp">
+      <Filter>Emulator Files\Hardware\Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hardware\crypto\kirk.cpp">
+      <Filter>Emulator Files\Hardware\Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hardware\crypto\PrxDec.cpp">
+      <Filter>Emulator Files\Hardware\Crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wtf\core\psp\hle\sceKernelCallback.cpp">
+      <Filter>wtf\hle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wtf\core\psp\hle\sceKernelEventFlag.cpp">
+      <Filter>wtf\hle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wtf\core\psp\hle\sceKernelModule.cpp">
+      <Filter>wtf\hle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wtf\core\psp\hle\sceKernelSemaphore.cpp">
+      <Filter>wtf\hle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wtf\core\psp\hle\sceKernelThread.cpp">
+      <Filter>wtf\hle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\common_fiber.cpp">
+      <Filter>Common Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\common_joypad.cpp">
+      <Filter>Common Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\common_thread.cpp">
+      <Filter>Common Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\common_timer.cpp">
+      <Filter>Common Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_pcsp.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_aboutdialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_controllerconfigure.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_controllergetbutton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_debugger.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_logconfigure.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_logconfigurecombo.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_mainwindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_memorycard.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_memorycardloadbutton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_memorycardpic1label.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_memorycardpsflineedit.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qinputsystem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qlistload.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qlistsave.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qoskdialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qpspscreen.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qt4_memoryscrollbar.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qt4_memoryspinbox.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qt4_memoryviewer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qt4_memorywidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qt4_pcspdebugger.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qt4_sysmemviewer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_sc_Thread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_settingsdialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_aboutdialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_controllerconfigure.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_controllergetbutton.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_debugger.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_logconfigure.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_logconfigurecombo.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_mainwindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_memorycard.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_memorycardloadbutton.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_memorycardpic1label.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_memorycardpsflineedit.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qinputsystem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qlistload.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qlistsave.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qoskdialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qpspscreen.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qt4_memoryscrollbar.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qt4_memoryspinbox.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qt4_memoryviewer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qt4_memorywidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qt4_pcspdebugger.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qt4_sysmemviewer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_sc_Thread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_settingsdialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_aboutdialog.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_controllerconfigure.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_controllergetbutton.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_debugger.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_logconfigure.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_logconfigurecombo.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_mainwindow.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_memorycard.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_memorycardloadbutton.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_memorycardpic1label.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_memorycardpsflineedit.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qinputsystem.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qlistload.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qlistsave.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qoskdialog.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qpspscreen.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qt4_memoryscrollbar.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qt4_memoryspinbox.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qt4_memoryviewer.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qt4_memorywidget.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qt4_pcspdebugger.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_qt4_sysmemviewer.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_sc_Thread.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release Debuggable\moc_settingsdialog.cpp">
+      <Filter>Generated Files\Release Debuggable</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_aboutdialog.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_controllerconfigure.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_controllergetbutton.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_debugger.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_logconfigure.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_logconfigurecombo.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_mainwindow.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_memorycard.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_memorycardloadbutton.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_memorycardpic1label.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_memorycardpsflineedit.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qinputsystem.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qlistload.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qlistsave.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qoskdialog.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qpspscreen.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qt4_memoryscrollbar.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qt4_memoryspinbox.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qt4_memoryviewer.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qt4_memorywidget.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qt4_pcspdebugger.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_qt4_sysmemviewer.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_sc_Thread.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release - ULJM05011\moc_settingsdialog.cpp">
+      <Filter>Generated Files\Release - ULJM05011</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_aboutdialog.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_controllerconfigure.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_controllergetbutton.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_debugger.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_logconfigure.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_logconfigurecombo.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_mainwindow.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_memorycard.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_memorycardloadbutton.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_memorycardpic1label.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_memorycardpsflineedit.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qinputsystem.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qlistload.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qlistsave.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qoskdialog.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qpspscreen.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qt4_memoryscrollbar.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qt4_memoryspinbox.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qt4_memoryviewer.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qt4_memorywidget.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qt4_pcspdebugger.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_qt4_sysmemviewer.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_sc_Thread.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug LITE THREADMAN\moc_settingsdialog.cpp">
+      <Filter>Generated Files\Debug LITE THREADMAN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\debugger.cpp">
+      <Filter>Debugger Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\qt4\logconfigure.cpp">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\qt4\logconfigurecombo.cpp">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\qt4\qt4_memorycursor.cpp">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\qt4\qt4_memoryscrollbar.cpp">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\qt4\qt4_memoryspinbox.cpp">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\qt4\qt4_memoryviewer.cpp">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\qt4\qt4_memorywidget.cpp">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\qt4\qt4_pcspdebugger.cpp">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\qt4\qt4_sysmemviewer.cpp">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debugger\qt4\qt4_translate.cpp">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\stdafx.h">
+      <Filter>Main Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\version.h">
+      <Filter>Main Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\qt4\settings.h">
+      <Filter>Qt4 Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\log.h">
+      <Filter>Emulator Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\symbolmap.h">
+      <Filter>Emulator Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\system.h">
+      <Filter>Emulator Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel.h">
+      <Filter>Emulator Files\HLE</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules.h">
+      <Filter>Emulator Files\HLE</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\syscalls.h">
+      <Filter>Emulator Files\HLE</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_audio.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_callback.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_elf.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_eventflag.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_eventhandler.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_fpl.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_heap.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_module.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_msgbox.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_msgpipe.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_partition.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_prx.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_semaphore.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_thread.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_threadqueue.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_types.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_vpl.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_vsync.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\kernel\kernel_waitqueue.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\module_errorcodes.h">
+      <Filter>Emulator Files\HLE\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ge\sceGe_user.h">
+      <Filter>Emulator Files\HLE\modules\sceGe_user</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ge\ge_Constants.h">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ge\ge_Context.h">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ge\ge_DisplayListInterpreter.h">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ge\ge_Types.h">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ge\ge_TextureDecoder.h">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ge\ge_TextureManager.h">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ge\ge_Decoder.h">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ge\ge_Matrix.h">
+      <Filter>Emulator Files\HLE\modules\sceGe_user\helper\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ctrl\sceCtrl.h">
+      <Filter>Emulator Files\HLE\modules\sceCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\display\sceDisplay.h">
+      <Filter>Emulator Files\HLE\modules\sceDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\interruptman\interruptman.h">
+      <Filter>Emulator Files\HLE\modules\InterruptManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\interruptman\InterruptManager.h">
+      <Filter>Emulator Files\HLE\modules\InterruptManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ThreadManForUser\ThreadManForUser.h">
+      <Filter>Emulator Files\HLE\modules\ThreadManForUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\sysmem\sysmem.h">
+      <Filter>Emulator Files\HLE\modules\SysMemUserForUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\iofilemgr\IoFileMgrForUser.h">
+      <Filter>Emulator Files\HLE\modules\IoFileMgrForUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\sceAtrac3plus\sceAtrac3plus.h">
+      <Filter>Emulator Files\HLE\modules\sceAtrac3plus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\dmac\sceDmac.h">
+      <Filter>Emulator Files\HLE\modules\sceDmac</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\utility\sceUtility.h">
+      <Filter>Emulator Files\HLE\modules\sceUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\utility\sceUtilityMsgDialog.h">
+      <Filter>Emulator Files\HLE\modules\sceUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\utility\sceUtilityOSK.h">
+      <Filter>Emulator Files\HLE\modules\sceUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\utility\sceUtilitySave.h">
+      <Filter>Emulator Files\HLE\modules\sceUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\power\scePower.h">
+      <Filter>Emulator Files\HLE\modules\scePower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\rtc\sceRtc.h">
+      <Filter>Emulator Files\HLE\modules\sceRtc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\impose\sceImpose.h">
+      <Filter>Emulator Files\HLE\modules\sceImpose</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\sceMpeg\sceMpeg.h">
+      <Filter>Emulator Files\HLE\modules\sceMpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\sceSuspendForUser\sceSuspendForUser.h">
+      <Filter>Emulator Files\HLE\modules\sceSuspendForUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\StdioForUser\StdioForUser.h">
+      <Filter>Emulator Files\HLE\modules\StdioForUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\sceUmdUser\sceUmdUser.h">
+      <Filter>Emulator Files\HLE\modules\sceUmdUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\sceSasCore\sceSasCore.h">
+      <Filter>Emulator Files\HLE\modules\sceSasCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\sceAudio\sceAudio.h">
+      <Filter>Emulator Files\HLE\modules\sceAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\UtilsForUser\UtilsForUser.h">
+      <Filter>Emulator Files\HLE\modules\UtilsForUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\Kernel_Library\Kernel_Library.h">
+      <Filter>Emulator Files\HLE\modules\Kernel_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\LoadExecForUser\LoadExecForUser.h">
+      <Filter>Emulator Files\HLE\modules\LoadExecForUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\ModuleMgrForUser\ModuleMgrForUser.h">
+      <Filter>Emulator Files\HLE\modules\ModuleMgrForUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\scePsmf\scePsmf.h">
+      <Filter>Emulator Files\HLE\modules\scePsmf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\scePsmfPlayer\scePsmfPlayer.h">
+      <Filter>Emulator Files\HLE\modules\scePsmfPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\sceDeflt\sceDeflt.h">
+      <Filter>Emulator Files\HLE\modules\sceDeflt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\sceFont\sceFont.h">
+      <Filter>Emulator Files\HLE\modules\sceFont</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hle\modules\sceMp3\sceMp3.h">
+      <Filter>Emulator Files\HLE\modules\sceMp3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filesystem\blockDevice.h">
+      <Filter>Emulator Files\FileSystem\umd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filesystem\isofilesystem.h">
+      <Filter>Emulator Files\FileSystem\umd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filesystem\iso\IsoFile.h">
+      <Filter>Emulator Files\FileSystem\isoFS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filesystem\iso\IsoFS.h">
+      <Filter>Emulator Files\FileSystem\isoFS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filesystem\memstickfilesystem.h">
+      <Filter>Emulator Files\FileSystem\memstick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filesystem\genericfilesystem.h">
+      <Filter>Emulator Files\FileSystem\generic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filesystem\metafilesystem.h">
+      <Filter>Emulator Files\FileSystem\generic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\loaders\elf.h">
+      <Filter>Emulator Files\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wtf\core\elf\ElfReader.h">
+      <Filter>Emulator Files\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\loaders\elftypes.h">
+      <Filter>Emulator Files\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wtf\core\elf\ElfTypes.h">
+      <Filter>Emulator Files\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\loaders\loaders.h">
+      <Filter>Emulator Files\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\loaders\psp.h">
+      <Filter>Emulator Files\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\loaders\psf.h">
+      <Filter>Emulator Files\Loaders\psf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\loaders\pbp.h">
+      <Filter>Emulator Files\Loaders\pbp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_analyzer.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_bcr.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_bcu.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_context.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_cpu.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_decoder.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_disassembler.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_emitter.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_fcr.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_fpr.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_fpu.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_fpu_sse.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_gpr.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_instruction.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_instructions.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_interpreter.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_interpreter_vfpu.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_lsu.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_mdr.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_mdu.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_vcr.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_vpr.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_vpu.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\al_vpu_sse.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\host.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\host_any.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\al\host_x86.h">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\renderer.h">
+      <Filter>Emulator Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_Attributes.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_BufferObject.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_Core.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_FrameBufferObject.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_IndexBufferObject.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_OcclusionQuery.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_RenderBufferObject.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_ShaderPreprocessor.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_ShaderProgram.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_States.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_Texture.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_Uniforms.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\opengl\gl_VertexBufferObject.h">
+      <Filter>Emulator Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\glew\include\GL\glew.h">
+      <Filter>Emulator Files\OpenGL\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rdparty\glew\include\GL\wglew.h">
+      <Filter>Emulator Files\OpenGL\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hardware\memorystick.h">
+      <Filter>Emulator Files\Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hardware\crypto\cmac.h">
+      <Filter>Emulator Files\Hardware\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hardware\crypto\keys144byte.h">
+      <Filter>Emulator Files\Hardware\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hardware\crypto\keys16byte.h">
+      <Filter>Emulator Files\Hardware\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hardware\crypto\kirk.h">
+      <Filter>Emulator Files\Hardware\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hardware\crypto\PrxDec.h">
+      <Filter>Emulator Files\Hardware\Crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wtf\core\psp\hle\sceKernelCallback.h">
+      <Filter>wtf\hle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wtf\core\psp\hle\sceKernelEventFlag.h">
+      <Filter>wtf\hle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wtf\core\psp\hle\sceKernelModule.h">
+      <Filter>wtf\hle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wtf\core\psp\hle\sceKernelSemaphore.h">
+      <Filter>wtf\hle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wtf\core\psp\hle\sceKernelThread.h">
+      <Filter>wtf\hle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\common_atomic.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\common_base.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common_defines.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\common_fiber.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\common_intrusive.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\common_joypad.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\common_linked_list.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\common_skew_heap.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\common_thread.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\common_timer.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common_types.h">
+      <Filter>Common Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\svnrev.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_aboutdialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_controllerconfigure.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_controllergetbutton.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_emuwindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_logconfigure.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_memorycard.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_qlistload.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_qlistsave.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_qpspscreen.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_qt4_memoryviewer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_qt4_pcspdebugger.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_qt4_sysmemviewer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_settingsdialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\debugger\qt4\qt4_memorycursor.h">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\debugger\qt4\qt4_translate.h">
+      <Filter>Debugger Files\qt4</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\al\al.def">
+      <Filter>Emulator Files\Allegrex</Filter>
+    </None>
+    <None Include="..\..\src\opengl\gl_FragmentProcessor.glsl">
+      <Filter>Emulator Files\OpenGL\shader</Filter>
+    </None>
+    <None Include="..\..\src\opengl\gl_VertexProcessor.glsl">
+      <Filter>Emulator Files\OpenGL\shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="pcsp.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="..\..\src\memory\memory.h">
+      <Filter>Emulator Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\controls.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\gamepad-32.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\icon0.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\keyboard-32.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\memcard48x48.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\memorycard.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\open_file.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\pause.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\PauseIcon.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\pcsp.ico">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\pcsplogo.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\pic1.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\play.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\PlayIcon.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\psp.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\quit.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\reset.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\screenshot.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\settings48x48.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\sound48x48.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\StepIntoIcon.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\StepOutIcon.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\StepOverIcon.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\umd.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Resources\video48x48.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\src\qt4\aboutdialog.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\controllerconfigure.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\controllergetbutton.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\mainwindow.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\memorycard.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\memorycardloadbutton.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\memorycardpic1label.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\memorycardpsflineedit.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\qinputsystem.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\qlistload.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\qlistsave.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\qoskdialog.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\qpspscreen.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\settingsdialog.h">
+      <Filter>Qt4 Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\emulator.h">
+      <Filter>Emulator Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\sc_thread.h">
+      <Filter>Emulator Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\hle\kernel\kernel_object.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\hle\kernel\kernel_timer.h">
+      <Filter>Emulator Files\HLE\kernel</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\pcsp.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\debugger.h">
+      <Filter>Debugger Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\logconfigure.h">
+      <Filter>Debugger Files\qt4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\logconfigurecombo.h">
+      <Filter>Debugger Files\qt4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\qt4_memoryscrollbar.h">
+      <Filter>Debugger Files\qt4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\qt4_memoryspinbox.h">
+      <Filter>Debugger Files\qt4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\qt4_memoryviewer.h">
+      <Filter>Debugger Files\qt4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\qt4_memorywidget.h">
+      <Filter>Debugger Files\qt4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\qt4_pcspdebugger.h">
+      <Filter>Debugger Files\qt4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\qt4_sysmemviewer.h">
+      <Filter>Debugger Files\qt4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\logconfigure.ui">
+      <Filter>Debugger Files\Resource</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\qt4_memoryviewer.ui">
+      <Filter>Debugger Files\Resource</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\qt4_pcspdebugger.ui">
+      <Filter>Debugger Files\Resource</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\debugger\qt4\qt4_sysmemviewer.ui">
+      <Filter>Debugger Files\Resource</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\aboutdialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\controllerconfigure.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\controllergetbutton.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\emuwindow.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\memorycard.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\qlistload.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\qlistsave.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\qpspscreen.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\qt4\settingsdialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

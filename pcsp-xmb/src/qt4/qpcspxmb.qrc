@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="/icons">
+    <file alias="pcsp.ico">../../res/pcsp.ico</file>
+  </qresource>
+  <qresource prefix="/images">
+    <file alias="icon0.png">../../res/icon0.png</file>
+    <file alias="pcsp.png">../../res/pcsplogo.png</file>
+    <file alias="pic1.png">../../res/pic1.png</file>
+  </qresource>
+</RCC>

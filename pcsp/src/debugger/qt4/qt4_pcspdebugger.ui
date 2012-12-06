@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>pcspdebuggerClass</class>
+ <widget class="QMainWindow" name="pcspdebuggerClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>805</width>
+    <height>737</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>pcspdebugger</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/../../res/pcsp.ico</normaloff>:/../../res/pcsp.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout"/>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>805</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionLog_Configure"/>
+   </widget>
+   <widget class="QMenu" name="menuWindow">
+    <property name="title">
+     <string>Window</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuWindow"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRun"/>
+   <addaction name="actionPause"/>
+   <addaction name="separator"/>
+   <addaction name="actionStepIn"/>
+   <addaction name="actionStepOver"/>
+   <addaction name="actionStepOut"/>
+  </widget>
+  <widget class="QDockWidget" name="disassembly_dock">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>450</width>
+     <height>38</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::AllDockWidgetAreas</set>
+   </property>
+   <property name="windowTitle">
+    <string>Disassembly</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="disassemblydockwidget"/>
+  </widget>
+  <widget class="QDockWidget" name="memory_dock">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>450</width>
+     <height>38</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="windowTitle">
+    <string>Memory</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="qt4_MemoryViewer" name="memorydockwidget"/>
+  </widget>
+  <widget class="QDockWidget" name="logger_dock">
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="windowTitle">
+    <string>Logger</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="logdockwidget">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QPlainTextEdit" name="loggerText">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="stdout_dock">
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="windowTitle">
+    <string>Stdout</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="stdoutwidget">
+    <property name="minimumSize">
+     <size>
+      <width>319</width>
+      <height>0</height>
+     </size>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="0">
+      <widget class="QPlainTextEdit" name="stdoutText">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="stderr_dock">
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="windowTitle">
+    <string>Stderr</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QPlainTextEdit" name="stderrText">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="sysmem_dock">
+   <property name="windowTitle">
+    <string>SysMem</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="qt4_SysmemViewer" name="sysmemdockwidget"/>
+  </widget>
+  <action name="actionRun">
+   <property name="icon">
+    <iconset resource="../../qt4/pcsp.qrc">
+     <normaloff>:/../../Resources/Resources/PlayIcon.png</normaloff>:/../../Resources/Resources/PlayIcon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Run</string>
+   </property>
+  </action>
+  <action name="actionPause">
+   <property name="icon">
+    <iconset resource="../../qt4/pcsp.qrc">
+     <normaloff>:/../../Resources/Resources/PauseIcon.png</normaloff>:/../../Resources/Resources/PauseIcon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pause</string>
+   </property>
+  </action>
+  <action name="actionStepIn">
+   <property name="icon">
+    <iconset resource="../../qt4/pcsp.qrc">
+     <normaloff>:/../../Resources/Resources/StepIntoIcon.png</normaloff>:/../../Resources/Resources/StepIntoIcon.png</iconset>
+   </property>
+   <property name="text">
+    <string>StepIn</string>
+   </property>
+   <property name="toolTip">
+    <string>Step In</string>
+   </property>
+  </action>
+  <action name="actionStepOver">
+   <property name="icon">
+    <iconset resource="../../qt4/pcsp.qrc">
+     <normaloff>:/../../Resources/Resources/StepOverIcon.png</normaloff>:/../../Resources/Resources/StepOverIcon.png</iconset>
+   </property>
+   <property name="text">
+    <string>StepOver</string>
+   </property>
+   <property name="toolTip">
+    <string>Step Over</string>
+   </property>
+  </action>
+  <action name="actionStepOut">
+   <property name="icon">
+    <iconset resource="../../qt4/pcsp.qrc">
+     <normaloff>:/../../Resources/Resources/StepOutIcon.png</normaloff>:/../../Resources/Resources/StepOutIcon.png</iconset>
+   </property>
+   <property name="text">
+    <string>StepOut</string>
+   </property>
+   <property name="toolTip">
+    <string>Step Out</string>
+   </property>
+  </action>
+  <action name="actionLog_Configure">
+   <property name="text">
+    <string>Log Configure</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>qt4_MemoryViewer</class>
+   <extends>QWidget</extends>
+   <header>qt4_memoryviewer.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>qt4_SysmemViewer</class>
+   <extends>QWidget</extends>
+   <header>qt4_sysmemviewer.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../../qt4/pcsp.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionLog_Configure</sender>
+   <signal>triggered()</signal>
+   <receiver>pcspdebuggerClass</receiver>
+   <slot>menuLogConfigure()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>402</x>
+     <y>368</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>logsignal(quint32,QString)</signal>
+  <slot>updatelog(quint32,QString)</slot>
+  <slot>menuLogConfigure()</slot>
+ </slots>
+</ui>

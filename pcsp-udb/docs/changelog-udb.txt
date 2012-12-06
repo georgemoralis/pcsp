@@ -1,0 +1,52 @@
+svn241
+------
+Added supported for pcsp's new internal decryptor (available at 0.5.1+) . Command line option has been added too!
+
+svn239
+------
+better thread syncronization using mutex (reduced crashes) removed version numbering , from now only svn version for pcsp-udb
+
+
+v0.5 (standalone released at 03/10/2010)
+---------------------------------------
+-Fixed a bug that was renaming games by default
+
+v0.4 (standalone released at 28/9/2010)
+---------------------------------------
+-Added support for compatibility lists. 
+ So far pcsp-udb comes with a partial compatibility list for v0.3.0
+-Ability to create your own compatibility list from compatibility dialog
+-General fixes
+
+v0.3 (standalone released at 19/7/2010)
+---------------------------------------
+-More games in database
+-Gamesize in info tab now returns the size in MB too
+-Added close event that destroys active threads if exist. That can prevent some memory leaks
+-Added save of position and window size
+-Added status bar and info for measuring total games , games with complete entry in database , 
+ games without complete entry in database
+-Added automatic region detection for NPEZ and NPUX
+
+v0.2 (standalone released at 16/6/2010)
+---------------------------------------
+-A lot for games on database
+-Fixed several bugs
+-Play button disabled if game is encrypted and no decrypt file found in decrypted folder
+-Added umdimage info to the info list
+-Change pcsp-xmb.ini to pcsp-udb.ini.
+-Removecache file if the user change directory
+-Progress dialog for loading at startup
+-Added search option for searching through columns
+-Made it so that all Japanese games automatically have there language set to Japanese
+-Made it so that if the game was made by sony it would automatically detect that
+ and put it as the company
+-Added alias for Germany,Italy,France,Greece and Spain flags. These are not
+ region autodetected (the only can be detected as Europe) so it needs manual
+ editing of gamesdatabase.ini
+
+
+
+v0.1 released with pcsp 0.2.0
+-----------------------------
+Everything new :D

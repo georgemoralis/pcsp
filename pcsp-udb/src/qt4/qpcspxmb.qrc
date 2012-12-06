@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="pcsp.ico">../../res/pcsp.ico</file>
+    </qresource>
+    <qresource prefix="/flags">
+        <file alias="Germany.png">../../res/flags/de.png</file>
+        <file alias="Spain.png">../../res/flags/es.png</file>
+        <file alias="France.png">../../res/flags/fr.png</file>
+        <file alias="Greece.png">../../res/flags/gr.png</file>
+        <file alias="Italy.png">../../res/flags/it.png</file>
+        <file alias="China.png">../../res/flags/cn.png</file>
+        <file alias="Europe.png">../../res/flags/europeanunion.png</file>
+        <file alias="Japan.png">../../res/flags/jp.png</file>
+        <file alias="Korea.png">../../res/flags/kr.png</file>
+        <file alias="USA.png">../../res/flags/us.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="icon0.png">../../res/icon0.png</file>
+        <file alias="pcsp.png">../../res/pcsplogo.png</file>
+        <file alias="pic1.png">../../res/pic1.png</file>
+    </qresource>
+</RCC>
