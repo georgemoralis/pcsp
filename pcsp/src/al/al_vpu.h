@@ -2095,16 +2095,15 @@
             }
             else
             {
-				//clear the PFXS flag and process the PFXD transformation
-				vcr.pfxs.enabled=false;
-				if(vcr.pfxd.enabled)
+				vcr.pfxs.enabled = false;
+				if (vcr.pfxd.enabled)
 				{
                   loadVd<vsize>(vd);
                   saveVd<vsize>(vd, v3);
 				}
             }
         }
-        else if(imm3 ==6)
+        else if (imm3 == 6)
         {
             loadVs<vsize>(vs);
             loadVd<vsize>(vd);
@@ -2134,19 +2133,18 @@
             }
             else
             {
-				//clear the PFXS flag and process the PFXD transformation
-				vcr.pfxs.enabled=false;
-				if(vcr.pfxd.enabled)
-				{
-                  loadVd<vsize>(vd);
-                  saveVd<vsize>(vd, v3);
-				}
+                vcr.pfxs.enabled = false;
+                if (vcr.pfxd.enabled)
+                {
+                    loadVd<vsize>(vd);
+                    saveVd<vsize>(vd, v3);
+                }
             }
         }
         else if (imm3 == 6)
         {
             loadVs<vsize>(vs);
-            loadVt<vsize>(vd);
+            loadVd<vsize>(vd);
             for (int i = 0; i < vsize; ++i)
             {
                 if (!vcr.cc[i])
@@ -2156,11 +2154,11 @@
             }
             saveVd<vsize>(vd, v3);
         }
-		else
-		{
-			loadVs<vsize>(vs);
-			saveVd<vsize>(vd,v1);
-		}
+        else
+        {
+            loadVs<vsize>(vs);
+            saveVd<vsize>(vd, v1);
+        }
     }
     // VFPU4:VWBN
     template< int vsize > void doVWBN(int vd, int vs, int imm8)

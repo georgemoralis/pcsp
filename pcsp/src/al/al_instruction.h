@@ -113,8 +113,8 @@ struct AllegrexInstruction : AllegrexInstructionBase
 	static inline s32 simm14(u32 opcode) { return (s32)(s16)(opcode & 0x0000FFFC); }
     static inline u32 uimm8(u32 opcode) { return ((opcode >> 16) & 255); }
     static inline u32 uimm5(u32 opcode) { return ((opcode >> 16) & 31);	}
-    static inline u32 uimm4(u32 opcode) { return ((opcode >> 0) & 15);	}
-    static inline u32 uimm3(u32 opcode) { return ((opcode >> 18) & 7);	}
+    static inline u32 uimm4(u32 opcode) { return ((opcode >>  0) & 15);	}
+    static inline u32 uimm3(u32 opcode) { return ((opcode >> 16) & 7); }
 
 #ifdef USE_DYNAREC
 	virtual AllegrexInstruction *clone() = 0;
