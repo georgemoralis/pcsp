@@ -1469,10 +1469,10 @@
         loadVs<1>(vs);
         int n = floatToRawIntBits(v1[0]);
         // Performs pseudo-full-scale conversion
-        v3[0] = intBitsToFloat((((n      ) & 0xFF) * 0x01010101) >> 1);
-        v3[1] = intBitsToFloat((((n >>  8) & 0xFF) * 0x01010101) >> 1);
-        v3[2] = intBitsToFloat((((n >> 16) & 0xFF) * 0x01010101) >> 1);
-        v3[3] = intBitsToFloat((((n >> 24) & 0xFF) * 0x01010101) >> 1);
+        v3[0] = intBitsToFloat((u32)(((n      ) & 0xFF) * 0x01010101) >> 1);
+        v3[1] = intBitsToFloat((u32)(((n >>  8) & 0xFF) * 0x01010101) >> 1);
+        v3[2] = intBitsToFloat((u32)(((n >> 16) & 0xFF) * 0x01010101) >> 1);
+        v3[3] = intBitsToFloat((u32)(((n >> 24) & 0xFF) * 0x01010101) >> 1);
         saveVd<4>(vd, v3);
     }
     // VFPU4:VC2I
