@@ -1536,10 +1536,10 @@
         int z = floatToRawIntBits(v1[2]);
         int w = floatToRawIntBits(v1[3]);
         v3[0] = intBitsToFloat(
-            ((x >> 24) << 0 ) |
-            ((y >> 24) << 8 ) |
-            ((z >> 24) << 16) |
-            ((w >> 24) << 24));
+            (((u32)x >> 24) << 0 ) |
+            (((u32)y >> 24) << 8 ) |
+            (((u32)z >> 24) << 16) |
+            (((u32)w >> 24) << 24));
         saveVd<1>(vd, v3);
     }
     // VFPU4:VI2US
@@ -1669,12 +1669,12 @@
         loadVs<vsize>(vs);
         float x = v1[0];
         v3[0] = min(max(0.0f, 1.0f - x), 1.0f);
-        v3[1] = min(max(0.0f, 1.0f + x), 1.0f);
+        v3[1] = min(max(0.0f,x), 1.0f);
         if (vsize > 1)
         {
             float y = v1[1];
             v3[2] = min(max(0.0f, 1.0f - y), 1.0f);
-            v3[3] = min(max(0.0f, 1.0f + y), 1.0f);
+            v3[3] = min(max(0.0f, y), 1.0f);
             saveVd<4>(vd, v3);
         }
         else

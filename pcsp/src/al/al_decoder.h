@@ -239,7 +239,7 @@
 
             case 3: break;
 
-            case 4: IDO_VSIZE(opcode, break,       IDO(VHDP_P), IDO(VHDP_T), IDO(VHDP_P));
+            case 4: IDO_VSIZE(opcode, break,       IDO(VHDP_P), IDO(VHDP_T), IDO(VHDP_Q));
             case 5: IDO_VSIZE(opcode, break,       break,       IDO(VCRS_T), break      );
             case 6: IDO_VSIZE(opcode, break,       IDO(VDET_P), break,       break      );
 
