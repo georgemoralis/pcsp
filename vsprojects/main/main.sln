@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "main", "main.vcxproj", "{36D6F879-F4CB-477E-BB87-33D867EDDB0A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+		ReleaseWithClangCL|x64 = ReleaseWithClangCL|x64
+		ReleaseWithClangCL|x86 = ReleaseWithClangCL|x86
+		ReleaseWithTracy|x64 = ReleaseWithTracy|x64
+		ReleaseWithTracy|x86 = ReleaseWithTracy|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.Debug|x64.ActiveCfg = Debug|x64
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.Debug|x64.Build.0 = Debug|x64
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.Debug|x86.ActiveCfg = Debug|Win32
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.Debug|x86.Build.0 = Debug|Win32
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.Release|x64.ActiveCfg = Release|x64
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.Release|x64.Build.0 = Release|x64
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.Release|x86.ActiveCfg = Release|Win32
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.Release|x86.Build.0 = Release|Win32
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.ReleaseWithClangCL|x64.ActiveCfg = ReleaseWithClangCL|x64
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.ReleaseWithClangCL|x64.Build.0 = ReleaseWithClangCL|x64
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.ReleaseWithClangCL|x86.ActiveCfg = ReleaseWithClangCL|Win32
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.ReleaseWithClangCL|x86.Build.0 = ReleaseWithClangCL|Win32
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.ReleaseWithTracy|x64.ActiveCfg = ReleaseWithTracy|x64
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.ReleaseWithTracy|x64.Build.0 = ReleaseWithTracy|x64
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.ReleaseWithTracy|x86.ActiveCfg = ReleaseWithTracy|Win32
+		{36D6F879-F4CB-477E-BB87-33D867EDDB0A}.ReleaseWithTracy|x86.Build.0 = ReleaseWithTracy|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8F0BDB22-9362-467F-8C78-F595F893E035}
+	EndGlobalSection
+EndGlobal
