@@ -20,9 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\src\Main.cpp" />
+    <ClCompile Include="..\..\src\src\Memory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\src\gui\imgui_memory_editor.h" />
+    <ClInclude Include="..\..\src\src\Memory.h" />
+    <ClInclude Include="..\..\src\src\MemoryMap.h" />
+    <ClInclude Include="..\..\src\src\PCSPCommon.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
