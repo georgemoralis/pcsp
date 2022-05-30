@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "main", "main\main.vcxproj", "{36D6F879-F4CB-477E-BB87-33D867EDDB0A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B86F9380-6228-4B11-87AD-29FDABF95ABB} = {B86F9380-6228-4B11-87AD-29FDABF95ABB}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "third_party", "third_party", "{64A05F50-3203-42CC-B632-09D6EE6EA856}"
 EndProject
@@ -50,7 +53,7 @@ Global
 		{B86F9380-6228-4B11-87AD-29FDABF95ABB} = {64A05F50-3203-42CC-B632-09D6EE6EA856}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		                SolutionGuid = {284E91C1-764E-441A-854D-CFD3623A6501}
 		SolutionGuid = {AC54A867-F976-4B3D-A6EF-F57EB764DCD4}
+		                SolutionGuid = {284E91C1-764E-441A-854D-CFD3623A6501}
 	EndGlobalSection
 EndGlobal
