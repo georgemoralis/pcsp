@@ -19,6 +19,7 @@
 #include "gui/imgui_memory_editor.h"
 #include "PCSPCommon.h"
 #include "Memory.h"
+#include "gui/memoryViewer.h"
 
 static void glfw_error_callback(int error, const char* description) {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
@@ -170,11 +171,8 @@ int main(int, char**) {
             if (ImGui::Button("Close Me")) show_another_window = false;
             ImGui::End();
         }
-           static MemoryEditor mem_edit_1;
-        mem_edit_1.OptUpperCaseHex = false;
-           mem_edit_1.OptShowDataPreview = true;
-        //mem_edit_1.OptFooterExtraHeight = ImGui::GetTextLineHeight() * 5.0f;
-           mem_edit_1.DrawWindow("Memory Editor", Memory::mainMemory, MemoryMap::SIZE_RAM,MemoryMap::START_RAM);
+
+        debug::memoryViewer::debug_window_memory();
 
         // Rendering
         ImGui::Render();

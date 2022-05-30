@@ -41,5 +41,8 @@
     <ClInclude Include="..\..\src\src\PCSPCommon.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\src\gui\memoryViewer.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

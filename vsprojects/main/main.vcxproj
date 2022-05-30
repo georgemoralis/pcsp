@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\src\gui\imgui_memory_editor.h" />
+    <ClInclude Include="..\..\src\src\gui\memoryViewer.h" />
     <ClInclude Include="..\..\src\src\Memory.h" />
     <ClInclude Include="..\..\src\src\MemoryMap.h" />
     <ClInclude Include="..\..\src\src\PCSPCommon.h" />
