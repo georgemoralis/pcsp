@@ -116,6 +116,8 @@ int main(int, char**) {
     bool show_another_window = false;
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
+    bool show_memory = true;
+
     // Main loop
     while (!glfwWindowShouldClose(window)) {
         // Poll and handle events (inputs, window resize, etc.)
@@ -171,8 +173,11 @@ int main(int, char**) {
             if (ImGui::Button("Close Me")) show_another_window = false;
             ImGui::End();
         }
-
-        debug::memoryViewer::debug_window_memory();
+        
+        if (show_memory) {
+            debug::memoryViewer::debug_window_memory(show_memory);
+        }
+        
 
         // Rendering
         ImGui::Render();

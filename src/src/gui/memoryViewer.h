@@ -4,7 +4,7 @@
 
 namespace debug {
 	namespace memoryViewer {
-		static void debug_window_memory()
+		static void debug_window_memory(bool &show)
 		{
             static MemoryEditor mem_edit;
             mem_edit.Cols = 24;
@@ -12,7 +12,7 @@ namespace debug {
             ImGui::SetNextWindowPos(ImVec2(467, 318), ImGuiCond_FirstUseEver);
             ImGui::SetNextWindowSize(ImVec2(810, 399), ImGuiCond_FirstUseEver);
 
-			ImGui::Begin("Memory Editor");
+			ImGui::Begin("Memory Editor", &show);
 
             if (ImGui::BeginTabBar("##memory_tabs", ImGuiTabBarFlags_None)) {
                 if (ImGui::BeginTabItem("Ram")) {
