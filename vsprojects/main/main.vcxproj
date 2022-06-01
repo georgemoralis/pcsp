@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\src\gui\Dissasembler.cpp" />
     <ClCompile Include="..\..\src\src\Main.cpp" />
     <ClCompile Include="..\..\src\src\Memory.cpp" />
   </ItemGroup>
@@ -26,6 +27,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\src\gui\Dissasembler.h" />
     <ClInclude Include="..\..\src\src\gui\imgui_memory_editor.h" />
     <ClInclude Include="..\..\src\src\gui\memoryViewer.h" />
     <ClInclude Include="..\..\src\src\Memory.h" />

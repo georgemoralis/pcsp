@@ -24,6 +24,9 @@
     <ClCompile Include="..\..\src\src\Memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\src\gui\Dissasembler.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\src\gui\memoryViewer.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\src\gui\Dissasembler.h">
       <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>

@@ -20,6 +20,8 @@
 #include "PCSPCommon.h"
 #include "Memory.h"
 #include "gui/memoryViewer.h"
+#include "gui/Dissasembler.h"
+
 
 static void glfw_error_callback(int error, const char* description) {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
@@ -38,7 +40,7 @@ u32 MiniFireCode[] = {
     0x24841000, 0x27A409D0, 0x24050001, 0x0008540C, 0x8FA809D4, 0x55000001, 0x00083ACC, 0x000851CC, 0x02002021,
     0x24050200, 0x24060003, 0x24070001, 0x00084FCC, 0x02204021, 0x02408821, 0x0A240024, 0x01009021,
 };
-
+debug::Dissasembler m_disassembler;
 int main(int, char**) {
     if (!Memory::initialize()) return false;
     for (int i = 0; i < sizeof(MiniFireCode) / 4; ++i) Memory::write32(i * 4 + 0x08900050, MiniFireCode[i]);
@@ -178,6 +180,7 @@ int main(int, char**) {
         if (ImGui::BeginMainMenuBar()) {
 
             if (ImGui::BeginMenu("Debug")) {
+                ImGui::MenuItem("Dissasembler", nullptr, &m_disassembler.m_show);
                 ImGui::MenuItem("Memory Viewer", "", &show_memory);
                 ImGui::EndMenu();
             }
@@ -186,7 +189,9 @@ int main(int, char**) {
         if (show_memory) {
             debug::memoryViewer::debug_window_memory(show_memory);
         }
-        
+        if (m_disassembler.m_show) {
+            m_disassembler.draw();
+        }
 
         // Rendering
         ImGui::Render();
