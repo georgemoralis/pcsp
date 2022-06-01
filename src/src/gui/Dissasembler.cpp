@@ -13,12 +13,12 @@ void debug::Dissasembler::draw() {
 
     ImGui::BeginChild("##ScrollingRegion", ImVec2(0, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
     ImGuiListClipper clipper;
-    clipper.Begin(2*1024 *1024/4);
+    clipper.Begin(32*1024 *1024/4);
     u32 baseaddr = MemoryMap::START_RAM;
     while (clipper.Step()) {
         for (int x= clipper.DisplayStart; x< clipper.DisplayEnd; x++) {
-            u32 addr = x * 4;
-            ImGui::Text(" %8.8x", addr | baseaddr);
+            u32 addr = baseaddr + x * 4;
+            ImGui::Text(" %8.8x", addr);
         }
         
     }

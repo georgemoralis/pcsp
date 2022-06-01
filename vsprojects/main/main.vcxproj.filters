@@ -5,16 +5,15 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="GUI">
       <UniqueIdentifier>{a7af7b04-00f7-497f-aeab-b55038b8c835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Allegrex">
+      <UniqueIdentifier>{20c2f866-0f67-4d76-be0f-685968164742}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +48,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\src\gui\Dissasembler.h">
       <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\src\allegrex\Opcodes.h">
+      <Filter>Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\src\allegrex\Instruction.h">
+      <Filter>Allegrex</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
