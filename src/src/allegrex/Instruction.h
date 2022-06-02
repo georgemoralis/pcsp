@@ -3,7 +3,50 @@
  */
 #pragma once
 #include "..\PCSPCommon.h"
+#include <bitset>
 
+namespace Allegrex {
+
+    struct Instruction {
+        virtual void interpret(u32 insn) = 0;
+        virtual std::string disasm(u32 address, u32 insn) = 0;
+        virtual std::string name() = 0;
+        virtual std::string category() = 0;
+        virtual u64& getCount() = 0;
+/*TODO*/  //        public void compile(ICompilerContext context, int insn) {
+/*TODO*/  //            flags |= FLAG_INTERPRETED;
+/*TODO*/  //            context.compileInterpreterInstruction();
+/*TODO*/  //        }
+    };
+
+    struct InstructionUnknown : Instruction {
+        static InstructionUnknown& Self() {
+            static InstructionUnknown insn;
+            return insn;
+        }
+        static Instruction* getInstance() { return &InstructionUnknown::Self(); }
+        virtual void interpret(u32 insn) {}
+        virtual std::string disasm(u32 address, u32 insn) 
+        {
+            char tmp[128];
+
+            sprintf(tmp, "Unknown instruction %32s (0x%08X)", std::bitset<32>(insn), insn);
+            return std::string(tmp);
+        }
+        virtual std::string name() { return "UNK"; }
+        virtual std::string category() { return "UNK"; }
+        virtual u64& getCount() {
+            static u64 dummy = u64();
+            return dummy;
+        }
+/*TODO*/// @Override public void compile(ICompilerContext context, int insn) {
+/*TODO*/  //    super.compile(context, insn);
+/*TODO*/  //}
+    };
+}
+
+
+#if 0
 class Instruction : public std::enable_shared_from_this<Instruction> {
     /*TODO*/  //    	protected static Logger log = Emulator.log;
     /*TODO*/  //    	protected static Logger logCop0 = Logger.getLogger("cop0");
@@ -42,7 +85,7 @@ class Instruction : public std::enable_shared_from_this<Instruction> {
     /*TODO*/  //
     virtual std::string disasm(int address, int insn) = 0;
     virtual std::string name() = 0;
-    virtual std::string name() = 0;
+    virtual std::string category() = 0;
     void resetCount() {
         m_count = 0;
     }
@@ -130,3 +173,4 @@ class Instruction : public std::enable_shared_from_this<Instruction> {
     /*TODO*/  //            return name() + "(" + flagsToString() + ")";
     /*TODO*/  //        }
 }
+#endif
