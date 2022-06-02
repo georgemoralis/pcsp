@@ -3,6 +3,7 @@
  */
 #pragma once
 #include "..\PCSPCommon.h"
+#include "Common.h"
 #include <bitset>
 
 namespace Allegrex {
@@ -39,9 +40,71 @@ namespace Allegrex {
             static u64 dummy = u64();
             return dummy;
         }
-/*TODO*/// @Override public void compile(ICompilerContext context, int insn) {
-/*TODO*/  //    super.compile(context, insn);
-/*TODO*/  //}
+    };
+
+    struct InstructionADDIU : Instruction {
+        static InstructionADDIU& Self() {
+            static InstructionADDIU insn;
+            return insn;
+        }
+        static Instruction* getInstance() { return &InstructionADDIU::Self(); }
+        virtual void interpret(u32 insn) {}
+        virtual std::string disasm(u32 address, u32 insn) {
+            int imm16 = (insn >> 0) & 65535;
+            int rt = (insn >> 16) & 31;
+            int rs = (insn >> 21) & 31;
+            return Allegrex::disasmRTRSIMM("addiu", rt, rs, (short)imm16);
+        }
+        virtual std::string name() { return "ADDIU"; }
+        virtual std::string category() { return "MIPS I"; }
+
+        virtual u64& getCount() { // FIX ME
+            static u64 dummy = u64();
+            return dummy;
+        }
+    };
+
+    struct InstructionORI : Instruction {
+        static InstructionORI& Self() {
+            static InstructionORI insn;
+            return insn;
+        }
+        static Instruction* getInstance() { return &InstructionORI::Self(); }
+        virtual void interpret(u32 insn) {}
+        virtual std::string disasm(u32 address, u32 insn) {
+            int imm16 = (insn >> 0) & 65535;
+            int rt = (insn >> 16) & 31;
+            int rs = (insn >> 21) & 31;
+            return Allegrex::disasmRTRSIMM("ori", rt, rs, imm16);
+        }
+        virtual std::string name() { return "ORI"; }
+        virtual std::string category() { return "MIPS I"; }
+
+        virtual u64& getCount() {  // FIX ME
+            static u64 dummy = u64();
+            return dummy;
+        }
+    };
+
+    struct InstructionLUI : Instruction {
+        static InstructionLUI& Self() {
+            static InstructionLUI insn;
+            return insn;
+        }
+        static Instruction* getInstance() { return &InstructionLUI::Self(); }
+        virtual void interpret(u32 insn) {}
+        virtual std::string disasm(u32 address, u32 insn) {
+            int imm16 = (insn >> 0) & 65535;
+            int rt = (insn >> 16) & 31;
+            return Allegrex::disasmRTIMM("lui", rt, imm16);
+        }
+        virtual std::string name() { return "LUI"; }
+        virtual std::string category() { return "MIPS I"; }
+
+        virtual u64& getCount() {  // FIX ME
+            static u64 dummy = u64();
+            return dummy;
+        }
     };
 }
 

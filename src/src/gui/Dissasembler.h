@@ -7,5 +7,7 @@ namespace debug {
         public:
           void draw();
           bool m_show = true;
-};
+        private:
+          bool m_followPC = false;
+    };
 }  // namespace debug

@@ -12,7 +12,8 @@ void debug::Dissasembler::draw() {
         ImGui::End();
         return;
     }
-
+    u32 pc = 0x08900050;//TEMP value based on minifire demo
+    ImGui::Checkbox("Follow PC", &m_followPC);
     ImGui::BeginChild("##ScrollingRegion", ImVec2(0, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
     ImGuiListClipper clipper;
     clipper.Begin(32*1024 *1024/4);
@@ -27,7 +28,11 @@ void debug::Dissasembler::draw() {
         }
         
     }
-    
+    if (m_followPC) {
+        uint64_t pctopx = (pc & 0x9fffff)/ 4;
+        uint64_t scroll_to_px = pctopx * static_cast<uint64_t>(ImGui::GetTextLineHeightWithSpacing());
+        ImGui::SetScrollFromPosY(ImGui::GetCursorStartPos().y + scroll_to_px, 0.5f);
+    }
     ImGui::EndChild();//end scrolling region
 
     ImGui::End();

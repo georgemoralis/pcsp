@@ -27,6 +27,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\src\allegrex\Common.h" />
     <ClInclude Include="..\..\src\src\allegrex\Decoder.h" />
     <ClInclude Include="..\..\src\src\allegrex\Instruction.h" />
     <ClInclude Include="..\..\src\src\allegrex\Opcodes.h" />
