@@ -29,8 +29,8 @@ namespace Allegrex {
         virtual std::string disasm(u32 address, u32 insn) 
         {
             char tmp[128];
-
-            sprintf(tmp, "Unknown instruction %32s (0x%08X)", std::bitset<32>(insn), insn);
+            std::string bit = std::bitset<32>(insn).to_string();
+            sprintf(tmp, "Unknown instruction %32s (0x%08X)", bit.c_str(), insn);
             return std::string(tmp);
         }
         virtual std::string name() { return "UNK"; }

@@ -55,5 +55,8 @@
     <ClInclude Include="..\..\src\src\allegrex\Instruction.h">
       <Filter>Allegrex</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\src\allegrex\Decoder.h">
+      <Filter>Allegrex</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
