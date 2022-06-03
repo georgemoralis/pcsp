@@ -739,10 +739,11 @@ static std::string disasmRTIMM(std::string opname, int rt, int imm) {
 /*TODO*/  //        return String.format("%1$-10s 0x%2$02X, %3$s", opname, imm7, gprNames[rt]);
 /*TODO*/  //    }
 /*TODO*/  //
-/*TODO*/  //    public static String disasmRTIMMRS(String opname, int rt, int rs, int imm) {
-/*TODO*/  //        return String.format("%1$-10s %2$s, %4$d(%3$s)", opname, gprNames[rt], gprNames[rs], ((int) (short)
-          //        imm));
-/*TODO*/  //    }
+static std::string disasmRTIMMRS(std::string opname, int rt, int rs, int imm) {
+    char tmp[128];
+    sprintf(tmp, "%-10s %2s, %4d(%3s)", opname.c_str(), gprNames[rt], ((int)(short)imm), gprNames[rs]);
+    return std::string(tmp);
+}
 /*TODO*/  //
 /*TODO*/  //    public static String disasmCODEIMMRS(String opname, int code, int imm, int rs) {
 /*TODO*/  //        return String.format("%1$-10s 0x%2$02X, %4$d(%3$s)", opname, code, gprNames[rs], ((int) (short)

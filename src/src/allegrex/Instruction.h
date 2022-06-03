@@ -64,6 +64,28 @@ namespace Allegrex {
         }
     };
 
+    struct InstructionLBU : Instruction {
+        static InstructionLBU& Self() {
+            static InstructionLBU insn;
+            return insn;
+        }
+        static Instruction* getInstance() { return &InstructionLBU::Self(); }
+        virtual void interpret(u32 insn) {}
+        virtual std::string disasm(u32 address, u32 insn) {
+            int imm16 = (insn >> 0) & 65535;
+            int rt = (insn >> 16) & 31;
+            int rs = (insn >> 21) & 31;
+            return Allegrex::disasmRTIMMRS("lbu", rt, rs, (int)(short)imm16);
+        }
+        virtual std::string name() { return "LBU"; }
+        virtual std::string category() { return "MIPS I"; }
+
+        virtual u64& getCount() {  // FIX ME
+            static u64 dummy = u64();
+            return dummy;
+        }
+    };
+
     struct InstructionORI : Instruction {
         static InstructionORI& Self() {
             static InstructionORI insn;

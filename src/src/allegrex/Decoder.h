@@ -8,19 +8,20 @@ namespace Allegrex {
         &InstructionUnknown::Self(), &InstructionUnknown::Self(),&InstructionUnknown::Self(),&InstructionUnknown::Self(), 
         &InstructionUnknown::Self(), &InstructionUnknown::Self(),&InstructionUnknown::Self(),&InstructionUnknown::Self(), 
         &InstructionUnknown::Self(), 
-        &InstructionADDIU::Self(),
+        &InstructionADDIU::Self(), //ADDIU
         &InstructionUnknown::Self(),
         &InstructionUnknown::Self(),
         &InstructionUnknown::Self(), 
-        &InstructionORI::Self(), 
+        &InstructionORI::Self(),  //ORI
         &InstructionUnknown::Self(), 
-        &InstructionLUI::Self(),
+        &InstructionLUI::Self(),  //LUI
         &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(), 
         &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(),
         &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(),
         &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(),
         &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(),
-        &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(),
+        &InstructionLBU::Self(), //LBU
+        &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(),
         &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(),
         &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(),
         &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(), &InstructionUnknown::Self(),
