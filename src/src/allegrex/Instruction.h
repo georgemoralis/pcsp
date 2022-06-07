@@ -36,10 +36,6 @@ namespace Allegrex {
         }
         virtual std::string name() { return "UNK"; }
         virtual std::string category() { return "UNK"; }
-        virtual u64& getCount() {
-            static u64 dummy = u64();
-            return dummy;
-        }
     };
 }
 

@@ -567,12 +567,14 @@ char const* gprNames[32] = {"$zr", "$at", "$v0", "$v1", "$a0", "$a1", "$a2", "$a
 /*TODO*/  //        "NS"
 /*TODO*/  //    };
 /*TODO*/  //
-/*TODO*/  //    public static String disasmRDRTSA(String opname, int rd, int rt, int sa) {
-/*TODO*/  //        if ((rd == 0) && sa == 0) {
-/*TODO*/  //            return "nop";
-/*TODO*/  //        }
-/*TODO*/  //		return String.format("%1$-10s %2$s, %3$s, 0x%4$04X", opname, gprNames[rd], gprNames[rt], sa);
-/*TODO*/  //    }
+std::string disasmRDRTSA(std::string opname, int rd, int rt, int sa) {
+    if ((rd == 0) && sa == 0) {
+        return "nop";
+    }
+    char tmp[128];
+    sprintf(tmp, "%-10s %2s, %3s, 0x%04X", opname.c_str(), gprNames[rd], gprNames[rt], sa);
+    return std::string(tmp);
+}
 /*TODO*/  //
 /*TODO*/  //    public static String disasmRDRTRS(String opname, int rd, int rt, int rs) {
 /*TODO*/  //        return String.format("%1$-10s %2$s, %3$s, %4$s", opname, gprNames[rd], gprNames[rt], gprNames[rs]);
@@ -594,14 +596,18 @@ char const* gprNames[32] = {"$zr", "$at", "$v0", "$v1", "$a0", "$a1", "$a2", "$a
 /*TODO*/  //        return String.format("%1$-10s %2$s, %3$s", opname, gprNames[rd], gprNames[rt]);
 /*TODO*/  //    }
 /*TODO*/  //
-/*TODO*/  //    public static String disasmRD(String opname, int rd) {
-/*TODO*/  //        return String.format("%1$-10s %2$s", opname, gprNames[rd]);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public static String disasmRSRT(String opname, int rs, int rt) {
-/*TODO*/  //        return String.format("%1$-10s %2$s, %3$s", opname, gprNames[rs], gprNames[rt]);
-/*TODO*/  //    }
-/*TODO*/  //
+std::string disasmRD(std::string opname, int rd) {
+    char tmp[128];
+    sprintf(tmp, "%-10s %2s", opname.c_str(), gprNames[rd]);
+    return std::string(tmp);
+}
+
+std::string disasmRSRT(std::string opname, int rs, int rt) {
+    char tmp[128];
+    sprintf(tmp, "%-10s %2s, %3s", opname.c_str(), gprNames[rs], gprNames[rt]);
+    return std::string(tmp);
+}
+
 /*TODO*/  //    public static String disasmEXT(int rt, int rs, int lsb, int msb) {
 /*TODO*/  //        return String.format("%1$-10s %2$s, %3$s, %4$d, %5$d", "ext", gprNames[rt], gprNames[rs], lsb, (msb
           //        + 1));
@@ -660,27 +666,27 @@ std::string disasmRDRSRT(std::string opname, int rd, int rs, int rt) {
     }
     return std::string(tmp);
 }
-/*TODO*/  //
-/*TODO*/  //    public static String disasmRSOFFSET(String opname, int rs, int simm16, int opcode_address) {
-/*TODO*/  //        return String.format("%1$-10s %2$s, 0x%3$08X", opname, gprNames[rs], ((int) (short) simm16) * 4 +
-          //        opcode_address + 4);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public static String disasmRSRTOFFSET(String opname, int rs, int rt, int simm16, int opcode_address) {
-/*TODO*/  //    	if (rs == rt && opname.equals("beq")) {
-/*TODO*/  //    		return String.format("%1$-10s 0x%2$08X", "b", ((int) (short) simm16) * 4 +
-          //    opcode_address + 4);
-/*TODO*/  //    	}
-/*TODO*/  //
-/*TODO*/  //    	return String.format("%1$-10s %2$s, %3$s, 0x%4$08X", opname, gprNames[rs], gprNames[rt], ((int)
-          //    (short) simm16) * 4 + opcode_address + 4);
-/*TODO*/  //    }
+std::string disasmRSOFFSET(std::string opname, int rs, int simm16, int opcode_address) {
+    char tmp[128];
+    sprintf(tmp, "%-10s %2s, 0x%08X", opname.c_str(), gprNames[rs], ((int)(short)simm16) * 4 + opcode_address + 4);
+    return std::string(tmp);
+}
+
+std::string disasmRSRTOFFSET(std::string opname, int rs, int rt, int simm16, int opcode_address) {
+    char tmp[128];
+    if (rs == rt && opname.compare("beq")==0) {
+        sprintf(tmp, "%-10s 0x%08X", "b", ((int)(short)simm16) * 4 + opcode_address + 4);
+        return std::string(tmp);
+  	}
+    sprintf(tmp, "%-10s %2s, %3s, 0x%08X", opname.c_str(),gprNames[rs], gprNames[rt],((int)(short)simm16) * 4 + opcode_address + 4);
+    return std::string(tmp);
+}
 /*TODO*/  //
 /*TODO*/  //    public static String disasmOFFSET(String opname, int simm16, int opcode_address) {
 /*TODO*/  //        return String.format("%1$-10s 0x%2$08X", opname, ((int) (short) simm16) * 4 + opcode_address + 4);
 /*TODO*/  //    }
 /*TODO*/  //
-static std::string disasmRTRSIMM(std::string opname, int rt, int rs, int imm16) {
+std::string disasmRTRSIMM(std::string opname, int rt, int rs, int imm16) {
     char tmp[128];
     sprintf(tmp, "%-10s %2s, %3s, %4d", opname.c_str(), gprNames[rt], gprNames[rs], ((int)(short)imm16));
     if (rs == 0) {
@@ -698,9 +704,9 @@ static std::string disasmRTRSIMM(std::string opname, int rt, int rs, int imm16) 
     }
     return std::string(tmp);
 }
-/*TODO*/  //
-/*TODO*/  //    public static String disasmSYSCALL(Memory mem, int code) {
-/*TODO*/  //    	String functionName = Utilities.getFunctionNameBySyscall(mem, code);
+std::string disasmSYSCALL(int code) {
+    char tmp[128];
+    /*TODO*/  //    	String functionName = Utilities.getFunctionNameBySyscall(mem, code);
 /*TODO*/  //
 /*TODO*/  //    	if (functionName == null) {
 /*TODO*/  //    		if (code == syscallUnmappedImport) {
@@ -712,17 +718,22 @@ static std::string disasmRTRSIMM(std::string opname, int rt, int rs, int imm16) 
 /*TODO*/  //    		}
 /*TODO*/  //    	}
 /*TODO*/  //
-/*TODO*/  //        return String.format("%1$-10s 0x%2$05X [%3$s]", "syscall", code, functionName);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public static String disasmBREAK(int code) {
-/*TODO*/  //        return String.format("%1$-10s 0x%2$05X", "break", code);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public static String disasmJUMP(String opname, int uimm26, int opcode_address) {
-/*TODO*/  //        int jump = (opcode_address & 0xf0000000) | ((uimm26 & 0x3ffffff) << 2);
-/*TODO*/  //
-/*TODO*/  //        String disasm = String.format("%1$-10s 0x%2$08X", opname, jump);
+    sprintf(tmp, "%-10s 0x%05X ", "syscall", code);/*TODO*/  //return String.format("%1$-10s 0x%2$05X [%3$s]", "syscall", code, functionName);
+    return std::string(tmp);
+    
+}
+
+std::string disasmBREAK(int code) 
+{ 
+    char tmp[128];
+    sprintf(tmp,"%-10s 0x%05X", "break", code);
+    return std::string(tmp);
+}
+
+std::string disasmJUMP(std::string opname, int uimm26, int opcode_address) {
+            int jump = (opcode_address & 0xf0000000) | ((uimm26 & 0x3ffffff) << 2);
+            char tmp[128];
+            sprintf(tmp, "%-10s 0x%08X", opname.c_str(), jump);
 /*TODO*/  //        // Try to find a human-readable name for the address
 /*TODO*/  //        if (opname.equals("jal") || opname.equals("j")) {
 /*TODO*/  //        	String functionName = Utilities.getFunctionNameByAddress(jump);
@@ -730,10 +741,10 @@ static std::string disasmRTRSIMM(std::string opname, int rt, int rs, int imm16) 
 /*TODO*/  //        		disasm += String.format(" [%s]", functionName);
 /*TODO*/  //        	}
 /*TODO*/  //        }
-/*TODO*/  //        return disasm;
-/*TODO*/  //    }
-/*TODO*/  //
-static std::string disasmRTIMM(std::string opname, int rt, int imm) {
+            return std::string(tmp);
+    }
+
+std::string disasmRTIMM(std::string opname, int rt, int imm) {
     char tmp[128];
     sprintf(tmp, "%-10s %2s, 0x%04X <=> li %2s, 0x%04X0000", opname.c_str(), gprNames[rt], (imm & 0xFFFF), gprNames[rt],(imm & 0xFFFF));
     return std::string(tmp);
