@@ -961,42 +961,36 @@ namespace Allegrex {
 /*TODO*/  //            return Common.disasmRDRSRT("add", rd, rs, rt);
 /*TODO*/  //        }
 /*TODO*/  //    };
-/*TODO*/  //    public static final Instruction ADDU = new Instruction(23, FLAG_WRITES_RD) {
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public final String name() {
-/*TODO*/  //            return "ADDU";
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public final String category() {
-/*TODO*/  //            return "MIPS I";
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public void interpret(Processor processor, int insn) {
-/*TODO*/  //            int rd = (insn >> 11) & 31;
-/*TODO*/  //            int rt = (insn >> 16) & 31;
-/*TODO*/  //            int rs = (insn >> 21) & 31;
-/*TODO*/  //
-/*TODO*/  //            processor.cpu.doADDU(rd, rs, rt);
-/*TODO*/  //
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public void compile(ICompilerContext context, int insn) {
-/*TODO*/  //            ADD.compile(context, insn);
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public String disasm(int address, int insn) {
-/*TODO*/  //            int rd = (insn >> 11) & 31;
-/*TODO*/  //            int rt = (insn >> 16) & 31;
-/*TODO*/  //            int rs = (insn >> 21) & 31;
-/*TODO*/  //
-/*TODO*/  //            return Common.disasmRDRSRT("addu", rd, rs, rt);
-/*TODO*/  //        }
-/*TODO*/  //    };
+struct ADDU : Instruction {
+    static ADDU& Self() {
+        static ADDU insn;
+        return insn;
+    }
+    static Instruction* getInstance() { return &ADDU::Self(); }
+    virtual void interpret(u32 insn) 
+    {
+        /*TODO*/  //            int rd = (insn >> 11) & 31;
+        /*TODO*/  //            int rt = (insn >> 16) & 31;
+        /*TODO*/  //            int rs = (insn >> 21) & 31;
+        /*TODO*/  //
+        /*TODO*/  //            processor.cpu.doADDU(rd, rs, rt);    
+    }
+    /*TODO*/  //        @Override
+    /*TODO*/  //        public void compile(ICompilerContext context, int insn) {
+    /*TODO*/  //            ADD.compile(context, insn);
+    /*TODO*/  //        }
+
+    virtual std::string disasm(u32 address, u32 insn) {
+        int rd = (insn >> 11) & 31;
+        int rt = (insn >> 16) & 31;
+        int rs = (insn >> 21) & 31;
+        return Allegrex::disasmRDRSRT("addu", rd, rs, rt);
+    }
+    virtual std::string name() { return "ADDU"; }
+    virtual std::string category() { return "MIPS I"; }
+
+};
+
 /*TODO*/  //    public static final Instruction ADDI = new Instruction(24, FLAG_WRITES_RT) {
 /*TODO*/  //
 /*TODO*/  //        @Override
@@ -1076,11 +1070,6 @@ struct ADDIU : Instruction { /*new Instruction(25, FLAG_WRITES_RT)*/
     }
     virtual std::string name() { return "ADDIU"; }
     virtual std::string category() { return "MIPS I"; }
-
-    virtual u64& getCount() {  // FIX ME
-        static u64 dummy = u64();
-        return dummy;
-    }
 };
 /*TODO*/  //    public static final Instruction ADDIU = new Instruction(25, FLAG_WRITES_RT) {
 /*TODO*/  //    public static final Instruction AND = new Instruction(26, FLAG_WRITES_RD) {
@@ -1289,58 +1278,51 @@ struct ADDIU : Instruction { /*new Instruction(25, FLAG_WRITES_RT)*/
 /*TODO*/  //            return Common.disasmRDRSRT("or", rd, rs, rt);
 /*TODO*/  //        }
 /*TODO*/  //    };
-/*TODO*/  //    public static final Instruction ORI = new Instruction(30, FLAG_WRITES_RT) {
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public final String name() {
-/*TODO*/  //            return "ORI";
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public final String category() {
-/*TODO*/  //            return "MIPS I";
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public void interpret(Processor processor, int insn) {
-/*TODO*/  //            int imm16 = (insn >> 0) & 65535;
-/*TODO*/  //            int rt = (insn >> 16) & 31;
-/*TODO*/  //            int rs = (insn >> 21) & 31;
-/*TODO*/  //
-/*TODO*/  //            processor.cpu.doORI(rt, rs, imm16);
-/*TODO*/  //
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public void compile(ICompilerContext context, int insn) {
-/*TODO*/  //            if (!context.isRtRegister0()) {
-/*TODO*/  //                int imm = context.getImm16(false);
-/*TODO*/  //                if (context.isRsRegister0()) {
-/*TODO*/  //                    context.storeRt(imm);
-/*TODO*/  //                } else if (imm == 0 && context.getRsRegisterIndex() == context.getRtRegisterIndex()) {
-/*TODO*/  //                    // Or-ing a register with 0 and himself is a No-OP:
-/*TODO*/  //                    // ORI $reg, $reg, 0
-/*TODO*/  //                } else {
-/*TODO*/  //                    context.prepareRtForStore();
-/*TODO*/  //                    context.loadRs();
-/*TODO*/  //                    if (imm != 0) {
-/*TODO*/  //                        context.loadImm(imm);
-/*TODO*/  //                        context.getMethodVisitor().visitInsn(Opcodes.IOR);
-/*TODO*/  //                    }
-/*TODO*/  //                    context.storeRt();
-/*TODO*/  //                }
-/*TODO*/  //            }
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public String disasm(int address, int insn) {
-/*TODO*/  //            int imm16 = (insn >> 0) & 65535;
-/*TODO*/  //            int rt = (insn >> 16) & 31;
-/*TODO*/  //            int rs = (insn >> 21) & 31;
-/*TODO*/  //
-/*TODO*/  //            return Common.disasmRTRSIMM("ori", rt, rs, imm16);
-/*TODO*/  //        }
-/*TODO*/  //    };
+
+struct ORI : Instruction /*new Instruction(30, FLAG_WRITES_RT)*/ {
+    static ORI& Self() {
+        static ORI insn;
+        return insn;
+    }
+    static Instruction* getInstance() { return &ORI::Self(); }
+    virtual void interpret(u32 insn) 
+    {
+        /*TODO*/  //            int imm16 = (insn >> 0) & 65535;
+        /*TODO*/  //            int rt = (insn >> 16) & 31;
+        /*TODO*/  //            int rs = (insn >> 21) & 31;
+        /*TODO*/  //
+        /*TODO*/  //            processor.cpu.doORI(rt, rs, imm16);    
+    }
+    /*TODO*/  //        @Override
+    /*TODO*/  //        public void compile(ICompilerContext context, int insn) {
+    /*TODO*/  //            if (!context.isRtRegister0()) {
+    /*TODO*/  //                int imm = context.getImm16(false);
+    /*TODO*/  //                if (context.isRsRegister0()) {
+    /*TODO*/  //                    context.storeRt(imm);
+    /*TODO*/  //                } else if (imm == 0 && context.getRsRegisterIndex() == context.getRtRegisterIndex()) {
+    /*TODO*/  //                    // Or-ing a register with 0 and himself is a No-OP:
+    /*TODO*/  //                    // ORI $reg, $reg, 0
+    /*TODO*/  //                } else {
+    /*TODO*/  //                    context.prepareRtForStore();
+    /*TODO*/  //                    context.loadRs();
+    /*TODO*/  //                    if (imm != 0) {
+    /*TODO*/  //                        context.loadImm(imm);
+    /*TODO*/  //                        context.getMethodVisitor().visitInsn(Opcodes.IOR);
+    /*TODO*/  //                    }
+    /*TODO*/  //                    context.storeRt();
+    /*TODO*/  //                }
+    /*TODO*/  //            }
+    /*TODO*/  //        }
+
+    virtual std::string disasm(u32 address, u32 insn) {
+        int imm16 = (insn >> 0) & 65535;
+        int rt = (insn >> 16) & 31;
+        int rs = (insn >> 21) & 31;
+        return Allegrex::disasmRTRSIMM("ori", rt, rs, imm16);
+    }
+    virtual std::string name() { return "ORI"; }
+    virtual std::string category() { return "MIPS I"; }
+};
 /*TODO*/  //    public static final Instruction XOR = new Instruction(31, FLAG_WRITES_RD) {
 /*TODO*/  //
 /*TODO*/  //        @Override
@@ -2210,43 +2192,36 @@ struct ADDIU : Instruction { /*new Instruction(25, FLAG_WRITES_RT)*/
 /*TODO*/  //            return Common.disasmRDRSRT("subu", rd, rs, rt);
 /*TODO*/  //        }
 /*TODO*/  //    };
-/*TODO*/  //    public static final Instruction LUI = new Instruction(47, FLAG_WRITES_RT) {
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public final String name() {
-/*TODO*/  //            return "LUI";
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public final String category() {
-/*TODO*/  //            return "MIPS I";
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public void interpret(Processor processor, int insn) {
-/*TODO*/  //            int imm16 = (insn >> 0) & 65535;
-/*TODO*/  //            int rt = (insn >> 16) & 31;
-/*TODO*/  //
-/*TODO*/  //            processor.cpu.doLUI(rt, imm16);
-/*TODO*/  //
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public void compile(ICompilerContext context, int insn) {
-/*TODO*/  //            if (!context.isRtRegister0()) {
-/*TODO*/  //                int uimm16 = context.getImm16(false);
-/*TODO*/  //                context.storeRt(uimm16 << 16);
-/*TODO*/  //            }
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public String disasm(int address, int insn) {
-/*TODO*/  //            int imm16 = (insn >> 0) & 65535;
-/*TODO*/  //            int rt = (insn >> 16) & 31;
-/*TODO*/  //
-/*TODO*/  //            return Common.disasmRTIMM("lui", rt, imm16);
-/*TODO*/  //        }
-/*TODO*/  //    };
+struct LUI : Instruction {
+    static LUI& Self() {
+        static LUI insn;
+        return insn;
+    }
+    static Instruction* getInstance() { return &LUI::Self(); }
+    virtual void interpret(u32 insn) 
+    {
+        /*TODO*/  //            int imm16 = (insn >> 0) & 65535;
+        /*TODO*/  //            int rt = (insn >> 16) & 31;
+        /*TODO*/  //
+        /*TODO*/  //            processor.cpu.doLUI(rt, imm16);    
+    }
+
+    /*TODO*/  //        @Override
+    /*TODO*/  //        public void compile(ICompilerContext context, int insn) {
+    /*TODO*/  //            if (!context.isRtRegister0()) {
+    /*TODO*/  //                int uimm16 = context.getImm16(false);
+    /*TODO*/  //                context.storeRt(uimm16 << 16);
+    /*TODO*/  //            }
+    /*TODO*/  //        }
+
+    virtual std::string disasm(u32 address, u32 insn) {
+        int imm16 = (insn >> 0) & 65535;
+        int rt = (insn >> 16) & 31;
+        return Allegrex::disasmRTIMM("lui", rt, imm16);
+    }
+    virtual std::string name() { return "LUI"; }
+    virtual std::string category() { return "MIPS I"; }     
+};
 /*TODO*/  //    public static final Instruction SEB = new Instruction(48, FLAG_WRITES_RD) {
 /*TODO*/  //
 /*TODO*/  //        @Override
@@ -4503,46 +4478,37 @@ struct ADDIU : Instruction { /*new Instruction(25, FLAG_WRITES_RT)*/
 /*TODO*/  //            return Common.disasmRTIMMRS("lb", rt, rs, (int) (short) imm16);
 /*TODO*/  //        }
 /*TODO*/  //    };
-/*TODO*/  //    public static final Instruction LBU = new Instruction(102, FLAG_WRITES_RT) {
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public final String name() {
-/*TODO*/  //            return "LBU";
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public final String category() {
-/*TODO*/  //            return "MIPS I";
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public void interpret(Processor processor, int insn) {
-/*TODO*/  //            int imm16 = (insn >> 0) & 65535;
-/*TODO*/  //            int rt = (insn >> 16) & 31;
-/*TODO*/  //            int rs = (insn >> 21) & 31;
-/*TODO*/  //
-/*TODO*/  //            processor.cpu.doLBU(rt, rs, (int) (short) imm16);
-/*TODO*/  //
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public void compile(ICompilerContext context, int insn) {
-/*TODO*/  //            if (!context.isRtRegister0()) {
-/*TODO*/  //                context.prepareRtForStore();
-/*TODO*/  //                context.memRead8(context.getRsRegisterIndex(), context.getImm16(true));
-/*TODO*/  //                context.storeRt();
-/*TODO*/  //            }
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public String disasm(int address, int insn) {
-/*TODO*/  //            int imm16 = (insn >> 0) & 65535;
-/*TODO*/  //            int rt = (insn >> 16) & 31;
-/*TODO*/  //            int rs = (insn >> 21) & 31;
-/*TODO*/  //
-/*TODO*/  //            return Common.disasmRTIMMRS("lbu", rt, rs, (int) (short) imm16);
-/*TODO*/  //        }
-/*TODO*/  //    };
+
+struct LBU : Instruction { /*new Instruction(102, FLAG_WRITES_RT)*/
+    static LBU& Self() {
+        static LBU insn;
+        return insn;
+    }
+    static Instruction* getInstance() { return &LBU::Self(); }
+    virtual void interpret(u32 insn) 
+    {
+        /*TODO*/  //            int imm16 = (insn >> 0) & 65535;
+        /*TODO*/  //            int rt = (insn >> 16) & 31;
+        /*TODO*/  //            int rs = (insn >> 21) & 31;
+        /*TODO*/  //
+        /*TODO*/  //            processor.cpu.doLBU(rt, rs, (int) (short) imm16);    
+    }
+    /*TODO*/  //            int imm16 = (insn >> 0) & 65535;
+    /*TODO*/  //            int rt = (insn >> 16) & 31;
+    /*TODO*/  //            int rs = (insn >> 21) & 31;
+    /*TODO*/  //
+    /*TODO*/  //            processor.cpu.doLBU(rt, rs, (int) (short) imm16);
+
+    virtual std::string disasm(u32 address, u32 insn) {
+        int imm16 = (insn >> 0) & 65535;
+        int rt = (insn >> 16) & 31;
+        int rs = (insn >> 21) & 31;
+        return Allegrex::disasmRTIMMRS("lbu", rt, rs, (int)(short)imm16);
+    }
+    virtual std::string name() { return "LBU"; }
+    virtual std::string category() { return "MIPS I"; }
+
+};
 /*TODO*/  //    public static final Instruction LH = new Instruction(103, FLAG_WRITES_RT) {
 /*TODO*/  //
 /*TODO*/  //        @Override

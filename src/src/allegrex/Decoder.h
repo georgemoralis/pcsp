@@ -1,5 +1,6 @@
 #pragma once
 #include "Instruction.h"
+#include "Instructions.h"
 
 namespace Allegrex {
 
@@ -8,19 +9,19 @@ Instruction* instruction(u32 opcode) {
         case 0: /* SPECIAL */
             switch ((opcode >> 0) & 0x0000003f) {
                 case 33:
-                    return &InstructionADDU::Self();  // ADDIU
+                    return &ADDU::Self();  // ADDIU
                 default:
                     return &InstructionUnknown::Self();
             }
             break;
         case 9:
-            return &InstructionADDIU::Self();// ADDIU
+            return &ADDIU::Self();// ADDIU
         case 13:
-            return &InstructionORI::Self();// ORI
+            return &ORI::Self();// ORI
         case 15:
-            return &InstructionLUI::Self();//LUI
+            return &LUI::Self();//LUI
         case 36:
-            return &InstructionLBU::Self();// LBU
+            return &LBU::Self();// LBU
         default:
             return &InstructionUnknown::Self();
     }
