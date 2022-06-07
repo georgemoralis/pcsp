@@ -128,6 +128,27 @@ namespace Allegrex {
             return dummy;
         }
     };
+    struct InstructionADDU : Instruction {
+        static InstructionADDU& Self() {
+            static InstructionADDU insn;
+            return insn;
+        }
+        static Instruction* getInstance() { return &InstructionADDU::Self(); }
+        virtual void interpret(u32 insn) {}
+        virtual std::string disasm(u32 address, u32 insn) {
+            int rd = (insn >> 11) & 31;
+            int rt = (insn >> 16) & 31;
+            int rs = (insn >> 21) & 31;
+            return Allegrex::disasmRDRSRT("addu", rd, rs, rt);
+        }
+        virtual std::string name() { return "ADDU"; }
+        virtual std::string category() { return "MIPS I"; }
+
+        virtual u64& getCount() {  // FIX ME
+            static u64 dummy = u64();
+            return dummy;
+        }
+    };
 }
 
 

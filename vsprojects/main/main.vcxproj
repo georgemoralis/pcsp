@@ -30,6 +30,7 @@
     <ClInclude Include="..\..\src\src\allegrex\Common.h" />
     <ClInclude Include="..\..\src\src\allegrex\Decoder.h" />
     <ClInclude Include="..\..\src\src\allegrex\Instruction.h" />
+    <ClInclude Include="..\..\src\src\allegrex\Instructions.h" />
     <ClInclude Include="..\..\src\src\allegrex\Opcodes.h" />
     <ClInclude Include="..\..\src\src\gui\Dissasembler.h" />
     <ClInclude Include="..\..\src\src\gui\imgui_memory_editor.h" />

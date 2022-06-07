@@ -615,45 +615,49 @@ char const* gprNames[32] = {"$zr", "$at", "$v0", "$v1", "$a0", "$a1", "$a2", "$a
 std::string disasmRDRSRT(std::string opname, int rd, int rs, int rt) {
     char tmp[128];
     sprintf(tmp, "%-10s %2s, %3s, %4s", opname.c_str(), gprNames[rd], gprNames[rs], gprNames[rt]);
-    /*TODO*/  //        if (rs == 0 && rt == 0) {
-/*TODO*/  //
-/*TODO*/  //            if (opname.equals("xor") || opname.equals("nor")) {
-/*TODO*/  //                return String.format("%2$s <=> li %1$s, -1", gprNames[rd], s);
-/*TODO*/  //            }
-/*TODO*/  //
-/*TODO*/  //            return String.format("%2$s <=> li %1$s, 0", gprNames[rd], s);
-/*TODO*/  //        } else if (rs == 0) {
-/*TODO*/  //
-/*TODO*/  //            if (opname.equals("and")) {
-/*TODO*/  //                return String.format("%2$s <=> li %1$s, 0", gprNames[rd], s);
-/*TODO*/  //            }
-/*TODO*/  //
-/*TODO*/  //            if (opname.equals("nor")) {
-/*TODO*/  //                return String.format("%3$s <=> li %1$s, not %2$s", gprNames[rd], gprNames[rt], s);
-/*TODO*/  //            }
-/*TODO*/  //
-/*TODO*/  //            if (opname.equals("sub")) {
-/*TODO*/  //                return String.format("%3$s <=> neg %1$s, %2$s", gprNames[rd], gprNames[rt], s);
-/*TODO*/  //            }
-/*TODO*/  //
-/*TODO*/  //            if (opname.equals("subu")) {
-/*TODO*/  //                return String.format("%3$s <=> negu %1$s, %2$s", gprNames[rd], gprNames[rt], s);
-/*TODO*/  //            }
-/*TODO*/  //
-/*TODO*/  //            return String.format("%3$s <=> move %1$s, %2$s", gprNames[rd], gprNames[rt], s);
-/*TODO*/  //        } else if (rt == 0) {
-/*TODO*/  //
-/*TODO*/  //            if (opname.equals("and")) {
-/*TODO*/  //                return String.format("%2$s <=> li %1$s, 0", gprNames[rd], s);
-/*TODO*/  //            }
-/*TODO*/  //
-/*TODO*/  //            if (opname.equals("nor")) {
-/*TODO*/  //                return String.format("%3$s <=> li %1$s, not %2$s", gprNames[rd], gprNames[rs], s);
-/*TODO*/  //            }
-/*TODO*/  //
-/*TODO*/  //            return String.format("%3$s <=> move %1$s, %2$s", gprNames[rd], gprNames[rs], s);
-/*TODO*/  //        }
-/*TODO*/  //
+    if (rs == 0 && rt == 0) {
+        char tmp2[128];
+        if (opname.compare("xor")==0 || opname.compare("nor")==0) {
+            sprintf(tmp2, "%2s <=> li %1s, -1", tmp, gprNames[rd]);
+            return std::string(tmp2);
+        }
+        sprintf(tmp2, "%2s <=> li %1s, 0", tmp, gprNames[rd]);
+        return std::string(tmp2);
+    } else if (rs == 0) {
+        char tmp2[128];
+        if (opname.compare("and")==0) {
+            sprintf(tmp2, "%2s <=> li %1s, 0", tmp, gprNames[rd]);
+            return std::string(tmp2);
+        }
+        if (opname.compare("nor")==0) {
+            sprintf(tmp2, "%3s <=> li %1s, not %2s", tmp, gprNames[rd], gprNames[rt]);
+            return std::string(tmp2);
+        }
+        if (opname.compare("sub")==0) {
+            sprintf(tmp2, "%3s <=> neg %1s, %2s", tmp, gprNames[rd], gprNames[rt]);
+            return std::string(tmp2);
+        }
+        if (opname.compare("subu")==0) {
+            sprintf(tmp2, "%3s <=> negu %1s, %2s", tmp, gprNames[rd], gprNames[rt]);
+            return std::string(tmp2);
+        }
+
+        sprintf(tmp2, "%3s <=> move %1s, %2s", tmp, gprNames[rd], gprNames[rt]);
+        return std::string(tmp2);
+    } 
+    else if (rt == 0) {
+        char tmp2[128];
+        if (opname.compare("and")==0) {
+            sprintf(tmp2, "%2s <=> li %1s, 0", tmp, gprNames[rd]);
+            return std::string(tmp2);
+        }
+        if (opname.compare("nor")==0) {
+            sprintf(tmp2, "%3s <=> li %1s, not %2s", tmp, gprNames[rd], gprNames[rs]);
+            return std::string(tmp2);
+        }
+        sprintf(tmp2, "%3s <=> move %1s, %2s", tmp, gprNames[rd], gprNames[rs]);
+        return std::string(tmp2);
+    }
     return std::string(tmp);
 }
 /*TODO*/  //
