@@ -15,6 +15,12 @@
     <Filter Include="Allegrex">
       <UniqueIdentifier>{20c2f866-0f67-4d76-be0f-685968164742}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI\FileBrowser">
+      <UniqueIdentifier>{74bae59c-5cb7-413b-95c2-660fbce53ada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\FileBrowser\Dirent">
+      <UniqueIdentifier>{ac28be98-da0e-47b6-b1c3-ec2ff2e4dfc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\src\Main.cpp">
@@ -25,6 +31,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\src\gui\Dissasembler.cpp">
       <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third_party\FileBrowser\ImGuiFileBrowser.cpp">
+      <Filter>GUI\FileBrowser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +72,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\src\allegrex\Instructions.h">
       <Filter>Allegrex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\third_party\FileBrowser\Dirent\dirent.h">
+      <Filter>GUI\FileBrowser\Dirent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\third_party\FileBrowser\ImGuiFileBrowser.h">
+      <Filter>GUI\FileBrowser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
