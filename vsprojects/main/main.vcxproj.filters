@@ -21,6 +21,9 @@
     <Filter Include="GUI\FileBrowser\Dirent">
       <UniqueIdentifier>{ac28be98-da0e-47b6-b1c3-ec2ff2e4dfc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="format">
+      <UniqueIdentifier>{15afc8e3-0d6d-4500-b297-7cf52eb7bb3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\src\Main.cpp">
@@ -34,6 +37,9 @@
     </ClCompile>
     <ClCompile Include="..\..\third_party\FileBrowser\ImGuiFileBrowser.cpp">
       <Filter>GUI\FileBrowser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\src\format\PBP.cpp">
+      <Filter>format</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +84,9 @@
     </ClInclude>
     <ClInclude Include="..\..\third_party\FileBrowser\ImGuiFileBrowser.h">
       <Filter>GUI\FileBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\src\format\PBP.h">
+      <Filter>format</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
