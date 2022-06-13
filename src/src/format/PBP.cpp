@@ -1,39 +1,10 @@
 /*
  *  12/06/2022 - synced with jpcsp 31/05/2022 - 90841114
  */
+#include "..\PCSPCommon.h"
 #include "PBP.h"
 
-/*TODO*/  //    public static final int PBP_MAGIC = 0x50425000;
-/*TODO*/  //    private static final String PBP_UNPACK_PATH_PREFIX = "unpacked-pbp/";
-/*TODO*/  //
-/*TODO*/  //    static private final String[] FILE_NAMES = new String[]{
-/*TODO*/  //            "param.sfo",
-/*TODO*/  //            "icon0.png",
-/*TODO*/  //            "icon1.pmf",
-/*TODO*/  //            "pic0.png",
-/*TODO*/  //            "pic1.png",
-/*TODO*/  //            "snd0.at3",
-/*TODO*/  //            "psp.data",
-/*TODO*/  //            "psar.data",
-/*TODO*/  //    };
-/*TODO*/  //
-/*TODO*/  //    static private final int TOTAL_FILES = 8;
-/*TODO*/  //
-/*TODO*/  //    static private final int PARAM_SFO = 0;
-/*TODO*/  //    static private final int ICON0_PNG = 1;
-/*TODO*/  //    static private final int ICON1_PMF = 2;
-/*TODO*/  //    static private final int PIC0_PNG = 3;
-/*TODO*/  //    static private final int PIC1_PNG = 4;
-/*TODO*/  //    static private final int SND0_AT3 = 5;
-/*TODO*/  //    static private final int PSP_DATA = 6;
-/*TODO*/  //    static private final int PSAR_DATA = 7;
-/*TODO*/  //
-/*TODO*/  //    static public final int PBP_HEADER_SIZE = 8 + TOTAL_FILES * 4;
-/*TODO*/  //    static public final int PBP_PSP_DATA_OFFSET = 8 + PSP_DATA * 4;
-/*TODO*/  //    static public final int PBP_PSAR_DATA_OFFSET = 8 + PSAR_DATA * 4;
-/*TODO*/  //
 /*TODO*/  //    private String info;
-/*TODO*/  //    private int size_pbp;
 /*TODO*/  //
 /*TODO*/  //    private int p_magic;
 /*TODO*/  //    private int p_version;
@@ -41,9 +12,10 @@
 /*TODO*/  //    private Elf32 elf32;
 /*TODO*/  //    private PSF psf;
 /*TODO*/  //
-/*TODO*/  //    public boolean isValid() {
-/*TODO*/  //        return size_pbp != 0 && p_magic == PBP_MAGIC;
-/*TODO*/  //    }
+bool PBP::isValid() const 
+{ 
+    return (size_pbp != 0 && data.p_magic == PBP_MAGIC); 
+}
 /*TODO*/  //
 /*TODO*/  //    public void setElf32(Elf32 elf) {
 /*TODO*/  //        elf32 = elf;
@@ -65,25 +37,31 @@
 /*TODO*/  //        return info;
 /*TODO*/  //    }
 /*TODO*/  //
-/*TODO*/  //    public PBP(ByteBuffer f) throws IOException {
-/*TODO*/  //        size_pbp = f.limit();
-/*TODO*/  //        if (size_pbp == 0) {
-/*TODO*/  //            return;
-/*TODO*/  //        }
-/*TODO*/  //        p_magic = readUWord(f);
-/*TODO*/  //        if (isValid()) {
-/*TODO*/  //            p_version = readUWord(f);
-/*TODO*/  //
-/*TODO*/  //            p_offsets = new int[]
-          //            {readUWord(f),readUWord(f),readUWord(f),readUWord(f),readUWord(f),readUWord(f),readUWord(f),readUWord(f),size_pbp};
-/*TODO*/  //
-/*TODO*/  //            info = toString();
-/*TODO*/  //        }
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    private PBP() {
-/*TODO*/  //    }
-/*TODO*/  //
+PBP::PBP(std::ifstream& f) {
+    u32 pos = (u32)f.tellg();
+    f.seekg(0, std::ios::end);
+    size_pbp = (u32)f.tellg();
+    f.seekg(pos, std::ios::beg);
+
+    if (size_pbp == 0) return;
+
+    f.read((char*)&data, sizeof(data));
+
+    p_offsets[0] = data.p_offset_param_sfo;
+    p_offsets[1] = data.p_offset_icon0_png;
+    p_offsets[2] = data.p_offset_icon1_pmf; 
+    p_offsets[3] = data.p_offset_pic0_png;
+    p_offsets[4] = data.p_offset_pic1_png; 
+    p_offsets[5] = data.p_offset_snd0_at3; 
+    p_offsets[6] = data.p_offset_psp_data; 
+    p_offsets[7] = data.p_offset_psar_data;
+    p_offsets[8] = size_pbp;
+
+    /*TODO*/  //            info = toString();
+}
+PBP::PBP() {
+
+}
 /*TODO*/  //    public PSF readPSF(ByteBuffer f) throws IOException {
 /*TODO*/  //        if (getOffsetParam() > 0) {
 /*TODO*/  //            f.position(getOffsetParam());
@@ -121,101 +99,93 @@
 /*TODO*/  //        return str.toString();
 /*TODO*/  //    }
 /*TODO*/  //
-/*TODO*/  //    private String getName(int index) {
-/*TODO*/  //        return FILE_NAMES[index];
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    private int getOffset(int index) {
-/*TODO*/  //        return this.p_offsets[index];
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    private int getSize(int index) {
-/*TODO*/  //        return this.p_offsets[index + 1] - this.p_offsets[index];
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    private byte[] getBytes(ByteBuffer f, int index) {
-/*TODO*/  //        return ByteUtil.readBytes(f, getOffset(index), getSize(index));
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getMagic() {
-/*TODO*/  //        return p_magic;
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getVersion() {
-/*TODO*/  //        return p_version;
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getOffsetParam() {
-/*TODO*/  //        return getOffset(PARAM_SFO);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getOffsetIcon0() {
-/*TODO*/  //        return getOffset(ICON0_PNG);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getOffsetIcon1() {
-/*TODO*/  //        return getOffset(ICON1_PMF);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getOffsetPic0() {
-/*TODO*/  //        return getOffset(PIC0_PNG);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getOffsetPic1() {
-/*TODO*/  //        return getOffset(PIC1_PNG);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getOffsetSnd0() {
-/*TODO*/  //        return getOffset(SND0_AT3);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getOffsetPspData() {
-/*TODO*/  //        return getOffset(PSP_DATA);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getOffsetPsarData() {
-/*TODO*/  //        return getOffset(PSAR_DATA);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getSizeIcon0() {
-/*TODO*/  //        return getSize(ICON0_PNG);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public int getSizePsarData() {
-/*TODO*/  //    	return getSize(PSAR_DATA);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public static boolean deleteDir(File dir) {
-/*TODO*/  //        if (dir.isDirectory()) {
-/*TODO*/  //            String[] children = dir.list();
-/*TODO*/  //            for (int i = 0; i < children.length; i++) {
-/*TODO*/  //                boolean success = deleteDir(new File(dir, children[i]));
-/*TODO*/  //                if (!success) {
-/*TODO*/  //                    return false;
-/*TODO*/  //                }
-/*TODO*/  //            }
-/*TODO*/  //        }
-/*TODO*/  //        // The directory is now empty so delete it
-/*TODO*/  //        return dir.delete();
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public static void unpackPBP(ByteBuffer f) throws IOException {
-/*TODO*/  //        f.position(0);//seek to 0
-/*TODO*/  //        PBP pbp = new PBP(f);
-/*TODO*/  //        if (!pbp.isValid()) {
-/*TODO*/  //            return;
-/*TODO*/  //        }
-/*TODO*/  //        File dir = new File(PBP_UNPACK_PATH_PREFIX);
-/*TODO*/  //        deleteDir(dir);//delete all files and directory
-/*TODO*/  //        dir.mkdir();
-/*TODO*/  //
-/*TODO*/  //        for (int index = 0; index < TOTAL_FILES; index++) {
-/*TODO*/  //        	byte[] bytes = pbp.getBytes(f, index);
-/*TODO*/  //        	if (bytes != null && bytes.length > 0) {
-/*TODO*/  //        		FileUtil.writeBytes(new File(PBP_UNPACK_PATH_PREFIX + pbp.getName(index)), bytes);
-/*TODO*/  //        	}
-/*TODO*/  //        }
-/*TODO*/  //    }
+std::string PBP::getName(int index) {
+    return FILE_NAMES[index];
+}
+u32 PBP::getOffset(int index) {
+    return p_offsets[index];
+}
+
+u32 PBP::getSize(int index) 
+{ 
+    return p_offsets[index + 1] - p_offsets[index]; 
+}
+
+std::unique_ptr<u8> PBP::getBytes(std::ifstream &f,int index) { 
+    u32 pos = f.tellg();
+    std::unique_ptr<u8> data(new u8[getSize(index)]); 
+    f.seekg(getOffset(index));
+    f.read((char*)data.get(), getSize(index));
+    f.seekg(pos);
+    return data;
+}
+
+u32 PBP::getMagic() { return data.p_magic; }
+
+u32 PBP::getVersion() { return data.p_version; }
+
+u32 PBP::getOffsetParam() {
+    return getOffset(PARAM_SFO);
+}
+
+u32 PBP::getOffsetIcon0() {
+    return getOffset(ICON0_PNG);
+ }
+
+u32 PBP::getOffsetIcon1() {
+    return getOffset(ICON1_PMF);
+}
+
+u32 PBP::getOffsetPic0() {
+    return getOffset(PIC0_PNG);
+}
+
+u32 PBP::getOffsetPic1() {
+    return getOffset(PIC1_PNG);
+}
+
+u32 PBP::getOffsetSnd0() {
+    return getOffset(SND0_AT3);
+}
+
+u32 PBP::getOffsetPspData() {
+    return getOffset(PSP_DATA);
+}
+
+u32 PBP::getOffsetPsarData() {
+    return getOffset(PSAR_DATA);
+}
+
+u32 PBP::getSizeIcon0() {
+    return getSize(ICON0_PNG);
+}
+
+u32 PBP::getSizePsarData() {
+    return getSize(PSAR_DATA);
+}
+
+void PBP::unpackPBP(std::ifstream& f) {
+    f.seekg(0);
+    PBP pbp(f);
+
+    if (!pbp.isValid()) return;
+    if (std::filesystem::is_directory(PBP_UNPACK_PATH_PREFIX)) {
+        std::filesystem::remove_all(PBP_UNPACK_PATH_PREFIX);  // delete all files and directory
+    }
+    std::filesystem::create_directory(PBP_UNPACK_PATH_PREFIX);
+    for (int index = 0; index < TOTAL_FILES; index++) {
+        std::unique_ptr<u8> bytes = pbp.getBytes(f, index);
+        if (bytes && getSize(index)>0) {
+            std::ofstream ofs;
+            std::string path = PBP_UNPACK_PATH_PREFIX + pbp.getName(index);
+            ofs.open(path.c_str(), std::ios::out | std::ios::binary);
+            if (ofs.is_open()) {
+                ofs.write((char*)bytes.get(), pbp.getSize(index));
+                ofs.close();
+            }
+        }
+    }
+}
 /*TODO*/  //
 /*TODO*/  //    /**
 /*TODO*/  //     * Unpack a PBP file, avoiding to consume too much memory

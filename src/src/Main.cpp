@@ -22,6 +22,7 @@
 #include "gui/memoryViewer.h"
 #include "gui/Dissasembler.h"
 #include "third_party/FileBrowser/ImGuiFileBrowser.h"
+#include "format\PBP.h"
 
 static void glfw_error_callback(int error, const char* description) {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
@@ -43,7 +44,13 @@ u32 MiniFireCode[] = {
 debug::Dissasembler m_disassembler;
 imgui_addons::ImGuiFileBrowser file_dialog;
 
-int main(int, char**) {
+void loadtest(std::ifstream& f) {
+    PBP pbp(f);
+    if (pbp.isValid()) {
+        pbp.unpackPBP(f);
+    }
+}
+    int main(int, char**) {
     if (!Memory::initialize()) return false;
     for (int i = 0; i < sizeof(MiniFireCode) / 4; ++i) Memory::write32(i * 4 + 0x08900050, MiniFireCode[i]);
 
@@ -205,6 +212,10 @@ int main(int, char**) {
         if (file_dialog.showFileDialog("Open File", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2(700, 310),".elf,.pbp,.prx")) {
             //  std::cout << file_dialog.selected_fn << std::endl;      // The name of the selected file or directory in case of Select Directory dialog mode
             //std::cout << file_dialog.selected_path << std::endl;  // The absolute path to the selected file
+            std::ifstream ifs;
+            ifs.open(file_dialog.selected_path.c_str(), std::ios::in | std::ios::binary);
+            loadtest(ifs);
+
             show_fileopen = false;
         } else {
             show_fileopen = false;
