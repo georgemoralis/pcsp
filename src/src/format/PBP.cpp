@@ -1,7 +1,8 @@
 /*
- *  12/06/2022 - synced with jpcsp 31/05/2022 - 90841114
+ *  14/06/2022 - synced with jpcsp 14/06/2022 - a5e0793
  */
 #include "..\PCSPCommon.h"
+#include "PSF.h"
 #include "PBP.h"
 
 /*TODO*/  //    private Elf32 elf32;
@@ -20,11 +21,9 @@ bool PBP::isValid() const
 /*TODO*/  //        return elf32;
 /*TODO*/  //    }
 /*TODO*/  //
-/*TODO*/  //    public PSF getPSF() {
-/*TODO*/  //        return psf;
-/*TODO*/  //    }
-/*TODO*/  //
-PBP::PBP(std::ifstream& f) {
+//PSF *PBP::getPsf() const { return psf; }
+
+PBP::PBP(std::ifstream &f) : psf(NULL){
     u32 pos = (u32)f.tellg();
     f.seekg(0, std::ios::end);
     size_pbp = (u32)f.tellg();
@@ -45,18 +44,26 @@ PBP::PBP(std::ifstream& f) {
     p_offsets[8] = size_pbp;
 }
 
-PBP::PBP() {
+PBP::PBP() : psf(NULL)  {
 
 }
-/*TODO*/  //    public PSF readPSF(ByteBuffer f) throws IOException {
-/*TODO*/  //        if (getOffsetParam() > 0) {
-/*TODO*/  //            f.position(getOffsetParam());
-/*TODO*/  //            psf = new PSF(getOffsetParam());
-/*TODO*/  //            psf.read(f);
-/*TODO*/  //            return psf;
-/*TODO*/  //        }
-/*TODO*/  //        return null;
-/*TODO*/  //    }
+
+PBP::~PBP() {
+    if (psf != NULL) {
+        delete psf;
+        psf = NULL;
+    }
+}
+
+PSF *PBP::readPSF(std::ifstream &file) {
+    if (getOffsetParam() > 0) {
+        file.seekg(getOffsetParam());
+        psf = new PSF(getOffsetParam());
+        psf->read(file);
+        return psf;
+    }
+    return NULL;
+}
 
 std::string PBP::toString() {
     std::string str = "--------PBP HEADER--------\n";

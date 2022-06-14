@@ -50,6 +50,9 @@ debug::HeaderViewer m_headerViewer;
 void loadtest(std::ifstream& f) {
     PBP pbp(f);
     if (pbp.isValid()) {
+        if (pbp.getOffsetParam() > 0) {
+            pbp.readPSF(f);
+        }
         pbp.unpackPBP(f);
         m_headerViewer.setPbpHeader(pbp.toString());
     }

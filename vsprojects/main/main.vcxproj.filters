@@ -44,6 +44,9 @@
     <ClCompile Include="..\..\src\src\gui\HeaderViewer.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\src\format\PSF.cpp">
+      <Filter>format</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -93,6 +96,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\src\gui\HeaderViewer.h">
       <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\src\format\PSF.h">
+      <Filter>format</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

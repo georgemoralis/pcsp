@@ -1,7 +1,10 @@
 /*
- *  12/06/2022 - synced with jpcsp 31/05/2022 - 90841114
+ *  14/06/2022 - synced with jpcsp 14/06/2022 - a5e0793
  */
 #pragma once
+
+class PSF;
+
 class PBP 
 {
   private:
@@ -38,6 +41,7 @@ class PBP
         u32 p_offset_psar_data;
     } data;
 
+    PSF *psf;
     u32 size_pbp;
     u32 p_offsets[9];
 
@@ -45,8 +49,10 @@ class PBP
     static constexpr int PBP_MAGIC = 0x50425000;
     PBP();
     PBP(std::ifstream &f);
+    ~PBP();
     bool isValid() const;
-
+    PSF *readPSF(std::ifstream &file);
+    PSF *getPsf() const;
     u32 getMagic(); 
     u32 getVersion();
     u32 getOffsetParam();
@@ -61,7 +67,7 @@ class PBP
     u32 getSizePsarData();
     void unpackPBP(std::ifstream& f);
     std::string toString();
-
+    
     static const int PBP_HEADER_SIZE = 8 + TOTAL_FILES * 4;
     static const int PBP_PSP_DATA_OFFSET = 8 + PSP_DATA * 4;
     static const int PBP_PSAR_DATA_OFFSET = 8 + PSAR_DATA * 4;
