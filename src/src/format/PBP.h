@@ -60,6 +60,7 @@ class PBP
     u32 getSizeIcon0();
     u32 getSizePsarData();
     void unpackPBP(std::ifstream& f);
+    std::string toString();
 
     static const int PBP_HEADER_SIZE = 8 + TOTAL_FILES * 4;
     static const int PBP_PSP_DATA_OFFSET = 8 + PSP_DATA * 4;

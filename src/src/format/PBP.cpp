@@ -4,14 +4,9 @@
 #include "..\PCSPCommon.h"
 #include "PBP.h"
 
-/*TODO*/  //    private String info;
-/*TODO*/  //
-/*TODO*/  //    private int p_magic;
-/*TODO*/  //    private int p_version;
-/*TODO*/  //    private int[] p_offsets;
 /*TODO*/  //    private Elf32 elf32;
 /*TODO*/  //    private PSF psf;
-/*TODO*/  //
+
 bool PBP::isValid() const 
 { 
     return (size_pbp != 0 && data.p_magic == PBP_MAGIC); 
@@ -27,14 +22,6 @@ bool PBP::isValid() const
 /*TODO*/  //
 /*TODO*/  //    public PSF getPSF() {
 /*TODO*/  //        return psf;
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public void setInfo(String msg) {
-/*TODO*/  //        info = msg;
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public String getInfo() {
-/*TODO*/  //        return info;
 /*TODO*/  //    }
 /*TODO*/  //
 PBP::PBP(std::ifstream& f) {
@@ -56,9 +43,8 @@ PBP::PBP(std::ifstream& f) {
     p_offsets[6] = data.p_offset_psp_data; 
     p_offsets[7] = data.p_offset_psar_data;
     p_offsets[8] = size_pbp;
-
-    /*TODO*/  //            info = toString();
 }
+
 PBP::PBP() {
 
 }
@@ -71,34 +57,35 @@ PBP::PBP() {
 /*TODO*/  //        }
 /*TODO*/  //        return null;
 /*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    @Override
-/*TODO*/  //    public String toString() {
-/*TODO*/  //        StringBuilder str = new StringBuilder();
-/*TODO*/  //        str.append("-----PBP HEADER---------" + "\n");
-/*TODO*/  //        str.append("p_magic " + "\t\t" + formatString("long", Long.toHexString(p_magic &
-          //        0xFFFFFFFFL).toUpperCase()) + "\n");
-/*TODO*/  //        str.append("p_version " + "\t\t" + formatString("long", Long.toHexString(p_version &
-          //        0xFFFFFFFFL).toUpperCase()) + "\n");
-/*TODO*/  //        str.append("p_offset_param_sfo " + "\t" + formatString("long", Long.toHexString(getOffsetParam() &
-          //        0xFFFFFFFFL).toUpperCase()) + "\n");
-/*TODO*/  //        str.append("p_offset_icon0_png " + "\t" + formatString("long", Long.toHexString(getOffsetIcon0() &
-          //        0xFFFFFFFFL).toUpperCase()) + "\n");
-/*TODO*/  //        str.append("p_offset_icon1_pmf " + "\t" + formatString("long", Long.toHexString(getOffsetIcon1() &
-          //        0xFFFFFFFFL).toUpperCase()) + "\n");
-/*TODO*/  //        str.append("p_offset_pic0_png " + "\t" + formatString("long", Long.toHexString(getOffsetPic0() &
-          //        0xFFFFFFFFL).toUpperCase()) + "\n");
-/*TODO*/  //        str.append("p_offset_pic1_png " + "\t" + formatString("long", Long.toHexString(getOffsetPic1() &
-          //        0xFFFFFFFFL).toUpperCase()) + "\n");
-/*TODO*/  //        str.append("p_offset_snd0_at3 " + "\t" + formatString("long", Long.toHexString(getOffsetSnd0() &
-          //        0xFFFFFFFFL).toUpperCase()) + "\n");
-/*TODO*/  //        str.append("p_offset_psp_data " + "\t" + formatString("long", Long.toHexString(getOffsetPspData() &
-          //        0xFFFFFFFFL).toUpperCase()) + "\n");
-/*TODO*/  //        str.append("p_offset_psar_data " + "\t" + formatString("long", Long.toHexString(getOffsetPsarData()
-          //        & 0xFFFFFFFFL).toUpperCase()) + "\n");
-/*TODO*/  //        return str.toString();
-/*TODO*/  //    }
-/*TODO*/  //
+
+std::string PBP::toString() {
+    std::string str = "--------PBP HEADER--------\n";
+    char tmp[128];
+
+    sprintf(tmp, "p_magic            0x%08X\n", data.p_magic);
+    str.append(tmp);
+    sprintf(tmp, "p_version          0x%08X\n", data.p_version);
+    str.append(tmp);
+    sprintf(tmp, "p_offset_param_sfo 0x%08X\n", getOffsetParam());
+    str.append(tmp);
+    sprintf(tmp, "p_offset_icon0_png 0x%08X\n", getOffsetIcon0());
+    str.append(tmp);
+    sprintf(tmp, "p_offset_icon1_pmf 0x%08X\n", getOffsetIcon1());
+    str.append(tmp);
+    sprintf(tmp, "p_offset_pic0_png  0x%08X\n", getOffsetPic0());
+    str.append(tmp);
+    sprintf(tmp, "p_offset_pic1_png  0x%08X\n", getOffsetPic1());
+    str.append(tmp);
+    sprintf(tmp, "p_offset_snd0_at3  0x%08X\n", getOffsetSnd0());
+    str.append(tmp);
+    sprintf(tmp, "p_offset_psp_data  0x%08X\n", getOffsetPspData());
+    str.append(tmp);
+    sprintf(tmp, "p_offset_psar_data 0x%08X\n", getOffsetPsarData());
+    str.append(tmp);
+
+    return str;
+}
+
 std::string PBP::getName(int index) {
     return FILE_NAMES[index];
 }

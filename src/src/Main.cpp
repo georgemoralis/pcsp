@@ -21,6 +21,8 @@
 #include "Memory.h"
 #include "gui/memoryViewer.h"
 #include "gui/Dissasembler.h"
+#include "gui/HeaderViewer.h"
+
 #include "third_party/FileBrowser/ImGuiFileBrowser.h"
 #include "format\PBP.h"
 
@@ -43,11 +45,13 @@ u32 MiniFireCode[] = {
 };
 debug::Dissasembler m_disassembler;
 imgui_addons::ImGuiFileBrowser file_dialog;
+debug::HeaderViewer m_headerViewer;
 
 void loadtest(std::ifstream& f) {
     PBP pbp(f);
     if (pbp.isValid()) {
         pbp.unpackPBP(f);
+        m_headerViewer.setPbpHeader(pbp.toString());
     }
 }
     int main(int, char**) {
@@ -195,6 +199,7 @@ void loadtest(std::ifstream& f) {
             if (ImGui::BeginMenu("Debug")) {
                 ImGui::MenuItem("Dissasembler", nullptr, &m_disassembler.m_show);
                 ImGui::MenuItem("Memory Viewer", "", &show_memory);
+                ImGui::MenuItem("Header Viewer", nullptr, &m_headerViewer.m_show);
                 ImGui::EndMenu();
             }
             ImGui::EndMainMenuBar();       
@@ -204,6 +209,9 @@ void loadtest(std::ifstream& f) {
         }
         if (m_disassembler.m_show) {
             m_disassembler.draw();
+        }
+        if (m_headerViewer.m_show) {
+            m_headerViewer.draw();
         }
 
         if (show_fileopen) {

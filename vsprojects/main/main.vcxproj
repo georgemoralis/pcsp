@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\src\format\PBP.cpp" />
     <ClCompile Include="..\..\src\src\gui\Dissasembler.cpp" />
+    <ClCompile Include="..\..\src\src\gui\HeaderViewer.cpp" />
     <ClCompile Include="..\..\src\src\Main.cpp" />
     <ClCompile Include="..\..\src\src\Memory.cpp" />
     <ClCompile Include="..\..\third_party\FileBrowser\ImGuiFileBrowser.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="..\..\src\src\allegrex\Opcodes.h" />
     <ClInclude Include="..\..\src\src\format\PBP.h" />
     <ClInclude Include="..\..\src\src\gui\Dissasembler.h" />
+    <ClInclude Include="..\..\src\src\gui\HeaderViewer.h" />
     <ClInclude Include="..\..\src\src\gui\imgui_memory_editor.h" />
     <ClInclude Include="..\..\src\src\gui\memoryViewer.h" />
     <ClInclude Include="..\..\src\src\Memory.h" />
