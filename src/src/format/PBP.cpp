@@ -21,7 +21,7 @@ bool PBP::isValid() const
 /*TODO*/  //        return elf32;
 /*TODO*/  //    }
 /*TODO*/  //
-//PSF *PBP::getPsf() const { return psf; }
+PSF *PBP::getPsf() const { return psf; }
 
 PBP::PBP(std::ifstream &f) : psf(NULL){
     u32 pos = (u32)f.tellg();

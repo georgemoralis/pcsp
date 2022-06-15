@@ -6,8 +6,10 @@ class HeaderViewer
     bool m_show = false;
     void draw();
     void setPbpHeader(std::string header);
+    void setPSFHeader(std::string header);
 
   private:
     std::string pbpheader;
+    std::string psfheader;
 };
 }  // namespace debug

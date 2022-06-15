@@ -20,9 +20,18 @@ void HeaderViewer::draw()
                 ImGui::EndTabItem();
             }
         }
+        if (!psfheader.empty()) {
+            if (ImGui::BeginTabItem("PSF")) {
+                ImGui::BeginChild("##ScrollingRegion", ImVec2(0, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
+                ImGui::Text(psfheader.c_str());
+                ImGui::EndChild();
+                ImGui::EndTabItem();
+            }
+        }
         ImGui::EndTabBar();
     }
     ImGui::End();
 }
 void HeaderViewer::setPbpHeader(std::string header) { pbpheader = header; }
+void HeaderViewer::setPSFHeader(std::string header) { psfheader = header; }
 }  // namespace debug

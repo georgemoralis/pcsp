@@ -24,6 +24,7 @@
 #include "gui/HeaderViewer.h"
 
 #include "third_party/FileBrowser/ImGuiFileBrowser.h"
+#include "format\PSF.h"
 #include "format\PBP.h"
 
 static void glfw_error_callback(int error, const char* description) {
@@ -52,6 +53,7 @@ void loadtest(std::ifstream& f) {
     if (pbp.isValid()) {
         if (pbp.getOffsetParam() > 0) {
             pbp.readPSF(f);
+            m_headerViewer.setPSFHeader(pbp.getPsf()->toString());
         }
         pbp.unpackPBP(f);
         m_headerViewer.setPbpHeader(pbp.toString());

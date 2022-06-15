@@ -33,21 +33,21 @@ void PSF::read(std::ifstream &f)
     }
     // index table
     for (int i = 0; i < hdr.indexEntryCount; i++) {
-        PSFKeyValuePair pair;
-        pair.read(f);
+        PSFKeyValuePair *pair = new PSFKeyValuePair();
+        pair->read(f);
         pairList.push_back(pair);
     }
     // key/pairs
     for (auto pair : pairList) {
-        f.seekg(psfOffset + hdr.keyTableOffset + pair.PsfSection.keyOffset);
+        f.seekg(psfOffset + hdr.keyTableOffset + pair->PsfSection.keyOffset);
         char c;
         f.read(&c, 1);
         while (c != 0) {
-            pair.key.append(&c, 0, 1);
+            pair->key.append(&c, 0, 1);
             f.read(&c, 1);
         }
-        f.seekg(psfOffset + hdr.valueTableOffset + pair.PsfSection.valueOffset);         
-        switch (pair.PsfSection.dataType) {
+        f.seekg(psfOffset + hdr.valueTableOffset + pair->PsfSection.valueOffset);         
+        switch (pair->PsfSection.dataType) {
     /*TODO*/  //                case PSF_DATA_TYPE_BINARY:
     /*TODO*/  //                    byte[] data = new byte[pair.dataSize];
     /*TODO*/  //                    f.get(data);
@@ -78,11 +78,11 @@ void PSF::read(std::ifstream &f)
     /*TODO*/  //                    break;
     /*TODO*/  //
                     default:
-                    assert(0);
+                    
     /*TODO*/  //                    System.out.println(String.format("offset=%08X key='%s' unhandled data type %d
               //                    [len=%d]",
     /*TODO*/  //                        keyTableOffset + pair.keyOffset, pair.key, pair.dataType, pair.dataSize));
-    /*TODO*/  //                    break;
+                        break;
                 }
     }
     /*TODO*/  //
@@ -298,27 +298,32 @@ void PSF::read(std::ifstream &f)
 /*TODO*/  //
 /*TODO*/  //        return size;
 /*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    @Override
-/*TODO*/  //    public String toString() {
-/*TODO*/  //        StringBuilder sb = new StringBuilder();
-/*TODO*/  //
-/*TODO*/  //        for (PSFKeyValuePair pair : pairList) {
-/*TODO*/  //        	if (sb.length() > 0) {
-/*TODO*/  //                sb.append(System.lineSeparator());
-/*TODO*/  //        	}
-/*TODO*/  //            sb.append(pair.toString());
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        if (isLikelyHomebrew()) {
-/*TODO*/  //        	if (sb.length() > 0) {
-/*TODO*/  //                sb.append(System.lineSeparator());
-/*TODO*/  //        	}
-/*TODO*/  //            sb.append("This is likely a homebrew");
-/*TODO*/  //        }
-/*TODO*/  //
-/*TODO*/  //        return sb.toString();
-/*TODO*/  //    }
+std::string PSF::toString() {
+    std::string str = "";
+    for (auto pair : pairList) {
+        str.append(pair->toString());
+    }
+    return str;
+    /*TODO*/  //    @Override
+    /*TODO*/  //    public String toString() {
+    /*TODO*/  //        StringBuilder sb = new StringBuilder();
+    /*TODO*/  //
+    /*TODO*/  //        for (PSFKeyValuePair pair : pairList) {
+    /*TODO*/  //        	if (sb.length() > 0) {
+    /*TODO*/  //                sb.append(System.lineSeparator());
+    /*TODO*/  //        	}
+    /*TODO*/  //            sb.append(pair.toString());
+    /*TODO*/  //        }
+    /*TODO*/  //
+    /*TODO*/  //        if (isLikelyHomebrew()) {
+    /*TODO*/  //        	if (sb.length() > 0) {
+    /*TODO*/  //                sb.append(System.lineSeparator());
+    /*TODO*/  //        	}
+    /*TODO*/  //            sb.append("This is likely a homebrew");
+    /*TODO*/  //        }
+    /*TODO*/  //
+    /*TODO*/  //        return sb.toString();
+}
 /*TODO*/  //
 /*TODO*/  //    /** used by isLikelyHomebrew() */
 /*TODO*/  //    private boolean safeEquals(Object a, Object b) {
@@ -418,9 +423,14 @@ void PSFKeyValuePair::read(std::ifstream& f)
 /*TODO*/  //            writeWord(f, valueOffset);
 /*TODO*/  //        }
 /*TODO*/  //
-/*TODO*/  //        @Override
-/*TODO*/  //        public String toString() {
-/*TODO*/  //            StringBuilder sb = new StringBuilder();
+std::string PSFKeyValuePair::toString() {
+    std::string str = "";
+    char tmp[128];
+
+    sprintf(tmp, "%-15s = \n", key.c_str());
+    str.append(tmp);
+    return str;
+    /*TODO*/  //            StringBuilder sb = new StringBuilder();
 /*TODO*/  //
 /*TODO*/  //            /*
 /*TODO*/  //            sb.append("index entry:\n");
@@ -438,7 +448,7 @@ void PSFKeyValuePair::read(std::ifstream& f)
 /*TODO*/  //            sb.append(key + " = " + data);
 /*TODO*/  //
 /*TODO*/  //            return sb.toString();
-/*TODO*/  //        }
+}
 /*TODO*/  //    }
 /*TODO*/  //}
 /*TODO*/  //

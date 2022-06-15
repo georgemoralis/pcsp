@@ -2,11 +2,13 @@
  *  14/06/2022 - synced with jpcsp 14/06/2022 - a5e0793
  */
 #pragma once
+
 class PSFKeyValuePair {
     friend class PSF;
 
   public:
     void read(std::ifstream &f); 
+    std::string toString();
   private:
     struct {
         u16 keyOffset;
@@ -31,6 +33,7 @@ class PSF
     PSF(u32 psfOffset);
     PSF();
     void read(std::ifstream &f); 
+    std::string toString();
   private:
     struct PsfHeader {
             u32 ident;
@@ -43,5 +46,5 @@ class PSF
     u32 size;
     bool sizeDirty;
     bool tablesDirty;
-    std::vector<PSFKeyValuePair> pairList;
+    std::vector<PSFKeyValuePair*> pairList;
 };
