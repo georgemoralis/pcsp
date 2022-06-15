@@ -427,7 +427,7 @@ std::string PSFKeyValuePair::toString() {
     std::string str = "";
     char tmp[128];
 
-    sprintf(tmp, "%-15s = \n", key.c_str());
+    sprintf(tmp, "%-10s = \n", key.c_str());
     str.append(tmp);
     return str;
     /*TODO*/  //            StringBuilder sb = new StringBuilder();
