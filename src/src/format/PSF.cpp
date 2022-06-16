@@ -48,36 +48,22 @@ void PSF::read(std::ifstream &f)
         }
         f.seekg(psfOffset + hdr.valueTableOffset + pair->PsfSection.valueOffset);         
         switch (pair->PsfSection.dataType) {
-    /*TODO*/  //                case PSF_DATA_TYPE_BINARY:
-    /*TODO*/  //                    byte[] data = new byte[pair.dataSize];
-    /*TODO*/  //                    f.get(data);
-    /*TODO*/  //                    pair.data = data;
-    /*TODO*/  //
-    /*TODO*/  //                    //System.out.println(String.format("offset=%08X key='%s' binary packed [len=%d]",
-    /*TODO*/  //                    //    keyTableOffset + pair.keyOffset, pair.key, pair.dataSize));
-    /*TODO*/  //                    break;
-    /*TODO*/  //
-    /*TODO*/  //                case PSF_DATA_TYPE_STRING:
-    /*TODO*/  //                    // String may not be in english!
-    /*TODO*/  //                    byte[] s = new byte[pair.dataSize];
-    /*TODO*/  //                    f.get(s);
-    /*TODO*/  //                    // Strip trailing null character
-    /*TODO*/  //                    pair.data = new String(s, 0, s[s.length - 1] == '\0' ? s.length - 1 : s.length,
-              //                    Constants.charset);
-    /*TODO*/  //
-    /*TODO*/  //                    //System.out.println(String.format("offset=%08X key='%s' string '%s' [len=%d]",
-    /*TODO*/  //                    //    keyTableOffset + pair.keyOffset, pair.key, pair.data, pair.dataSize));
-    /*TODO*/  //                    break;
-    /*TODO*/  //
-    /*TODO*/  //                case PSF_DATA_TYPE_INT32:
-    /*TODO*/  //                    pair.data = readUWord(f);
-    /*TODO*/  //
-    /*TODO*/  //                    //System.out.println(String.format("offset=%08X key='%s' int32 %08X %d [len=%d]",
-    /*TODO*/  //                    //    keyTableOffset + pair.keyOffset, pair.key, pair.data, pair.data,
-              //                    pair.dataSize));
-    /*TODO*/  //                    break;
-    /*TODO*/  //
+                   case PSF_DATA_TYPE_BINARY:
+                        pair->data.resize(pair->PsfSection.dataSize;
+                        f.read((char*)&pair->data[0], pair->PsfSection.dataSize);
+                       break;
+                   case PSF_DATA_TYPE_STRING:
+                       pair->data.resize(pair->PsfSection.dataSize + 1);
+                       f.read((char *)&pair->data[0], pair->PsfSection.dataSize);
+                       pair->data[pair->PsfSection.dataSize] = 0;
+                       break;
+                  case PSF_DATA_TYPE_INT32:
+                       f.read((char *)&pair->number, 4);
+                       pair->data.resize(4);
+                       std::sprintf((char*)&pair->data[0], "%d", pair->number);
+                    break;
                     default:
+                      assert(0);
                     
     /*TODO*/  //                    System.out.println(String.format("offset=%08X key='%s' unhandled data type %d
               //                    [len=%d]",
@@ -426,29 +412,8 @@ void PSFKeyValuePair::read(std::ifstream& f)
 std::string PSFKeyValuePair::toString() {
     std::string str = "";
     char tmp[128];
-
-    sprintf(tmp, "%-10s = \n", key.c_str());
+    std::string st(data.begin(), data.end());
+    sprintf(tmp, "%-10s = %s\n", key.c_str(),st.c_str());
     str.append(tmp);
     return str;
-    /*TODO*/  //            StringBuilder sb = new StringBuilder();
-/*TODO*/  //
-/*TODO*/  //            /*
-/*TODO*/  //            sb.append("index entry:\n");
-/*TODO*/  //            sb.append(String.format("keyOffset 0x%08X %d\n", keyOffset, keyOffset));
-/*TODO*/  //            sb.append(String.format("unknown1 0x%08X %d\n", unknown1, unknown1));
-/*TODO*/  //            sb.append(String.format("dataType 0x%08X %d\n", dataType, dataType));
-/*TODO*/  //            sb.append(String.format("dataSize 0x%08X %d\n", dataSize, dataSize));
-/*TODO*/  //            sb.append(String.format("dataSizePadding 0x%08X %d\n", dataSizePadding, dataSizePadding));
-/*TODO*/  //            sb.append(String.format("valueOffset 0x%08X %d\n", valueOffset, valueOffset));
-/*TODO*/  //            */
-/*TODO*/  //
-/*TODO*/  //            //sb.append(String.format("[offset=%08X] '%s' = [offset=%08X,len=%d,rawlen=%d] '" + data + "'",
-/*TODO*/  //            //    keyOffset, key, valueOffset, dataSize, dataSizePadded));
-/*TODO*/  //
-/*TODO*/  //            sb.append(key + " = " + data);
-/*TODO*/  //
-/*TODO*/  //            return sb.toString();
 }
-/*TODO*/  //    }
-/*TODO*/  //}
-/*TODO*/  //

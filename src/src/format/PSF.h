@@ -20,6 +20,7 @@ class PSFKeyValuePair {
     } PsfSection;// index table info  
     std::string key;  // key table info
     std::vector<u8> data;
+    u32 number;
 };
 
 class PSF 
