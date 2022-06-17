@@ -222,7 +222,7 @@ void loadtest(std::ifstream& f) {
         if (show_fileopen) {
             ImGui::OpenPopup("Open File");
         }
-        if (file_dialog.showFileDialog("Open File", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2(700, 310),".elf,.pbp,.prx")) {
+        if (file_dialog.showFileDialog("Open File", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2(700, 310),".pbp,.elf,.prx")) {
             //  std::cout << file_dialog.selected_fn << std::endl;      // The name of the selected file or directory in case of Select Directory dialog mode
             //std::cout << file_dialog.selected_path << std::endl;  // The absolute path to the selected file
             std::ifstream ifs;
