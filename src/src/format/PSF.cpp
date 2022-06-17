@@ -49,7 +49,7 @@ void PSF::read(std::ifstream &f)
         f.seekg(psfOffset + hdr.valueTableOffset + pair->PsfSection.valueOffset);         
         switch (pair->PsfSection.dataType) {
                    case PSF_DATA_TYPE_BINARY:
-                        pair->data.resize(pair->PsfSection.dataSize;
+                        pair->data.resize(pair->PsfSection.dataSize);
                         f.read((char*)&pair->data[0], pair->PsfSection.dataSize);
                        break;
                    case PSF_DATA_TYPE_STRING:
