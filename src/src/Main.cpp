@@ -26,6 +26,11 @@
 #include "third_party/FileBrowser/ImGuiFileBrowser.h"
 #include "format\PSF.h"
 #include "format\PBP.h"
+#include "format\Elf32Header.h"
+#include "format\Elf32ProgramHeader.h"
+#include "format\Elf32SectionHeader.h"
+#include "format\Elf32.h"
+
 
 static void glfw_error_callback(int error, const char* description) {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
@@ -57,6 +62,13 @@ void loadtest(std::ifstream& f) {
         }
         pbp.unpackPBP(f);
         m_headerViewer.setPbpHeader(pbp.toString());
+        f.seekg(pbp.getOffsetPspData());
+        Elf32 elf(f);
+        if (elf.getHeader().isValid()) {
+            m_headerViewer.setElfHeader(elf.getElfInfo());
+            m_headerViewer.setElfPHeader(elf.getProgInfo());
+            m_headerViewer.setElfSHeader(elf.getSectInfo());
+        }
     }
 }
     int main(int, char**) {

@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\src\format\Elf32.cpp" />
+    <ClCompile Include="..\..\src\src\format\Elf32Header.cpp" />
+    <ClCompile Include="..\..\src\src\format\Elf32ProgramHeader.cpp" />
+    <ClCompile Include="..\..\src\src\format\Elf32SectionHeader.cpp" />
     <ClCompile Include="..\..\src\src\format\PBP.cpp" />
     <ClCompile Include="..\..\src\src\format\PSF.cpp" />
     <ClCompile Include="..\..\src\src\gui\Dissasembler.cpp" />
@@ -36,6 +40,10 @@
     <ClInclude Include="..\..\src\src\allegrex\Instruction.h" />
     <ClInclude Include="..\..\src\src\allegrex\Instructions.h" />
     <ClInclude Include="..\..\src\src\allegrex\Opcodes.h" />
+    <ClInclude Include="..\..\src\src\format\Elf32.h" />
+    <ClInclude Include="..\..\src\src\format\Elf32Header.h" />
+    <ClInclude Include="..\..\src\src\format\Elf32ProgramHeader.h" />
+    <ClInclude Include="..\..\src\src\format\Elf32SectionHeader.h" />
     <ClInclude Include="..\..\src\src\format\PBP.h" />
     <ClInclude Include="..\..\src\src\format\PSF.h" />
     <ClInclude Include="..\..\src\src\gui\Dissasembler.h" />
