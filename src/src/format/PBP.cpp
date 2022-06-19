@@ -4,26 +4,31 @@
 #include "..\PCSPCommon.h"
 #include "PSF.h"
 #include "PBP.h"
-
-/*TODO*/  //    private Elf32 elf32;
-/*TODO*/  //    private PSF psf;
+#include "Elf32Header.h"
+#include "Elf32ProgramHeader.h"
+#include "Elf32SectionHeader.h"
+#include "Elf32.h"
 
 bool PBP::isValid() const 
 { 
     return (size_pbp != 0 && data.p_magic == PBP_MAGIC); 
 }
-/*TODO*/  //
-/*TODO*/  //    public void setElf32(Elf32 elf) {
-/*TODO*/  //        elf32 = elf;
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    public Elf32 getElf32() {
-/*TODO*/  //        return elf32;
-/*TODO*/  //    }
-/*TODO*/  //
+
+void PBP::setElf32(const Elf32 &elf) {
+    if (elf32 != NULL) {
+        delete elf32;
+        elf32 = NULL;
+    }
+
+    elf32 = new Elf32();
+    *elf32 = elf;
+}
+
+Elf32 *PBP::getElf32() const { return elf32; }
+
 PSF *PBP::getPsf() const { return psf; }
 
-PBP::PBP(std::ifstream &f) : psf(NULL){
+PBP::PBP(std::ifstream &f) : elf32(NULL), psf(NULL) {
     u32 pos = (u32)f.tellg();
     f.seekg(0, std::ios::end);
     size_pbp = (u32)f.tellg();
@@ -44,11 +49,15 @@ PBP::PBP(std::ifstream &f) : psf(NULL){
     p_offsets[8] = size_pbp;
 }
 
-PBP::PBP() : psf(NULL)  {
+PBP::PBP() : elf32(NULL), psf(NULL) {
 
 }
 
 PBP::~PBP() {
+    if (elf32 != NULL) {
+        delete elf32;
+        elf32 = NULL;
+    }
     if (psf != NULL) {
         delete psf;
         psf = NULL;

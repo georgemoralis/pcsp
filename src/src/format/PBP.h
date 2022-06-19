@@ -4,6 +4,7 @@
 #pragma once
 
 class PSF;
+class Elf32;
 
 class PBP 
 {
@@ -44,6 +45,7 @@ class PBP
     PSF *psf;
     u32 size_pbp;
     u32 p_offsets[9];
+    Elf32 *elf32;
 
   public:
     static constexpr int PBP_MAGIC = 0x50425000;
@@ -67,6 +69,8 @@ class PBP
     u32 getSizePsarData();
     void unpackPBP(std::ifstream& f);
     std::string toString();
+    void setElf32(const Elf32 &elf);
+    Elf32 *getElf32() const;
     
     static const int PBP_HEADER_SIZE = 8 + TOTAL_FILES * 4;
     static const int PBP_PSP_DATA_OFFSET = 8 + PSP_DATA * 4;
