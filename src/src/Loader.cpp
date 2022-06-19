@@ -1,5 +1,5 @@
 /*
- *  19/06/2022 - synced with jpcsp 18/06/05/2022 - 7bebe7ff  - Small TODO requires
+ *  19/06/2022 - synced with jpcsp 18/06/05/2022 - 7bebe7ff
  */
 #include "Loader.h"
 
@@ -11,13 +11,7 @@
 /*TODO*/  //    public final static int EDAT_MAGIC = 0x54414445;
 /*TODO*/  //    public final static int FIRMWAREVERSION_HOMEBREW = 999; // Simulate version 9.99 instead of 1.50
 /*TODO*/  //
-/*TODO*/  //    // Format bits
-/*TODO*/  //    public final static int FORMAT_UNKNOWN  = 0x00;
-/*TODO*/  //    public final static int FORMAT_ELF      = 0x01;
-/*TODO*/  //    public final static int FORMAT_PRX      = 0x02;
-/*TODO*/  //    public final static int FORMAT_PBP      = 0x04;
-/*TODO*/  //    public final static int FORMAT_SCE      = 0x08;
-/*TODO*/  //    public final static int FORMAT_PSP      = 0x10;
+
 /*TODO*/  //
 /*TODO*/  //    public static Loader getInstance() {
 /*TODO*/  //        if (instance == null)
