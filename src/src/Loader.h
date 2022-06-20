@@ -12,4 +12,9 @@ enum Format { // Format bits
     FORMAT_PSP = 0x10
 };
 
-namespace Loader {};
+namespace Loader 
+{
+SceModule* LoadModule(std::string pspfilename, std::ifstream& f, u8* baseAddress, int mpidText, int mpidData,
+                      bool analyzeOnly, bool allocMem, bool fromSyscall, bool isSignChecked, u8* key);
+
+};

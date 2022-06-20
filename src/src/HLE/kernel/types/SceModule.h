@@ -4,6 +4,7 @@
 #pragma once 
 class SceModule 
 {
+  public:
     SceModule();
     SceModule(bool isFlashModule);
     ~SceModule();

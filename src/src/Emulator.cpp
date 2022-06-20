@@ -5,6 +5,8 @@
 #include "Emulator.h"
 #include "HLE/kernel/types/SceModule.h"
 #include "Memory.h"
+#include "Loader.h"
+#include <src/src/HLE/modules/SysMemUserForUser.h>
 
 /*TODO*/  // public class Emulator implements Runnable {
 /*TODO*/  //
@@ -20,7 +22,7 @@
 /*TODO*/  //    private static IMainGUI gui;
 /*TODO*/  //    private InstructionCounter instructionCounter;
 /*TODO*/  //    public static Logger log = Logger.getLogger("emu");
-/*TODO*/  //    private SceModule module;
+SceModule* _module;
 /*TODO*/  //    private int firmwareVersion = 999;
 /*TODO*/  //    private String[] bootModuleBlackList = {"Prometheus Loader"};
 /*TODO*/  //
@@ -144,9 +146,9 @@ SceModule *Emulator::load(const char *pspfilename, std::ifstream &f,bool fromSys
 /*TODO*/  //
 /*TODO*/  //        HLEModuleManager.getInstance().loadAvailableFlash0Modules(fromSyscall);
 /*TODO*/  //
-/*TODO*/  //        TPointer loadAddress = getLoadAddress();
-/*TODO*/  //    	module = Loader.getInstance().LoadModule(pspfilename, f, loadAddress, USER_PARTITION_ID,
-          //    USER_PARTITION_ID, false, true, fromSyscall, isSignChecked, key);
+        u8* loadAddress = getLoadAddress();
+
+    	_module = Loader::LoadModule(pspfilename, f, loadAddress, USER_PARTITION_ID,USER_PARTITION_ID, false, true, fromSyscall, isSignChecked, key);
 /*TODO*/  //
 /*TODO*/  //        if ((module.fileFormat & Loader.FORMAT_ELF) != Loader.FORMAT_ELF) {
 /*TODO*/  //            throw new GeneralJpcspException("File format not supported!");

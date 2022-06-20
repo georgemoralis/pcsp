@@ -1,6 +1,10 @@
 /*
  *  19/06/2022 - synced with jpcsp 18/06/05/2022 - 7bebe7ff
  */
+#include "PCSPCommon.h"
+#include "Emulator.h"
+#include "HLE/kernel/types/SceModule.h"
+#include "Memory.h"
 #include "Loader.h"
 
 /*TODO*/  //    private static Loader instance;
@@ -38,12 +42,11 @@
 /*TODO*/  //     *                      fileFormat member against the FORMAT_* bits.
 /*TODO*/  //     *                      Example: (fileFormat & FORMAT_ELF) == FORMAT_ELF
 /*TODO*/  //     **/
-/*TODO*/  //    public SceModule LoadModule(String pspfilename, ByteBuffer f, TPointer baseAddress, int mpidText, int
-          //    mpidData, boolean analyzeOnly, boolean allocMem, boolean fromSyscall, boolean isSignChecked, byte[] key)
-          //    throws IOException {
-/*TODO*/  //        SceModule module = new SceModule(false);
-/*TODO*/  //
-/*TODO*/  //        int currentOffset = f.position();
+SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* baseAddress, int mpidText, int mpidData,
+    bool analyzeOnly, bool allocMem, bool fromSyscall, bool isSignChecked, u8* key) {
+        std::unique_ptr<SceModule> _module(new SceModule(false));
+
+    u32 currentOffset = f.tellg();
 /*TODO*/  //        module.fileFormat = FORMAT_UNKNOWN;
 /*TODO*/  //        module.pspfilename = pspfilename;
 /*TODO*/  //        module.mpidtext = mpidText;
@@ -125,8 +128,8 @@
 /*TODO*/  //        	module.free();
 /*TODO*/  //        }
 /*TODO*/  //
-/*TODO*/  //        return module;
-/*TODO*/  //    }
+        return _module.get();
+   }
 /*TODO*/  //
 /*TODO*/  //    private void loadPSF(SceModule module, boolean analyzeOnly, boolean allocMem, boolean fromSyscall) {
 /*TODO*/  //        if (module.psf != null)

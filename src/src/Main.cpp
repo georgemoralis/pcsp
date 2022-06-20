@@ -30,7 +30,7 @@
 #include "format\Elf32ProgramHeader.h"
 #include "format\Elf32SectionHeader.h"
 #include "format\Elf32.h"
-
+#include "Emulator.h"
 
 static void glfw_error_callback(int error, const char* description) {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
@@ -239,8 +239,8 @@ void loadtest(std::ifstream& f) {
             //std::cout << file_dialog.selected_path << std::endl;  // The absolute path to the selected file
             std::ifstream ifs;
             ifs.open(file_dialog.selected_path.c_str(), std::ios::in | std::ios::binary);
-            loadtest(ifs);
-
+            //loadtest(ifs);
+            Emulator::load(file_dialog.selected_path.c_str(), ifs);
             show_fileopen = false;
         } else {
             show_fileopen = false;
