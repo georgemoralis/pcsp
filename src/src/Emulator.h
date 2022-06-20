@@ -9,4 +9,7 @@ namespace Emulator
 {
 SceModule *_module;
 SceModule *load(const char *pspfilename, std::ifstream &f, bool fromSyscall, bool isSignChecked, u8 *key);
+SceModule *load(const char *pspfilename, std::ifstream &f);
+u8 *getLoadAddress();
+
 };
