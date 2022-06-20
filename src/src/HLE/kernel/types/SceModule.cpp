@@ -80,34 +80,39 @@
 /*TODO*/  //    public List<DeferredStub> resolvedImports;
 /*TODO*/  //    private List<String> moduleNames = new LinkedList<String>();
 /*TODO*/  //
-/*TODO*/  //    public SceModule(boolean isFlashModule) {
-/*TODO*/  //        this.isFlashModule = isFlashModule;
-/*TODO*/  //
-/*TODO*/  //        modid = SceUidManager.getNewUid("SceModule");
-/*TODO*/  //
-/*TODO*/  //        SysMemInfo sysMemInfo =
-          //        Modules.SysMemUserForUserModule.malloc(SysMemUserForUser.KERNEL_PARTITION_ID,
-          //        String.format("SceModule-0x%X", modid), SysMemUserForUser.PSP_SMEM_HighAligned, sizeOf(), 255);
-/*TODO*/  //        addAllocatedMemory(sysMemInfo);
-/*TODO*/  //        address = sysMemInfo.addr;
-/*TODO*/  //
-/*TODO*/  //        // Link SceModule structs together
-/*TODO*/  //        if (previousModule != null) {
-/*TODO*/  //            previousModule.next = address;
-/*TODO*/  //        }
-/*TODO*/  //        previousModule = this;
-/*TODO*/  //
-/*TODO*/  //        // Internal context
-/*TODO*/  //        fileFormat = Loader.FORMAT_UNKNOWN;
-/*TODO*/  //        //textsection = new int[2];
-/*TODO*/  //        initsection = new int[2];
-/*TODO*/  //        finisection = new int[2];
-/*TODO*/  //        stubtextsection = new int[2];
-/*TODO*/  //        unresolvedImports = new LinkedList<DeferredStub>();
-/*TODO*/  //        importFixupAttempts = 0;
-/*TODO*/  //        resolvedImports = new LinkedList<DeferredStub>();
-/*TODO*/  //    }
-/*TODO*/  //
+SceModule::SceModule() {
+
+}
+SceModule::SceModule(bool isFlashModule) {
+    /*TODO*/  //    public SceModule(boolean isFlashModule) {
+    /*TODO*/  //        this.isFlashModule = isFlashModule;
+    /*TODO*/  //
+    /*TODO*/  //        modid = SceUidManager.getNewUid("SceModule");
+    /*TODO*/  //
+    /*TODO*/  //        SysMemInfo sysMemInfo =
+              //        Modules.SysMemUserForUserModule.malloc(SysMemUserForUser.KERNEL_PARTITION_ID,
+              //        String.format("SceModule-0x%X", modid), SysMemUserForUser.PSP_SMEM_HighAligned, sizeOf(), 255);
+    /*TODO*/  //        addAllocatedMemory(sysMemInfo);
+    /*TODO*/  //        address = sysMemInfo.addr;
+    /*TODO*/  //
+    /*TODO*/  //        // Link SceModule structs together
+    /*TODO*/  //        if (previousModule != null) {
+    /*TODO*/  //            previousModule.next = address;
+    /*TODO*/  //        }
+    /*TODO*/  //        previousModule = this;
+    /*TODO*/  //
+    /*TODO*/  //        // Internal context
+    /*TODO*/  //        fileFormat = Loader.FORMAT_UNKNOWN;
+    /*TODO*/  //        //textsection = new int[2];
+    /*TODO*/  //        initsection = new int[2];
+    /*TODO*/  //        finisection = new int[2];
+    /*TODO*/  //        stubtextsection = new int[2];
+    /*TODO*/  //        unresolvedImports = new LinkedList<DeferredStub>();
+    /*TODO*/  //        importFixupAttempts = 0;
+    /*TODO*/  //        resolvedImports = new LinkedList<DeferredStub>();
+}
+SceModule::~SceModule() {}
+    /*TODO*/  //
 /*TODO*/  //    public void addModuleName(String moduleName) {
 /*TODO*/  //        if (!moduleNames.contains(moduleName)) {
 /*TODO*/  //            moduleNames.add(moduleName);

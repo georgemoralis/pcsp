@@ -1,7 +1,10 @@
 /*
  *  19/06/2022 - synced with jpcsp 18/06/05/2022 - 7bebe7ff
  */
+#include "PCSPCommon.h"
 #include "Emulator.h"
+#include "HLE/kernel/types/SceModule.h"
+#include "Memory.h"
 
 /*TODO*/  // public class Emulator implements Runnable {
 /*TODO*/  //
@@ -113,11 +116,16 @@
 /*TODO*/  //        return false;
 /*TODO*/  //    }
 /*TODO*/  //
-/*TODO*/  //    public SceModule load(String pspfilename, ByteBuffer f) throws IOException, GeneralJpcspException {
-/*TODO*/  //        return load(pspfilename, f, false, false, null);
-/*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    private TPointer getLoadAddress() {
+SceModule* Emulator::load(const char* pspfilename, std::ifstream& f) 
+{ 
+    return load(pspfilename, f, false, false, NULL); 
+}
+
+u8* Emulator::getLoadAddress() { 
+    u32 lowestAddress = 0x8804000; //fake!
+    return Memory::getPointer(lowestAddress);
+}
+    /*TODO*/  //    private TPointer getLoadAddress() {
 /*TODO*/  //    	Memory mem = Emulator.getMemory();
 /*TODO*/  //        SysMemInfo testInfo = Modules.SysMemUserForUserModule.malloc(USER_PARTITION_ID, "test-LoadAddress",
           //        SysMemUserForUser.PSP_SMEM_Low, 0x100, 0);
@@ -131,9 +139,8 @@
 /*TODO*/  //        return new TPointer(mem, lowestAddress);
 /*TODO*/  //    }
 /*TODO*/  //
-/*TODO*/  //    public SceModule load(String pspfilename, ByteBuffer f, boolean fromSyscall, boolean isSignChecked,
-          //    byte[] key) throws IOException, GeneralJpcspException {
-/*TODO*/  //        initNewPsp(fromSyscall);
+SceModule *Emulator::load(const char *pspfilename, std::ifstream &f,bool fromSyscall, bool isSignChecked,u8* key) {
+    /*TODO*/  //        initNewPsp(fromSyscall);
 /*TODO*/  //
 /*TODO*/  //        HLEModuleManager.getInstance().loadAvailableFlash0Modules(fromSyscall);
 /*TODO*/  //
@@ -163,8 +170,8 @@
 /*TODO*/  //            instructionCounter.setModule(module);
 /*TODO*/  //        }
 /*TODO*/  //
-/*TODO*/  //        return module;
-/*TODO*/  //    }
+        return _module;
+    }
 /*TODO*/  //
 /*TODO*/  //    public boolean isPspOfficialUpdater() {
 /*TODO*/  //    	if (module == null) {

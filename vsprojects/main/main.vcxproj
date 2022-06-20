@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\src\Emulator.cpp" />
     <ClCompile Include="..\..\src\src\format\Elf32.cpp" />
     <ClCompile Include="..\..\src\src\format\Elf32Header.cpp" />
     <ClCompile Include="..\..\src\src\format\Elf32ProgramHeader.cpp" />
@@ -27,6 +28,9 @@
     <ClCompile Include="..\..\src\src\format\PSF.cpp" />
     <ClCompile Include="..\..\src\src\gui\Dissasembler.cpp" />
     <ClCompile Include="..\..\src\src\gui\HeaderViewer.cpp" />
+    <ClCompile Include="..\..\src\src\HLE\kernel\types\SceModule.cpp" />
+    <ClCompile Include="..\..\src\src\HLE\modules\SysMemUserForUser.cpp" />
+    <ClCompile Include="..\..\src\src\Loader.cpp" />
     <ClCompile Include="..\..\src\src\Main.cpp" />
     <ClCompile Include="..\..\src\src\Memory.cpp" />
     <ClCompile Include="..\..\third_party\FileBrowser\ImGuiFileBrowser.cpp" />
@@ -40,6 +44,7 @@
     <ClInclude Include="..\..\src\src\allegrex\Instruction.h" />
     <ClInclude Include="..\..\src\src\allegrex\Instructions.h" />
     <ClInclude Include="..\..\src\src\allegrex\Opcodes.h" />
+    <ClInclude Include="..\..\src\src\Emulator.h" />
     <ClInclude Include="..\..\src\src\format\Elf32.h" />
     <ClInclude Include="..\..\src\src\format\Elf32Header.h" />
     <ClInclude Include="..\..\src\src\format\Elf32ProgramHeader.h" />
@@ -50,6 +55,9 @@
     <ClInclude Include="..\..\src\src\gui\HeaderViewer.h" />
     <ClInclude Include="..\..\src\src\gui\imgui_memory_editor.h" />
     <ClInclude Include="..\..\src\src\gui\memoryViewer.h" />
+    <ClInclude Include="..\..\src\src\HLE\kernel\types\SceModule.h" />
+    <ClInclude Include="..\..\src\src\HLE\modules\SysMemUserForUser.h" />
+    <ClInclude Include="..\..\src\src\Loader.h" />
     <ClInclude Include="..\..\src\src\Memory.h" />
     <ClInclude Include="..\..\src\src\MemoryMap.h" />
     <ClInclude Include="..\..\src\src\PCSPCommon.h" />

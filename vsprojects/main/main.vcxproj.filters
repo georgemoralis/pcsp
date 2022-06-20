@@ -24,6 +24,18 @@
     <Filter Include="format">
       <UniqueIdentifier>{15afc8e3-0d6d-4500-b297-7cf52eb7bb3a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HLE">
+      <UniqueIdentifier>{4043640c-b946-49a4-abdc-a3b5bcb21147}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLE\kernel">
+      <UniqueIdentifier>{51d3bcf3-148b-4b23-a33e-f2afdc56606a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLE\kernel\types">
+      <UniqueIdentifier>{a24e1537-8dc4-4c63-848c-18e3290af748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLE\module">
+      <UniqueIdentifier>{831bde64-35d6-4d5c-9b47-9df6475eda88}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\src\Main.cpp">
@@ -58,6 +70,18 @@
     </ClCompile>
     <ClCompile Include="..\..\src\src\format\Elf32SectionHeader.cpp">
       <Filter>format</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\src\Loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\src\HLE\kernel\types\SceModule.cpp">
+      <Filter>HLE\kernel\types</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\src\Emulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\src\HLE\modules\SysMemUserForUser.cpp">
+      <Filter>HLE\module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +147,18 @@
     </ClInclude>
     <ClInclude Include="..\..\src\src\format\Elf32SectionHeader.h">
       <Filter>format</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\src\Loader.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\src\HLE\kernel\types\SceModule.h">
+      <Filter>HLE\kernel\types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\src\Emulator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\src\HLE\modules\SysMemUserForUser.h">
+      <Filter>HLE\module</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
