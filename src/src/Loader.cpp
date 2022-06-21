@@ -6,6 +6,11 @@
 #include "HLE/kernel/types/SceModule.h"
 #include "Memory.h"
 #include "Loader.h"
+#include "format/Elf32Header.h"
+#include "format/Elf32ProgramHeader.h"
+#include "format/Elf32SectionHeader.h"
+#include "format/Elf32.h"
+#include "format/PBP.h"
 
 /*TODO*/  //    private static Loader instance;
 /*TODO*/  //    private static Logger log = Logger.getLogger("loader");
@@ -42,12 +47,15 @@
 /*TODO*/  //     *                      fileFormat member against the FORMAT_* bits.
 /*TODO*/  //     *                      Example: (fileFormat & FORMAT_ELF) == FORMAT_ELF
 /*TODO*/  //     **/
-SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* baseAddress, int mpidText, int mpidData,
+SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u32& baseAddress, int mpidText, int mpidData,
     bool analyzeOnly, bool allocMem, bool fromSyscall, bool isSignChecked, u8* key) {
         std::unique_ptr<SceModule> _module(new SceModule(false));
 
-    u32 currentOffset = f.tellg();
-/*TODO*/  //        module.fileFormat = FORMAT_UNKNOWN;
+        u32 currentOffset = f.tellg();
+        f.seekg(0, std::ios::end);
+        u32 size = f.tellg();
+        f.seekg(currentOffset);
+        /*TODO*/  //        module.fileFormat = FORMAT_UNKNOWN;
 /*TODO*/  //        module.pspfilename = pspfilename;
 /*TODO*/  //        module.mpidtext = mpidText;
 /*TODO*/  //        module.mpiddata = mpidData;
@@ -65,19 +73,18 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
 /*TODO*/  //            return module;
 /*TODO*/  //        }
 /*TODO*/  //
-/*TODO*/  //        // chain loaders
-/*TODO*/  //        do {
-/*TODO*/  //            f.position(currentOffset);
-/*TODO*/  //            if (LoadPBP(f, module, baseAddress, analyzeOnly, allocMem, fromSyscall)) {
-/*TODO*/  //                currentOffset = f.position();
-/*TODO*/  //
-/*TODO*/  //                // probably kxploit stub
-/*TODO*/  //                if (currentOffset == f.limit()) {
-/*TODO*/  //                    break;
-/*TODO*/  //                }
-/*TODO*/  //            } else if (!fromSyscall) {
-/*TODO*/  //                loadPSF(module, analyzeOnly, allocMem, fromSyscall);
-/*TODO*/  //            }
+        // chain loaders
+        do {
+            f.seekg(currentOffset);
+            if (LoadPBP(f, _module.get(), baseAddress, analyzeOnly, allocMem, fromSyscall)) {
+                // probably kxploit stub
+                currentOffset = f.tellg();
+                if (currentOffset == size) break;
+            }
+            else if (!fromSyscall) {
+                assert(0);
+                /*TODO*/  //                loadPSF(module, analyzeOnly, allocMem, fromSyscall);
+            }
 /*TODO*/  //
 /*TODO*/  //            if (module.psf != null) {
 /*TODO*/  //                log.info(String.format("PBP meta data:%s%s", System.lineSeparator(), module.psf));
@@ -108,17 +115,17 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
 /*TODO*/  //                break;
 /*TODO*/  //            }
 /*TODO*/  //
-/*TODO*/  //            f.position(currentOffset);
-/*TODO*/  //            if (LoadELF(f, module, baseAddress, analyzeOnly, allocMem, fromSyscall)) {
+            f.seekg(currentOffset);
+            if (LoadELF(f, _module.get(), baseAddress, size,analyzeOnly, allocMem, fromSyscall)) {
 /*TODO*/  //            	if (!fromSyscall) {
 /*TODO*/  //            		Emulator.getInstance().setFirmwareVersion(FIRMWAREVERSION_HOMEBREW);
 /*TODO*/  //            	}
-/*TODO*/  //                break;
-/*TODO*/  //            }
+                break;
+            }
 /*TODO*/  //
 /*TODO*/  //            f.position(currentOffset);
 /*TODO*/  //            LoadUNK(f, module, baseAddress, analyzeOnly, allocMem, fromSyscall);
-/*TODO*/  //        } while (false);
+        } while (false);
 /*TODO*/  //
 /*TODO*/  //        if (!analyzeOnly) {
 /*TODO*/  //        	patchModule(module);
@@ -215,12 +222,12 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
 /*TODO*/  //            }
 /*TODO*/  //        }
 /*TODO*/  //    }
-/*TODO*/  //
-/*TODO*/  //    /** @return true on success */
-/*TODO*/  //    private boolean LoadPBP(ByteBuffer f, SceModule module, TPointer baseAddress, boolean analyzeOnly,
-          //    boolean allocMem, boolean fromSyscall) throws IOException {
-/*TODO*/  //        PBP pbp = new PBP(f);
-/*TODO*/  //        if (pbp.isValid()) {
+
+/** @return true on success */
+bool Loader::LoadPBP(std::ifstream &f, SceModule *_module, u32& baseAddress, bool analyzeOnly,bool allocMem, bool fromSyscall){
+       PBP pbp(f);
+       if (pbp.isValid()) 
+       {
 /*TODO*/  //            module.fileFormat |= FORMAT_PBP;
 /*TODO*/  //
 /*TODO*/  //            // Dump PSF info
@@ -236,13 +243,13 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
 /*TODO*/  //            // Save PBP info for debugger
 /*TODO*/  //            ElfHeaderInfo.PbpInfo = pbp.toString();
 /*TODO*/  //
-/*TODO*/  //            // Setup position for chaining loaders
-/*TODO*/  //            f.position(pbp.getOffsetPspData());
-/*TODO*/  //            return true;
-/*TODO*/  //        }
-/*TODO*/  //        // Not a valid PBP
-/*TODO*/  //        return false;
-/*TODO*/  //    }
+            // Setup position for chaining loaders
+            f.seekg(pbp.getOffsetPspData());
+            return true;
+       }
+       // Not a valid PBP
+       return false;
+}
 /*TODO*/  //
 /*TODO*/  //    /** @return true on success */
 /*TODO*/  //    private boolean LoadSPRX(ByteBuffer f, SceModule module, TPointer baseAddress, boolean analyzeOnly,
@@ -313,36 +320,37 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
 /*TODO*/  //    	return LoadELF(decryptedPrx, module, baseAddress, analyzeOnly, allocMem, fromSyscall);
 /*TODO*/  //    }
 /*TODO*/  //
-/*TODO*/  //    /** @return true on success */
-/*TODO*/  //    private boolean LoadELF(ByteBuffer f, SceModule module, TPointer baseAddress, boolean analyzeOnly,
-          //    boolean allocMem, boolean fromSyscall) throws IOException {
-/*TODO*/  //        int elfOffset = f.position();
-/*TODO*/  //        Elf32 elf = new Elf32(f);
-/*TODO*/  //        if (elf.getHeader().isValid()) {
+/** @return true on success */
+bool Loader::LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32 fileSize,bool analyzeOnly,
+                     bool allocMem, bool fromSyscall) {
+    u32 elfOffset = f.tellg();
+    Elf32 elf(f);
+    if (elf.getHeader().isValid()) {
 /*TODO*/  //            module.fileFormat |= FORMAT_ELF;
 /*TODO*/  //
-/*TODO*/  //            if (!elf.getHeader().isMIPSExecutable()) {
+            if (!elf.getHeader().isMIPSExecutable()) {
 /*TODO*/  //                log.error("Loader NOT a MIPS executable");
-/*TODO*/  //                return false;
-/*TODO*/  //            }
-/*TODO*/  //
-/*TODO*/  //            if (elf.isKernelMode()) {
-/*TODO*/  //                module.mpidtext = SysMemUserForUser.KERNEL_PARTITION_ID;
+                return false;
+            }
+            if (elf.isKernelMode()) {
+                assert(0);
+                /*TODO*/  //                module.mpidtext = SysMemUserForUser.KERNEL_PARTITION_ID;
 /*TODO*/  //                module.mpiddata = SysMemUserForUser.KERNEL_PARTITION_ID;
 /*TODO*/  //                if (!analyzeOnly && baseAddress.getAddress() == MemoryMap.START_USERSPACE + 0x4000) {
 /*TODO*/  //                	baseAddress.setAddress(MemoryMap.START_RAM +
           //                Utilities.alignUp(ThreadManForUser.INTERNAL_THREAD_ADDRESS_SIZE,
           //                SysMemUserForUser.defaultSizeAlignment - 1));
 /*TODO*/  //                }
-/*TODO*/  //            }
-/*TODO*/  //
-/*TODO*/  //            if (elf.getHeader().isPRXDetected()) {
-/*TODO*/  //                log.debug("Loader: Relocation required (PRX)");
+            }
+            if (elf.getHeader().isPRXDetected()) {
+                assert(0);
+                /*TODO*/  //                log.debug("Loader: Relocation required (PRX)");
 /*TODO*/  //                module.fileFormat |= FORMAT_PRX;
-/*TODO*/  //            } else if (elf.getHeader().requiresRelocation()) {
-/*TODO*/  //                // Seen in .elf's generated by pspsdk with BUILD_PRX=1 before conversion to .prx
+            } else if (elf.getHeader().requiresRelocation()) {
+                assert(0);
+                /*TODO*/  //                // Seen in .elf's generated by pspsdk with BUILD_PRX=1 before conversion to .prx
 /*TODO*/  //                log.info("Loader: Relocation required (ELF)");
-/*TODO*/  //            } else {
+            } else {
 /*TODO*/  //                // After the user chooses a game to run and we load it, then
 /*TODO*/  //                // we can't load another PBP at the same time. We can only load
 /*TODO*/  //                // relocatable modules (PRX's) after the user loaded app.
@@ -351,8 +359,8 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
           //                    loaded");
 /*TODO*/  //                }
 /*TODO*/  //
-/*TODO*/  //                baseAddress.setAddress(0);
-/*TODO*/  //            }
+                baseAddress = 0;
+            }
 /*TODO*/  //
 /*TODO*/  //            module.baseAddress = baseAddress.getAddress();
 /*TODO*/  //            if (elf.getHeader().getE_entry() == -1) {
@@ -369,8 +377,8 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
 /*TODO*/  //            module.loadAddressHigh = baseAddress.getAddress();
 /*TODO*/  //
 /*TODO*/  //            // Load into mem
-/*TODO*/  //            LoadELFProgram(f, module, baseAddress, elf, elfOffset, analyzeOnly);
-/*TODO*/  //            LoadELFSections(f, module, baseAddress, elf, elfOffset, analyzeOnly);
+            LoadELFProgram(f, _module, baseAddress, elf, elfOffset, fileSize, analyzeOnly);
+            /*TODO*/  //            LoadELFSections(f, module, baseAddress, elf, elfOffset, analyzeOnly);
 /*TODO*/  //
 /*TODO*/  //            if (module.loadAddressLow > module.loadAddressHigh) {
 /*TODO*/  //            	log.error(String.format("Incorrect ELF module address: loadAddressLow=0x%08X,
@@ -428,11 +436,11 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
 /*TODO*/  //	            }
 /*TODO*/  //            }
 /*TODO*/  //            return true;
-/*TODO*/  //        }
-/*TODO*/  //		// Not a valid ELF
+        }
+		// Not a valid ELF
 /*TODO*/  //		log.debug("Loader: Not a ELF");
-/*TODO*/  //		return false;
-/*TODO*/  //    }
+		return false;
+}
 /*TODO*/  //
 /*TODO*/  //    /** Dummy loader for unrecognized file formats, put at the end of a loader chain.
 /*TODO*/  //     * @return true on success */
@@ -491,56 +499,51 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
 /*TODO*/  //
 /*TODO*/  //    // ELF Loader
 /*TODO*/  //
-/*TODO*/  //    /** Load some programs into memory */
-/*TODO*/  //    private void LoadELFProgram(ByteBuffer f, SceModule module, TPointer baseAddress, Elf32 elf, int
-          //    elfOffset, boolean analyzeOnly) throws IOException {
-/*TODO*/  //
-/*TODO*/  //        List<Elf32ProgramHeader> programHeaderList = elf.getProgramHeaderList();
-/*TODO*/  //        Memory mem = baseAddress.getMemory();
-/*TODO*/  //
+/** Load some programs into memory */
+void Loader::LoadELFProgram(std::ifstream& f, SceModule* _module, u32& baseAddress, Elf32& elf, u32 elfOffset,u32 fileSize, bool analyzeOnly) {
+    std::vector<Elf32ProgramHeader>& programHeaderList = elf.getProgramHeaderList();
 /*TODO*/  //        module.text_size = 0;
 /*TODO*/  //        module.data_size = 0;
 /*TODO*/  //        module.bss_size = 0;
 /*TODO*/  //
-/*TODO*/  //        int i = 0;
-/*TODO*/  //        for (Elf32ProgramHeader phdr : programHeaderList) {
+        int i = 0;
+    for (auto phdr : programHeaderList){
 /*TODO*/  //        	if (log.isTraceEnabled()) {
 /*TODO*/  //        		log.trace(String.format("ELF Program Header: %s", phdr.toString()));
 /*TODO*/  //        	}
-/*TODO*/  //            if (phdr.getP_type() == 0x00000001L) {
-/*TODO*/  //                int fileOffset = (int)phdr.getP_offset();
-/*TODO*/  //                int memOffset = baseAddress.getAddress() + (int)phdr.getP_vaddr();
-/*TODO*/  //                if (!Memory.isAddressGood(memOffset)) {
+            if (phdr.getP_type() == 0x00000001) {
+                    u32 fileOffset = phdr.getP_offset();
+                u32 memOffset = baseAddress + phdr.getP_vaddr();
+                /*TODO*/  //                if (!Memory.isAddressGood(memOffset)) {
 /*TODO*/  //                    memOffset = (int)phdr.getP_vaddr();
 /*TODO*/  //                    if (!Memory.isAddressGood(memOffset)) {
 /*TODO*/  //                    	log.warn(String.format("Program header has invalid memory offset 0x%08X!",
           //                    memOffset));
 /*TODO*/  //                    }
 /*TODO*/  //                }
-/*TODO*/  //                int fileLen = (int)phdr.getP_filesz();
-/*TODO*/  //                int memLen = (int)phdr.getP_memsz();
-/*TODO*/  //
+                u32 fileLen = phdr.getP_filesz();
+                u32 memLen = phdr.getP_memsz();
 /*TODO*/  //                if (log.isDebugEnabled()) {
 /*TODO*/  //                	log.debug(String.format("PH#%d: loading program 0x%08X-0x%08X", i, memOffset, memOffset
           //                + memLen));
 /*TODO*/  //                	log.debug(String.format("PH#%d:\n%s", i, phdr));
 /*TODO*/  //                }
 /*TODO*/  //
-/*TODO*/  //                f.position(elfOffset + fileOffset);
-/*TODO*/  //                if (f.position() + fileLen > f.limit()) {
-/*TODO*/  //                    int newLen = f.limit() - f.position();
-/*TODO*/  //                    log.warn(String.format("PH#%d: program overflow clamping len %08X to %08X", i, fileLen,
-          //                    newLen));
-/*TODO*/  //                    fileLen = newLen;
-/*TODO*/  //                }
-/*TODO*/  //                if (!analyzeOnly) {
-/*TODO*/  //                	if (memLen > fileLen) {
-/*TODO*/  //                		// Clear the memory part not loaded from the file
-/*TODO*/  //                		mem.memset(memOffset + fileLen, (byte) 0, memLen - fileLen);
-/*TODO*/  //                	}
-/*TODO*/  //
-/*TODO*/  //                	if (((memOffset | fileLen | f.position()) & 3) == 0) {
-/*TODO*/  //                		ByteOrder order = f.order();
+                f.seekg(elfOffset + fileOffset);
+                if (((u32)f.tellg() + fileLen) > fileSize) {
+                    u32 newLen = fileSize - (u32)f.tellg();
+                    /*TODO*/  //                    log.warn(String.format("PH#%d: program overflow clamping len %08X to
+                              //                    %08X", i, fileLen,
+                              //                    newLen));
+                    fileLen = newLen;
+                }
+                if (!analyzeOnly) {
+                	if (memLen > fileLen) {
+                        // Clear the memory part not loaded from the file
+                            memset(Memory::getPointer(memOffset + fileLen), 0, memLen - fileLen);         		
+                	}
+                        /*TODO*/  //                        if (((memOffset | fileLen | (u32)f.tellg()) & 3) == 0) {
+                            /*TODO*/  //                		ByteOrder order = f.order();
 /*TODO*/  //                		f.order(ByteOrder.LITTLE_ENDIAN);
 /*TODO*/  //                		IntBuffer intBuffer = f.asIntBuffer();
 /*TODO*/  //                		TPointer destAddr = new TPointer(baseAddress.getMemory(), memOffset);
@@ -555,10 +558,10 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
 /*TODO*/  //                		}
 /*TODO*/  //                		f.order(order);
 /*TODO*/  //                		f.position(f.position() + fileLen);
-/*TODO*/  //                	} else {
-/*TODO*/  //                		mem.copyToMemory(memOffset, f, fileLen);
+/*TODO*/  //                 	} else {
+                            f.read((char*)Memory::getPointer(memOffset), fileLen);
 /*TODO*/  //                	}
-/*TODO*/  //                }
+                }
 /*TODO*/  //
 /*TODO*/  //                // Update memory area consumed by the module
 /*TODO*/  //                if (memOffset < module.loadAddressLow) {
@@ -594,15 +597,15 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u8* bas
 /*TODO*/  //                if (fileLen < memLen) {
 /*TODO*/  //                	module.bss_size += memLen - fileLen;
 /*TODO*/  //                }
-/*TODO*/  //            }
-/*TODO*/  //            i++;
-/*TODO*/  //        }
+            }
+            i++;
+        }
 /*TODO*/  //
 /*TODO*/  //        if (log.isDebugEnabled()) {
 /*TODO*/  //        	log.debug(String.format("PH alloc consumption %08X (mem %08X)", (module.loadAddressHigh -
           //        module.loadAddressLow), module.bss_size));
 /*TODO*/  //        }
-/*TODO*/  //    }
+}
 /*TODO*/  //
 /*TODO*/  //    /** Load some sections into memory */
 /*TODO*/  //    private void LoadELFSections(ByteBuffer f, SceModule module, TPointer baseAddress, Elf32 elf, int

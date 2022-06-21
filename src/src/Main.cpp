@@ -73,7 +73,7 @@ void loadtest(std::ifstream& f) {
 }
     int main(int, char**) {
     if (!Memory::initialize()) return false;
-    for (int i = 0; i < sizeof(MiniFireCode) / 4; ++i) Memory::write32(i * 4 + 0x08900050, MiniFireCode[i]);
+   // for (int i = 0; i < sizeof(MiniFireCode) / 4; ++i) Memory::write32(i * 4 + 0x08900050, MiniFireCode[i]);
 
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);

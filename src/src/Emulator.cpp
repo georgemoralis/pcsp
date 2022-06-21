@@ -123,9 +123,9 @@ SceModule* Emulator::load(const char* pspfilename, std::ifstream& f)
     return load(pspfilename, f, false, false, NULL); 
 }
 
-u8* Emulator::getLoadAddress() { 
+u32 Emulator::getLoadAddress() { 
     u32 lowestAddress = 0x8804000; //fake!
-    return Memory::getPointer(lowestAddress);
+    return lowestAddress;
 }
     /*TODO*/  //    private TPointer getLoadAddress() {
 /*TODO*/  //    	Memory mem = Emulator.getMemory();
@@ -146,8 +146,7 @@ SceModule *Emulator::load(const char *pspfilename, std::ifstream &f,bool fromSys
 /*TODO*/  //
 /*TODO*/  //        HLEModuleManager.getInstance().loadAvailableFlash0Modules(fromSyscall);
 /*TODO*/  //
-        u8* loadAddress = getLoadAddress();
-
+        u32 loadAddress = getLoadAddress();
     	_module = Loader::LoadModule(pspfilename, f, loadAddress, USER_PARTITION_ID,USER_PARTITION_ID, false, true, fromSyscall, isSignChecked, key);
 /*TODO*/  //
 /*TODO*/  //        if ((module.fileFormat & Loader.FORMAT_ELF) != Loader.FORMAT_ELF) {

@@ -3,6 +3,8 @@
  */
 #pragma once
 
+class Elf32;
+
 enum Format { // Format bits
     FORMAT_UNKNOWN = 0x00,
     FORMAT_ELF = 0x01,
@@ -14,7 +16,11 @@ enum Format { // Format bits
 
 namespace Loader 
 {
-SceModule* LoadModule(std::string pspfilename, std::ifstream& f, u8* baseAddress, int mpidText, int mpidData,
+SceModule* LoadModule(std::string pspfilename, std::ifstream& f, u32& baseAddress, int mpidText, int mpidData,
                       bool analyzeOnly, bool allocMem, bool fromSyscall, bool isSignChecked, u8* key);
-
+bool LoadPBP(std::ifstream& f, SceModule* _module, u32& baseAddress, bool analyzeOnly, bool allocMem, bool fromSyscall);
+bool LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32 fileSize,bool analyzeOnly, bool allocMem,
+             bool fromSyscall);
+void LoadELFProgram(std::ifstream& f, SceModule* _module, u32& baseAddress, Elf32& elf, u32 elfOffset,
+                                  u32 fileSize, bool analyzeOnly);
 };
