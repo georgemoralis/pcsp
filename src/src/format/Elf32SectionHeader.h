@@ -48,6 +48,7 @@ class Elf32SectionHeader
     u32 getSh_info() const;
     u32 getSh_addralign() const;
     u32 getSh_entsize() const;
+    u32 getSh_addr(u32 baseAddress) const;
 
    private:
 	std::string sh_namez;

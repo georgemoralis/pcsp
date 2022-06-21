@@ -23,4 +23,6 @@ bool LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32 fileSiz
              bool fromSyscall);
 void LoadELFProgram(std::ifstream& f, SceModule* _module, u32& baseAddress, Elf32& elf, u32 elfOffset,
                                   u32 fileSize, bool analyzeOnly);
+void LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddress, Elf32& elf, u32 elfOffset,
+                             u32 fileSize, bool analyzeOnly);
 };

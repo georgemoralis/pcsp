@@ -60,13 +60,13 @@ u32 Elf32SectionHeader::getSh_addr() const { return data.sh_addr; }
 /*TODO*/  //    	return getSh_addr(baseAddress.getAddress());
 /*TODO*/  //    }
 /*TODO*/  //
-/*TODO*/  //    public int getSh_addr(int baseAddress) {
-/*TODO*/  //    	if (Memory.isAddressGood(getSh_addr()) && getSh_addr() >= baseAddress) {
+u32 Elf32SectionHeader::getSh_addr(u32 baseAddress) const {
+    /*TODO*/  //    	if (Memory.isAddressGood(getSh_addr()) && getSh_addr() >= baseAddress) {
 /*TODO*/  //    		return getSh_addr();
 /*TODO*/  //    	}
-/*TODO*/  //    	return baseAddress + getSh_addr();
-/*TODO*/  //    }
-/*TODO*/  //
+    	return baseAddress + getSh_addr();
+}
+
 u32 Elf32SectionHeader::getSh_offset() const { return data.sh_offset; }
 
 u32 Elf32SectionHeader::getSh_size() const { return data.sh_size; }

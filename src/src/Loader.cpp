@@ -378,8 +378,8 @@ bool Loader::LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32
 /*TODO*/  //
 /*TODO*/  //            // Load into mem
             LoadELFProgram(f, _module, baseAddress, elf, elfOffset, fileSize, analyzeOnly);
-            /*TODO*/  //            LoadELFSections(f, module, baseAddress, elf, elfOffset, analyzeOnly);
-/*TODO*/  //
+            LoadELFSections(f, _module, baseAddress, elf, elfOffset, fileSize, analyzeOnly);
+            /*TODO*/  //
 /*TODO*/  //            if (module.loadAddressLow > module.loadAddressHigh) {
 /*TODO*/  //            	log.error(String.format("Incorrect ELF module address: loadAddressLow=0x%08X,
           //            loadAddressHigh=0x%08X", module.loadAddressLow, module.loadAddressHigh));
@@ -435,7 +435,7 @@ bool Loader::LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32
 /*TODO*/  //	            	LoadSDKVersion(f, module, elf, elfOffset);
 /*TODO*/  //	            }
 /*TODO*/  //            }
-/*TODO*/  //            return true;
+            return true;
         }
 		// Not a valid ELF
 /*TODO*/  //		log.debug("Loader: Not a ELF");
@@ -607,22 +607,22 @@ void Loader::LoadELFProgram(std::ifstream& f, SceModule* _module, u32& baseAddre
 /*TODO*/  //        }
 }
 /*TODO*/  //
-/*TODO*/  //    /** Load some sections into memory */
-/*TODO*/  //    private void LoadELFSections(ByteBuffer f, SceModule module, TPointer baseAddress, Elf32 elf, int
-          //    elfOffset, boolean analyzeOnly) throws IOException {
-/*TODO*/  //        List<Elf32SectionHeader> sectionHeaderList = elf.getSectionHeaderList();
+/** Load some sections into memory */
+void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddress, Elf32& elf, u32 elfOffset,
+                            u32 fileSize, bool analyzeOnly) {
+    std::vector<Elf32SectionHeader>& sectionHeaderList = elf.getSectionHeaderList();
 /*TODO*/  //        Memory mem = baseAddress.getMemory();
 /*TODO*/  //
 /*TODO*/  //        module.text_addr = baseAddress.getAddress();
 /*TODO*/  //
-/*TODO*/  //        for (Elf32SectionHeader shdr : sectionHeaderList) {
+        for (auto shdr : sectionHeaderList) {
 /*TODO*/  //        	if (log.isTraceEnabled()) {
 /*TODO*/  //        		log.trace(String.format("ELF Section Header: %s", shdr.toString()));
 /*TODO*/  //        	}
 /*TODO*/  //
-/*TODO*/  //            int memOffset = shdr.getSh_addr(baseAddress);
-/*TODO*/  //            int len = shdr.getSh_size();
-/*TODO*/  //            int flags = shdr.getSh_flags();
+            u32 memOffset = shdr.getSh_addr(baseAddress);
+            u32 len = shdr.getSh_size();
+            u32 flags = shdr.getSh_flags();
 /*TODO*/  //
 /*TODO*/  //            if (flags != SHF_NONE && Memory.isAddressGood(memOffset)) {
 /*TODO*/  //        		boolean read = (flags & SHF_ALLOCATE) != 0;
@@ -632,9 +632,9 @@ void Loader::LoadELFProgram(std::ifstream& f, SceModule* _module, u32& baseAddre
 /*TODO*/  //        		MemorySections.getInstance().addMemorySection(memorySection);
 /*TODO*/  //        	}
 /*TODO*/  //
-/*TODO*/  //        	if ((flags & SHF_ALLOCATE) != 0) {
-/*TODO*/  //                switch (shdr.getSh_type()) {
-/*TODO*/  //                    case Elf32SectionHeader.SHT_PROGBITS: { // 1
+       	if ((flags & SHF_ALLOCATE) != 0) {
+                switch (shdr.getSh_type()) {
+                    case SHT_PROGBITS: { // 1
 /*TODO*/  //                        // Load this section into memory
 /*TODO*/  //                        // now loaded using program header type 1
 /*TODO*/  //                        if (len == 0) {
@@ -670,12 +670,12 @@ void Loader::LoadELFProgram(std::ifstream& f, SceModule* _module, u32& baseAddre
 /*TODO*/  //	                        	}
 /*TODO*/  //	                        }
 /*TODO*/  //                        }
-/*TODO*/  //                        break;
-/*TODO*/  //                    }
-/*TODO*/  //
-/*TODO*/  //                    case Elf32SectionHeader.SHT_NOBITS: { // 8
+                        break;
+                    }
+
+                    case SHT_NOBITS: { // 8
 /*TODO*/  //                        // Zero out this portion of memory
-/*TODO*/  //                        if (len == 0) {
+                        if (len == 0) {
 /*TODO*/  //                        	if (log.isDebugEnabled()) {
 /*TODO*/  //                        		log.debug(String.format("%s: ignoring zero-length type 8 section %08X",
           //                        shdr.getSh_namez(), memOffset));
@@ -683,15 +683,15 @@ void Loader::LoadELFProgram(std::ifstream& f, SceModule* _module, u32& baseAddre
 /*TODO*/  //                        } else if (!Memory.isAddressGood(memOffset)) {
 /*TODO*/  //                            log.error(String.format("Section header (type 8) has invalid memory offset
           //                            0x%08X!", memOffset));
-/*TODO*/  //                        } else {
+                        } else {
 /*TODO*/  //                        	if (log.isDebugEnabled()) {
 /*TODO*/  //                        		log.debug(String.format("%s: clearing section %08X - %08X (len %08X)",
           //                        shdr.getSh_namez(), memOffset, (memOffset + len), len));
 /*TODO*/  //                        	}
 /*TODO*/  //
-/*TODO*/  //                        	if (!analyzeOnly) {
-/*TODO*/  //                        		mem.memset(memOffset, (byte) 0x0, len);
-/*TODO*/  //                        	}
+                        	if (!analyzeOnly) {
+                                memset(Memory::getPointer(memOffset), 0, len);
+                       	}
 /*TODO*/  //
 /*TODO*/  //                            // Update memory area consumed by the module
 /*TODO*/  //                            if (memOffset < module.loadAddressLow) {
@@ -708,19 +708,19 @@ void Loader::LoadELFProgram(std::ifstream& f, SceModule* _module, u32& baseAddre
           //                                shdr.getSh_namez(), module.loadAddressHigh, len));
 /*TODO*/  //                                }
 /*TODO*/  //                            }
-/*TODO*/  //                        }
-/*TODO*/  //                        break;
-/*TODO*/  //                    }
-/*TODO*/  //                }
-/*TODO*/  //            }
-/*TODO*/  //        }
+                        }
+                       break;
+                    }
+                }
+            }
+        }
 /*TODO*/  //
 /*TODO*/  //        if (log.isTraceEnabled()) {
 /*TODO*/  //    		log.trace(String.format("Storing module info: text addr 0x%08X, text_size 0x%08X,
           //    data_size 0x%08X, bss_size 0x%08X", module.text_addr, module.text_size, module.data_size,
           //    module.bss_size));
 /*TODO*/  //    	}
-/*TODO*/  //    }
+    }
 /*TODO*/  //
 /*TODO*/  //    private void LoadELFReserveMemory(SceModule module) {
 /*TODO*/  //        // Mark the area of memory the module loaded into as used
