@@ -1,53 +1,14 @@
 /*
  *  19/06/2022 - synced with jpcsp 18/06/05/2022 - 7bebe7ff
  */
+#include "..\src\src\PCSPCommon.h"
 #include "SceModule.h"
 
 /*TODO*/  // public class SceModule {
 /*TODO*/  //
 /*TODO*/  //    public static final int PSP_MODULE_VSH = 0x0800;
 /*TODO*/  //    public static final int PSP_MODULE_KERNEL = 0x1000;
-/*TODO*/  //    // PSP info
-/*TODO*/  //    public int next; // should be handled by a manager
-/*TODO*/  //    public short attribute;
-/*TODO*/  //    public int version;
-/*TODO*/  //    public String modname; // 27 printable chars
-/*TODO*/  //    public final byte terminal = (byte) 0;
-/*TODO*/  //    public int status;  // 2 bytes for status + 2 bytes of padding
-/*TODO*/  //    public int unk1;
-/*TODO*/  //    public int modid;
-/*TODO*/  //    public int usermod_thid;
-/*TODO*/  //    public int memid;
-/*TODO*/  //    public int mpidtext;
-/*TODO*/  //    public int mpiddata;
-/*TODO*/  //    public int ent_top;
-/*TODO*/  //    public int ent_size; // we'll use bytes (instead of number of entries)
-/*TODO*/  //    public int stub_top;
-/*TODO*/  //    public int stub_size; // we'll use bytes (instead of number of entries)
-/*TODO*/  //    public int module_start_func;
-/*TODO*/  //    public int module_stop_func;
-/*TODO*/  //    public int module_bootstart_func;
-/*TODO*/  //    public int module_reboot_before_func;
-/*TODO*/  //    public int module_reboot_phase_func;
-/*TODO*/  //    public int entry_addr;
-/*TODO*/  //    public int gp_value;
-/*TODO*/  //    public int text_addr;
-/*TODO*/  //    public int text_size;
-/*TODO*/  //    public int data_size;
-/*TODO*/  //    public int bss_size;
 /*TODO*/  //    private final List<SysMemInfo> allocatedMemory = new LinkedList<SysMemInfo>();
-/*TODO*/  //    public int nsegment; // usually just 1 segment
-/*TODO*/  //    public int[] segmentaddr = new int[4]; // static memory footprint of the module
-/*TODO*/  //    public int[] segmentsize = new int[4]; // static memory footprint of the module
-/*TODO*/  //    public int module_start_thread_priority;
-/*TODO*/  //    public int module_start_thread_stacksize;
-/*TODO*/  //    public int module_start_thread_attr;
-/*TODO*/  //    public int module_stop_thread_priority;
-/*TODO*/  //    public int module_stop_thread_stacksize;
-/*TODO*/  //    public int module_stop_thread_attr;
-/*TODO*/  //    public int module_reboot_before_thread_priority;
-/*TODO*/  //    public int module_reboot_before_thread_stacksize;
-/*TODO*/  //    public int module_reboot_before_thread_attr;
 /*TODO*/  //
 /*TODO*/  //    // internal info
 /*TODO*/  //    public int address;
@@ -58,15 +19,6 @@
 /*TODO*/  //    private static SceModule previousModule; // The last module to be loaded, should be fixed up if that
           //    module gets unloaded
 /*TODO*/  //
-/*TODO*/  //    // loader stuff
-/*TODO*/  //    public int fileFormat; // See Loader class for valid formats
-/*TODO*/  //    public String pspfilename; // boot path, for thread argument
-/*TODO*/  //    public PSF psf; // for xmb title, etc
-/*TODO*/  //    public int moduleVersion;
-/*TODO*/  //
-/*TODO*/  //    // The space consumed by the program image
-/*TODO*/  //    public int loadAddressLow, loadAddressHigh;
-/*TODO*/  //    public int baseAddress; // should in theory be the same as loadAddressLow
 /*TODO*/  //
 /*TODO*/  //    // address/size pairs, used by the debugger/instruction counter
 /*TODO*/  //    //public int[] textsection; // see text_addr/text_size

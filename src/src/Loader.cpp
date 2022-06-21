@@ -55,24 +55,24 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u32& ba
         f.seekg(0, std::ios::end);
         u32 size = f.tellg();
         f.seekg(currentOffset);
-        /*TODO*/  //        module.fileFormat = FORMAT_UNKNOWN;
-/*TODO*/  //        module.pspfilename = pspfilename;
-/*TODO*/  //        module.mpidtext = mpidText;
-/*TODO*/  //        module.mpiddata = mpidData;
+        _module->fileFormat = FORMAT_UNKNOWN;
+        _module->pspfilename = pspfilename;
+/*TODO*/  //        _module->mpidtext = mpidText;
+/*TODO*/  //        _module->mpiddata = mpidData;
 /*TODO*/  //
 /*TODO*/  //        // The PSP startup code requires a ":" into the argument passed to the root thread.
 /*TODO*/  //        // On Linux, there is no ":" in the file name when loading a .pbp file;
 /*TODO*/  //        // on Windows, there is luckily one ":" in "C:/...".
 /*TODO*/  //        // Simulate a ":" by prefixing by "ms0:", as this is not really used by an application.
-/*TODO*/  //        if (module.pspfilename != null && !module.pspfilename.contains(":")) {
-/*TODO*/  //        	module.pspfilename = "ms0:" + module.pspfilename;
+/*TODO*/  //        if (_module->pspfilename != null && !_module->pspfilename.contains(":")) {
+/*TODO*/  //        	_module->pspfilename = "ms0:" + _module->pspfilename;
 /*TODO*/  //        }
 /*TODO*/  //
-/*TODO*/  //        if (f.capacity() - f.position() == 0) {
+        if (size - f.tellg() == 0) {
 /*TODO*/  //            log.error("LoadModule: no data.");
-/*TODO*/  //            return module;
-/*TODO*/  //        }
-/*TODO*/  //
+            return _module.get();
+        }
+
         // chain loaders
         do {
             f.seekg(currentOffset);
@@ -86,17 +86,17 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u32& ba
                 /*TODO*/  //                loadPSF(module, analyzeOnly, allocMem, fromSyscall);
             }
 /*TODO*/  //
-/*TODO*/  //            if (module.psf != null) {
-/*TODO*/  //                log.info(String.format("PBP meta data:%s%s", System.lineSeparator(), module.psf));
+/*TODO*/  //            if (_module->psf != null) {
+/*TODO*/  //                log.info(String.format("PBP meta data:%s%s", System.lineSeparator(), _module->psf));
 /*TODO*/  //
 /*TODO*/  //                if (!fromSyscall) {
 /*TODO*/  //                    // Set firmware version from PSF embedded in PBP
-/*TODO*/  //                	if (module.psf.isLikelyHomebrew()) {
+/*TODO*/  //                	if (_module->psf.isLikelyHomebrew()) {
 /*TODO*/  //                		Emulator.getInstance().setFirmwareVersion(FIRMWAREVERSION_HOMEBREW);
 /*TODO*/  //                	} else {
-/*TODO*/  //                		Emulator.getInstance().setFirmwareVersion(module.psf.getString("PSP_SYSTEM_VER"));
+/*TODO*/  //                		Emulator.getInstance().setFirmwareVersion(_module->psf.getString("PSP_SYSTEM_VER"));
 /*TODO*/  //                	}
-/*TODO*/  //                    Modules.SysMemUserForUserModule.setMemory64MB(module.psf.getNumeric("MEMSIZE") == 1);
+/*TODO*/  //                    Modules.SysMemUserForUser_module->setMemory64MB(_module->psf.getNumeric("MEMSIZE") == 1);
 /*TODO*/  //                }
 /*TODO*/  //            }
 /*TODO*/  //
@@ -132,17 +132,17 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u32& ba
 /*TODO*/  //        }
 /*TODO*/  //
 /*TODO*/  //        if (analyzeOnly) {
-/*TODO*/  //        	module.free();
+/*TODO*/  //        	_module->free();
 /*TODO*/  //        }
 /*TODO*/  //
         return _module.get();
    }
 /*TODO*/  //
 /*TODO*/  //    private void loadPSF(SceModule module, boolean analyzeOnly, boolean allocMem, boolean fromSyscall) {
-/*TODO*/  //        if (module.psf != null)
+/*TODO*/  //        if (_module->psf != null)
 /*TODO*/  //            return;
 /*TODO*/  //
-/*TODO*/  //        String filetoload = module.pspfilename;
+/*TODO*/  //        String filetoload = _module->pspfilename;
 /*TODO*/  //        if (filetoload.startsWith("ms0:"))
 /*TODO*/  //            filetoload = filetoload.replace("ms0:", "ms0");
 /*TODO*/  //
@@ -192,7 +192,7 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u32& ba
 /*TODO*/  //                ByteBuffer readbuffer = roChannel.map(FileChannel.MapMode.READ_ONLY, 0,
           //                (int)roChannel.size());
 /*TODO*/  //                PBP meta = new PBP(readbuffer);
-/*TODO*/  //                module.psf = meta.readPSF(readbuffer);
+/*TODO*/  //                _module->psf = meta.readPSF(readbuffer);
 /*TODO*/  //                raf.close();
 /*TODO*/  //            } catch (FileNotFoundException e) {
 /*TODO*/  //                e.printStackTrace();
@@ -213,8 +213,8 @@ SceModule* Loader::LoadModule(std::string pspfilename, std::ifstream& f, u32& ba
 /*TODO*/  //                    FileChannel roChannel = raf.getChannel();
 /*TODO*/  //                    ByteBuffer readbuffer = roChannel.map(FileChannel.MapMode.READ_ONLY, 0,
           //                    (int)roChannel.size());
-/*TODO*/  //                    module.psf = new PSF();
-/*TODO*/  //                    module.psf.read(readbuffer);
+/*TODO*/  //                    _module->psf = new PSF();
+/*TODO*/  //                    _module->psf.read(readbuffer);
 /*TODO*/  //                    raf.close();
 /*TODO*/  //                } catch (IOException e) {
 /*TODO*/  //                    e.printStackTrace();
@@ -228,11 +228,11 @@ bool Loader::LoadPBP(std::ifstream &f, SceModule *_module, u32& baseAddress, boo
        PBP pbp(f);
        if (pbp.isValid()) 
        {
-/*TODO*/  //            module.fileFormat |= FORMAT_PBP;
+/*TODO*/  //            _module->fileFormat |= FORMAT_PBP;
 /*TODO*/  //
 /*TODO*/  //            // Dump PSF info
 /*TODO*/  //            if (pbp.getOffsetParam() > 0) {
-/*TODO*/  //                module.psf = pbp.readPSF(f);
+/*TODO*/  //                _module->psf = pbp.readPSF(f);
 /*TODO*/  //            }
 /*TODO*/  //
 /*TODO*/  //            // Dump unpacked PBP
@@ -292,14 +292,14 @@ bool Loader::LoadPBP(std::ifstream &f, SceModule *_module, u32& baseAddress, boo
 /*TODO*/  //            // Not a valid PSP
 /*TODO*/  //        	return false;
 /*TODO*/  //        }
-/*TODO*/  //        module.fileFormat |= FORMAT_PSP;
+/*TODO*/  //        _module->fileFormat |= FORMAT_PSP;
 /*TODO*/  //
 /*TODO*/  //        if (key == null) {
-/*TODO*/  //        	key = scePopsMan.readEbootKeys(module.pspfilename);
+/*TODO*/  //        	key = scePopsMan.readEbootKeys(_module->pspfilename);
 /*TODO*/  //        }
 /*TODO*/  //
-/*TODO*/  //        if (module.psf != null) {
-/*TODO*/  //        	String updaterVer = module.psf.getString("UPDATER_VER");
+/*TODO*/  //        if (_module->psf != null) {
+/*TODO*/  //        	String updaterVer = _module->psf.getString("UPDATER_VER");
 /*TODO*/  //        	if (updaterVer != null) {
 /*TODO*/  //        		Emulator.getInstance().setFirmwareVersion(updaterVer);
 /*TODO*/  //        	}
@@ -326,7 +326,7 @@ bool Loader::LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32
     u32 elfOffset = f.tellg();
     Elf32 elf(f);
     if (elf.getHeader().isValid()) {
-/*TODO*/  //            module.fileFormat |= FORMAT_ELF;
+/*TODO*/  //            _module->fileFormat |= FORMAT_ELF;
 /*TODO*/  //
             if (!elf.getHeader().isMIPSExecutable()) {
 /*TODO*/  //                log.error("Loader NOT a MIPS executable");
@@ -334,8 +334,8 @@ bool Loader::LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32
             }
             if (elf.isKernelMode()) {
                 assert(0);
-                /*TODO*/  //                module.mpidtext = SysMemUserForUser.KERNEL_PARTITION_ID;
-/*TODO*/  //                module.mpiddata = SysMemUserForUser.KERNEL_PARTITION_ID;
+                /*TODO*/  //                _module->mpidtext = SysMemUserForUser.KERNEL_PARTITION_ID;
+/*TODO*/  //                _module->mpiddata = SysMemUserForUser.KERNEL_PARTITION_ID;
 /*TODO*/  //                if (!analyzeOnly && baseAddress.getAddress() == MemoryMap.START_USERSPACE + 0x4000) {
 /*TODO*/  //                	baseAddress.setAddress(MemoryMap.START_RAM +
           //                Utilities.alignUp(ThreadManForUser.INTERNAL_THREAD_ADDRESS_SIZE,
@@ -345,7 +345,7 @@ bool Loader::LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32
             if (elf.getHeader().isPRXDetected()) {
                 assert(0);
                 /*TODO*/  //                log.debug("Loader: Relocation required (PRX)");
-/*TODO*/  //                module.fileFormat |= FORMAT_PRX;
+/*TODO*/  //                _module->fileFormat |= FORMAT_PRX;
             } else if (elf.getHeader().requiresRelocation()) {
                 assert(0);
                 /*TODO*/  //                // Seen in .elf's generated by pspsdk with BUILD_PRX=1 before conversion to .prx
@@ -362,28 +362,28 @@ bool Loader::LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32
                 baseAddress = 0;
             }
 /*TODO*/  //
-/*TODO*/  //            module.baseAddress = baseAddress.getAddress();
+/*TODO*/  //            _module->baseAddress = baseAddress.getAddress();
 /*TODO*/  //            if (elf.getHeader().getE_entry() == -1) {
-/*TODO*/  //                module.entry_addr = -1;
+/*TODO*/  //                _module->entry_addr = -1;
 /*TODO*/  //            } else {
-/*TODO*/  //                module.entry_addr = baseAddress.getAddress() + elf.getHeader().getE_entry();
+/*TODO*/  //                _module->entry_addr = baseAddress.getAddress() + elf.getHeader().getE_entry();
 /*TODO*/  //            }
 /*TODO*/  //
 /*TODO*/  //            // Note: baseAddress is 0 unless we are loading a PRX
 /*TODO*/  //            // Set loadAddressLow to the highest possible address, it will be updated
 /*TODO*/  //            // by LoadELFProgram().
-/*TODO*/  //            module.loadAddressLow = baseAddress.isNotNull() ? baseAddress.getAddress() :
+/*TODO*/  //            _module->loadAddressLow = baseAddress.isNotNull() ? baseAddress.getAddress() :
           //            MemoryMap.END_USERSPACE;
-/*TODO*/  //            module.loadAddressHigh = baseAddress.getAddress();
+/*TODO*/  //            _module->loadAddressHigh = baseAddress.getAddress();
 /*TODO*/  //
 /*TODO*/  //            // Load into mem
             LoadELFProgram(f, _module, baseAddress, elf, elfOffset, fileSize, analyzeOnly);
             LoadELFSections(f, _module, baseAddress, elf, elfOffset, fileSize, analyzeOnly);
             /*TODO*/  //
-/*TODO*/  //            if (module.loadAddressLow > module.loadAddressHigh) {
+/*TODO*/  //            if (_module->loadAddressLow > _module->loadAddressHigh) {
 /*TODO*/  //            	log.error(String.format("Incorrect ELF module address: loadAddressLow=0x%08X,
-          //            loadAddressHigh=0x%08X", module.loadAddressLow, module.loadAddressHigh));
-/*TODO*/  //            	module.loadAddressHigh = module.loadAddressLow;
+          //            loadAddressHigh=0x%08X", _module->loadAddressLow, _module->loadAddressHigh));
+/*TODO*/  //            	_module->loadAddressHigh = _module->loadAddressLow;
 /*TODO*/  //            }
 /*TODO*/  //
 /*TODO*/  //            if (!analyzeOnly) {
@@ -412,13 +412,13 @@ bool Loader::LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32
 /*TODO*/  //	            LoadELFDebuggerInfo(f, module, baseAddress, elf, elfOffset, fromSyscall);
 /*TODO*/  //
 /*TODO*/  //	            // If no text_addr is available up to now, use the lowest program header address
-/*TODO*/  //	            if (module.text_addr == 0) {
+/*TODO*/  //	            if (_module->text_addr == 0) {
 /*TODO*/  //	                for (Elf32ProgramHeader phdr : elf.getProgramHeaderList()) {
-/*TODO*/  //	                	if (module.text_addr == 0 || phdr.getP_vaddr() < module.text_addr) {
-/*TODO*/  //	                		module.text_addr = phdr.getP_vaddr();
+/*TODO*/  //	                	if (_module->text_addr == 0 || phdr.getP_vaddr() < _module->text_addr) {
+/*TODO*/  //	                		_module->text_addr = phdr.getP_vaddr();
 /*TODO*/  //	                		// Align the text_addr if an alignment has been specified
 /*TODO*/  //	                		if (phdr.getP_align() > 0) {
-/*TODO*/  //	                			module.text_addr = Utilities.alignDown(module.text_addr, phdr.getP_align() -
+/*TODO*/  //	                			_module->text_addr = Utilities.alignDown(_module->text_addr, phdr.getP_align() -
           //1);
 /*TODO*/  //	                		}
 /*TODO*/  //	                	}
@@ -427,7 +427,7 @@ bool Loader::LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32
 /*TODO*/  //
 /*TODO*/  //	            // Flush module struct to psp mem
 /*TODO*/  //	            if (baseAddress.getMemory() == Emulator.getMemory()) {
-/*TODO*/  //	            	module.write(baseAddress.getMemory(), module.address);
+/*TODO*/  //	            	_module->write(baseAddress.getMemory(), _module->address);
 /*TODO*/  //	            }
 /*TODO*/  //            } else {
 /*TODO*/  //	            LoadELFModuleInfo(f, module, baseAddress, elf, elfOffset, analyzeOnly);
@@ -502,10 +502,10 @@ bool Loader::LoadELF(std::ifstream& f, SceModule* _module, u32& baseAddress, u32
 /** Load some programs into memory */
 void Loader::LoadELFProgram(std::ifstream& f, SceModule* _module, u32& baseAddress, Elf32& elf, u32 elfOffset,u32 fileSize, bool analyzeOnly) {
     std::vector<Elf32ProgramHeader>& programHeaderList = elf.getProgramHeaderList();
-/*TODO*/  //        module.text_size = 0;
-/*TODO*/  //        module.data_size = 0;
-/*TODO*/  //        module.bss_size = 0;
-/*TODO*/  //
+        _module->text_size = 0;
+        _module->data_size = 0;
+        _module->bss_size = 0;
+
         int i = 0;
     for (auto phdr : programHeaderList){
 /*TODO*/  //        	if (log.isTraceEnabled()) {
@@ -564,57 +564,57 @@ void Loader::LoadELFProgram(std::ifstream& f, SceModule* _module, u32& baseAddre
                 }
 /*TODO*/  //
 /*TODO*/  //                // Update memory area consumed by the module
-/*TODO*/  //                if (memOffset < module.loadAddressLow) {
-/*TODO*/  //                    module.loadAddressLow = memOffset;
+                if (memOffset < _module->loadAddressLow) {
+                    _module->loadAddressLow = memOffset;
 /*TODO*/  //                    if (log.isDebugEnabled()) {
 /*TODO*/  //                    	log.debug(String.format("PH#%d: new loadAddressLow %08X", i,
-          //                    module.loadAddressLow));
+          //                    _module->loadAddressLow));
 /*TODO*/  //                    }
-/*TODO*/  //                }
-/*TODO*/  //                if (memOffset + memLen > module.loadAddressHigh) {
-/*TODO*/  //                    module.loadAddressHigh = memOffset + memLen;
+                }
+                if (memOffset + memLen > _module->loadAddressHigh) {
+                    _module->loadAddressHigh = memOffset + memLen;
 /*TODO*/  //                    if (log.isTraceEnabled()) {
 /*TODO*/  //                    	log.trace(String.format("PH#%d: new loadAddressHigh %08X", i,
-          //                    module.loadAddressHigh));
+          //                    _module->loadAddressHigh));
 /*TODO*/  //                    }
-/*TODO*/  //                }
-/*TODO*/  //
-/*TODO*/  //                module.segmentaddr[module.nsegment] = memOffset;
-/*TODO*/  //                module.segmentsize[module.nsegment] = memLen;
-/*TODO*/  //                module.nsegment++;
-/*TODO*/  //
-/*TODO*/  //                /*
-/*TODO*/  //                 * If the segment is executable, it contains the .text section.
-/*TODO*/  //                 * Otherwise, it contains the .data section.
-/*TODO*/  //                 */
-/*TODO*/  //                if ((phdr.getP_flags() & PF_X) != 0) {
-/*TODO*/  //                	module.text_size += fileLen;
-/*TODO*/  //                } else {
-/*TODO*/  //                	module.data_size += fileLen;
-/*TODO*/  //                }
-/*TODO*/  //
-/*TODO*/  //                /* Add the "extra" segment bytes to the .bss section. */
-/*TODO*/  //                if (fileLen < memLen) {
-/*TODO*/  //                	module.bss_size += memLen - fileLen;
-/*TODO*/  //                }
+                }
+
+                _module->segmentaddr[_module->nsegment] = memOffset;
+                _module->segmentsize[_module->nsegment] = memLen;
+                _module->nsegment++;
+
+                /*
+                * If the segment is executable, it contains the .text section.
+                * Otherwise, it contains the .data section.
+                */
+                if ((phdr.getP_flags() & PF_X) != 0) {
+                	_module->text_size += fileLen;
+                } else {
+                	_module->data_size += fileLen;
+                }
+
+                /* Add the "extra" segment bytes to the .bss section. */
+                if (fileLen < memLen) {
+                	_module->bss_size += memLen - fileLen;
+                }
             }
             i++;
         }
 /*TODO*/  //
 /*TODO*/  //        if (log.isDebugEnabled()) {
-/*TODO*/  //        	log.debug(String.format("PH alloc consumption %08X (mem %08X)", (module.loadAddressHigh -
-          //        module.loadAddressLow), module.bss_size));
+/*TODO*/  //        	log.debug(String.format("PH alloc consumption %08X (mem %08X)", (_module->loadAddressHigh -
+          //        _module->loadAddressLow), _module->bss_size));
 /*TODO*/  //        }
 }
-/*TODO*/  //
+
 /** Load some sections into memory */
 void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddress, Elf32& elf, u32 elfOffset,
                             u32 fileSize, bool analyzeOnly) {
     std::vector<Elf32SectionHeader>& sectionHeaderList = elf.getSectionHeaderList();
 /*TODO*/  //        Memory mem = baseAddress.getMemory();
 /*TODO*/  //
-/*TODO*/  //        module.text_addr = baseAddress.getAddress();
-/*TODO*/  //
+        _module->text_addr = baseAddress;
+
         for (auto shdr : sectionHeaderList) {
 /*TODO*/  //        	if (log.isTraceEnabled()) {
 /*TODO*/  //        		log.trace(String.format("ELF Section Header: %s", shdr.toString()));
@@ -647,26 +647,26 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
           //                            0x%08X!", memOffset));
 /*TODO*/  //                        } else {
 /*TODO*/  //	                        // Update memory area consumed by the module
-/*TODO*/  //	                        if (memOffset < module.loadAddressLow) {
+/*TODO*/  //	                        if (memOffset < _module->loadAddressLow) {
 /*TODO*/  //	                            log.warn(String.format("%s: section allocates more than program %08X -
           //%08X", shdr.getSh_namez(), memOffset, (memOffset + len)));
-/*TODO*/  //	                            module.loadAddressLow = memOffset;
+/*TODO*/  //	                            _module->loadAddressLow = memOffset;
 /*TODO*/  //	                        }
-/*TODO*/  //	                        if (memOffset + len > module.loadAddressHigh) {
+/*TODO*/  //	                        if (memOffset + len > _module->loadAddressHigh) {
 /*TODO*/  //	                            log.warn(String.format("%s: section allocates more than program %08X -
           //%08X", shdr.getSh_namez(), memOffset, (memOffset + len)));
-/*TODO*/  //	                            module.loadAddressHigh = memOffset + len;
+/*TODO*/  //	                            _module->loadAddressHigh = memOffset + len;
 /*TODO*/  //	                        }
 /*TODO*/  //
 /*TODO*/  //	                        if ((flags & SHF_WRITE) != 0) {
 /*TODO*/  //	                        	if (log.isTraceEnabled()) {
 /*TODO*/  //	                        		log.trace(String.format("Section Header as data, len=0x%08X,
-          //data_size=0x%08X", len, module.data_size));
+          //data_size=0x%08X", len, _module->data_size));
 /*TODO*/  //	                        	}
 /*TODO*/  //	                        } else {
 /*TODO*/  //	                        	if (log.isTraceEnabled()) {
 /*TODO*/  //	                        		log.trace(String.format("Section Header as text, len=0x%08X,
-          //text_size=0x%08X", len, module.text_size));
+          //text_size=0x%08X", len, _module->text_size));
 /*TODO*/  //	                        	}
 /*TODO*/  //	                        }
 /*TODO*/  //                        }
@@ -692,22 +692,22 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
                         	if (!analyzeOnly) {
                                 memset(Memory::getPointer(memOffset), 0, len);
                        	}
-/*TODO*/  //
-/*TODO*/  //                            // Update memory area consumed by the module
-/*TODO*/  //                            if (memOffset < module.loadAddressLow) {
-/*TODO*/  //                                module.loadAddressLow = memOffset;
+
+                            // Update memory area consumed by the module
+                            if (memOffset < _module->loadAddressLow) {
+                                _module->loadAddressLow = memOffset;
 /*TODO*/  //                                if (log.isDebugEnabled()) {
 /*TODO*/  //                                	log.debug(String.format("%s: new loadAddressLow %08X (+%08X)",
-          //                                shdr.getSh_namez(), module.loadAddressLow, len));
+          //                                shdr.getSh_namez(), _module->loadAddressLow, len));
 /*TODO*/  //                                }
-/*TODO*/  //                            }
-/*TODO*/  //                            if (memOffset + len > module.loadAddressHigh) {
-/*TODO*/  //                                module.loadAddressHigh = memOffset + len;
+                            }
+                           if (memOffset + len > _module->loadAddressHigh) {
+                                _module->loadAddressHigh = memOffset + len;
 /*TODO*/  //                                if (log.isDebugEnabled()) {
 /*TODO*/  //                                	log.debug(String.format("%s: new loadAddressHigh %08X (+%08X)",
-          //                                shdr.getSh_namez(), module.loadAddressHigh, len));
+          //                                shdr.getSh_namez(), _module->loadAddressHigh, len));
 /*TODO*/  //                                }
-/*TODO*/  //                            }
+                           }
                         }
                        break;
                     }
@@ -717,8 +717,8 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //
 /*TODO*/  //        if (log.isTraceEnabled()) {
 /*TODO*/  //    		log.trace(String.format("Storing module info: text addr 0x%08X, text_size 0x%08X,
-          //    data_size 0x%08X, bss_size 0x%08X", module.text_addr, module.text_size, module.data_size,
-          //    module.bss_size));
+          //    data_size 0x%08X, bss_size 0x%08X", _module->text_addr, _module->text_size, _module->data_size,
+          //    _module->bss_size));
 /*TODO*/  //    	}
     }
 /*TODO*/  //
@@ -726,21 +726,21 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //        // Mark the area of memory the module loaded into as used
 /*TODO*/  //    	if (log.isDebugEnabled()) {
 /*TODO*/  //    		log.debug(String.format("Reserving 0x%X bytes at 0x%08X for module '%s'",
-          //    module.loadAddressHigh - module.loadAddressLow, module.loadAddressLow, module.pspfilename));
+          //    _module->loadAddressHigh - _module->loadAddressLow, _module->loadAddressLow, _module->pspfilename));
 /*TODO*/  //    	}
 /*TODO*/  //
-/*TODO*/  //        int address = module.loadAddressLow & ~(SysMemUserForUser.defaultSizeAlignment - 1); // Round down
+/*TODO*/  //        int address = _module->loadAddressLow & ~(SysMemUserForUser.defaultSizeAlignment - 1); // Round down
           //        to match sysmem allocations
-/*TODO*/  //        int size = module.loadAddressHigh - address;
+/*TODO*/  //        int size = _module->loadAddressHigh - address;
 /*TODO*/  //
-/*TODO*/  //        int partition = module.mpidtext > 0 ? module.mpidtext : SysMemUserForUser.USER_PARTITION_ID;
-/*TODO*/  //        SysMemInfo info = Modules.SysMemUserForUserModule.malloc(partition, module.modname,
+/*TODO*/  //        int partition = _module->mpidtext > 0 ? _module->mpidtext : SysMemUserForUser.USER_PARTITION_ID;
+/*TODO*/  //        SysMemInfo info = Modules.SysMemUserForUser_module->malloc(partition, _module->modname,
           //        SysMemUserForUser.PSP_SMEM_Addr, size, address);
 /*TODO*/  //        if (info == null || info.addr != (address & Memory.addressMask)) {
 /*TODO*/  //            log.warn(String.format("Failed to properly reserve memory consumed by module %s at address
-          //            0x%08X, size 0x%X: allocated %s", module.modname, address, size, info));
+          //            0x%08X, size 0x%X: allocated %s", _module->modname, address, size, info));
 /*TODO*/  //        }
-/*TODO*/  //        module.addAllocatedMemory(info);
+/*TODO*/  //        _module->addAllocatedMemory(info);
 /*TODO*/  //    }
 /*TODO*/  //
 /*TODO*/  //    /** Loads from memory */
@@ -776,12 +776,12 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //        if (moduleInfoAddr != 0) {
 /*TODO*/  //            PSPModuleInfo moduleInfo = new PSPModuleInfo();
 /*TODO*/  //            moduleInfo.read(baseAddress.getMemory(), moduleInfoAddr);
-/*TODO*/  //            module.copy(moduleInfo);
+/*TODO*/  //            _module->copy(moduleInfo);
 /*TODO*/  //        } else if (moduleInfoFileOffset >= 0) {
 /*TODO*/  //            PSPModuleInfo moduleInfo = new PSPModuleInfo();
 /*TODO*/  //            f.position(moduleInfoFileOffset);
 /*TODO*/  //            moduleInfo.read(f);
-/*TODO*/  //            module.copy(moduleInfo);
+/*TODO*/  //            _module->copy(moduleInfo);
 /*TODO*/  //        } else {
 /*TODO*/  //            log.error("ModuleInfo not found!");
 /*TODO*/  //            return;
@@ -790,13 +790,13 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //        if (!analyzeOnly) {
 /*TODO*/  //	        if (log.isInfoEnabled()) {
 /*TODO*/  //	        	log.info(String.format("Found ModuleInfo at 0x%08X, name:'%s', version: %04X, attr: 0x%08X,
-          //gp: 0x%08X", moduleInfoAddr, module.modname, module.version, module.attribute, module.gp_value));
+          //gp: 0x%08X", moduleInfoAddr, _module->modname, _module->version, _module->attribute, _module->gp_value));
 /*TODO*/  //	        }
 /*TODO*/  //
-/*TODO*/  //	        if ((module.attribute & SceModule.PSP_MODULE_KERNEL) != 0) {
+/*TODO*/  //	        if ((_module->attribute & Sce_module->PSP_MODULE_KERNEL) != 0) {
 /*TODO*/  //	            log.debug("Kernel mode module detected");
 /*TODO*/  //	        }
-/*TODO*/  //	        if ((module.attribute & SceModule.PSP_MODULE_VSH) != 0) {
+/*TODO*/  //	        if ((_module->attribute & Sce_module->PSP_MODULE_VSH) != 0) {
 /*TODO*/  //	            log.debug("VSH mode module detected");
 /*TODO*/  //	        }
 /*TODO*/  //        }
@@ -1036,8 +1036,8 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //        // loadcore.prx and sysmem.prx are being loaded and relocated by
 /*TODO*/  //        // the PSP reboot code. It is using a different type mapping.
 /*TODO*/  //        // See https://github.com/uofw/uofw/blob/master/src/reboot/elf.c#L327
-/*TODO*/  //    	if ("flash0:/kd/loadcore.prx".equals(module.pspfilename) ||
-          //    "flash0:/kd/sysmem.prx".equals(module.pspfilename)) {
+/*TODO*/  //    	if ("flash0:/kd/loadcore.prx".equals(_module->pspfilename) ||
+          //    "flash0:/kd/sysmem.prx".equals(_module->pspfilename)) {
 /*TODO*/  //    		final int[] rebootTypeRemapping = new int[] { 0, 3, 6, 7, 1, 2, 4, 5 };
 /*TODO*/  //    		for (int i = 1; i < types.length; i++) {
 /*TODO*/  //    			types[i] = rebootTypeRemapping[types[i]];
@@ -1247,9 +1247,9 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //
 /*TODO*/  //    private boolean isPopsLoader(SceModule module) throws IOException {
 /*TODO*/  //        // Pops loader from EBOOT.PBP
-/*TODO*/  //    	if (module.pspfilename.endsWith(scePopsMan.EBOOT_PBP)) {
-/*TODO*/  //	        if ("complex".equals(module.modname) || "simple".equals(module.modname)) {
-/*TODO*/  //	        	for (DeferredStub deferredStub : module.unresolvedImports) {
+/*TODO*/  //    	if (_module->pspfilename.endsWith(scePopsMan.EBOOT_PBP)) {
+/*TODO*/  //	        if ("complex".equals(_module->modname) || "simple".equals(_module->modname)) {
+/*TODO*/  //	        	for (DeferredStub deferredStub : _module->unresolvedImports) {
 /*TODO*/  //	        		if (deferredStub.getNid() == 0x29B3FB24 &&
           //"scePopsMan".equals(deferredStub.getModuleName())) {
 /*TODO*/  //	        			return true;
@@ -1269,12 +1269,12 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //        int numberofmappedNIDS = 0;
 /*TODO*/  //
 /*TODO*/  //        if (isPopsLoader(sourceModule)) {
-/*TODO*/  //			Modules.scePopsManModule.loadOnDemand(sourceModule);
+/*TODO*/  //			Modules.scePopsMan_module->loadOnDemand(sourceModule);
 /*TODO*/  //        }
 /*TODO*/  //
 /*TODO*/  //        for (SceModule module : Managers.modules.values()) {
-/*TODO*/  //            module.importFixupAttempts++;
-/*TODO*/  //            for (Iterator<DeferredStub> it = module.unresolvedImports.iterator(); it.hasNext(); ) {
+/*TODO*/  //            _module->importFixupAttempts++;
+/*TODO*/  //            for (Iterator<DeferredStub> it = _module->unresolvedImports.iterator(); it.hasNext(); ) {
 /*TODO*/  //                DeferredStub deferredStub = it.next();
 /*TODO*/  //                String moduleName = deferredStub.getModuleName();
 /*TODO*/  //                int nid           = deferredStub.getNid();
@@ -1285,18 +1285,18 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //                if (exportAddress != 0) {
 /*TODO*/  //                	deferredStub.resolve(mem, exportAddress);
 /*TODO*/  //                    it.remove();
-/*TODO*/  //                    sourceModule.resolvedImports.add(deferredStub);
+/*TODO*/  //                    source_module->resolvedImports.add(deferredStub);
 /*TODO*/  //                    numberofmappedNIDS++;
 /*TODO*/  //
 /*TODO*/  //                    if (log.isDebugEnabled()) {
 /*TODO*/  //                    	log.debug(String.format("Mapped import at 0x%08X to export at 0x%08X [0x%08X]
           //                    (attempt %d)",
-/*TODO*/  //                    			importAddress, exportAddress, nid, module.importFixupAttempts));
+/*TODO*/  //                    			importAddress, exportAddress, nid, _module->importFixupAttempts));
 /*TODO*/  //                    }
 /*TODO*/  //                } else if (nid == 0) {
 /*TODO*/  //                	// Ignore patched nids
 /*TODO*/  //                    log.warn(String.format("Ignoring import at 0x%08X [0x%08X] (attempt %d)",
-/*TODO*/  //                        importAddress, nid, module.importFixupAttempts));
+/*TODO*/  //                        importAddress, nid, _module->importFixupAttempts));
 /*TODO*/  //
 /*TODO*/  //                    it.remove();
 /*TODO*/  //                    // This is an import to be ignored, implement it with the following
@@ -1332,12 +1332,12 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //                        if (fromSyscall && log.isDebugEnabled()) {
 /*TODO*/  //                            log.debug(String.format("Mapped import at 0x%08X to syscall 0x%05X [0x%08X]
           //                            (attempt %d)",
-/*TODO*/  //                                importAddress, code, nid, module.importFixupAttempts));
+/*TODO*/  //                                importAddress, code, nid, _module->importFixupAttempts));
 /*TODO*/  //                        }
 /*TODO*/  //                    } else if (!nidMapper.isHideAllSyscalls()) {
 /*TODO*/  //                        log.warn(String.format("Failed to map import at 0x%08X [0x%08X] Module '%s'(attempt
           //                        %d)",
-/*TODO*/  //                            importAddress, nid, moduleName, module.importFixupAttempts));
+/*TODO*/  //                            importAddress, nid, moduleName, _module->importFixupAttempts));
 /*TODO*/  //                        numberoffailedNIDS++;
 /*TODO*/  //                    }
 /*TODO*/  //                }
@@ -1353,8 +1353,8 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //    /* Loads from memory */
 /*TODO*/  //    private void LoadELFImports(SceModule module, TPointer baseAddress) throws IOException {
 /*TODO*/  //        Memory mem = baseAddress.getMemory();
-/*TODO*/  //        int stubHeadersAddress = module.stub_top;
-/*TODO*/  //        int stubHeadersEndAddress = module.stub_top + module.stub_size;
+/*TODO*/  //        int stubHeadersAddress = _module->stub_top;
+/*TODO*/  //        int stubHeadersEndAddress = _module->stub_top + _module->stub_size;
 /*TODO*/  //
 /*TODO*/  //        // n modules to import, 1 stub header per module to import.
 /*TODO*/  //        String moduleName;
@@ -1370,7 +1370,7 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //                    moduleName = Utilities.readStringNZ((int) stubHeader.getOffsetModuleName(), 64);
 /*TODO*/  //                } else {
 /*TODO*/  //                    // Generate a module name.
-/*TODO*/  //                    moduleName = module.modname;
+/*TODO*/  //                    moduleName = _module->modname;
 /*TODO*/  //                }
 /*TODO*/  //                stubHeader.setModuleNamez(moduleName);
 /*TODO*/  //
@@ -1431,7 +1431,7 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //                    					log.debug(String.format("Vstub reloc %s",
           //                    deferredStub));
 /*TODO*/  //                    				}
-/*TODO*/  //                    				module.unresolvedImports.add(deferredStub);
+/*TODO*/  //                    				_module->unresolvedImports.add(deferredStub);
 /*TODO*/  //                    			}
 /*TODO*/  //	                    	}
 /*TODO*/  //                    	}
@@ -1460,9 +1460,9 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //            }
 /*TODO*/  //        }
 /*TODO*/  //
-/*TODO*/  //        if (module.unresolvedImports.size() > 0) {
+/*TODO*/  //        if (_module->unresolvedImports.size() > 0) {
 /*TODO*/  //        	if (log.isInfoEnabled()) {
-/*TODO*/  //        		log.info(String.format("Found %d unresolved imports", module.unresolvedImports.size()));
+/*TODO*/  //        		log.info(String.format("Found %d unresolved imports", _module->unresolvedImports.size()));
 /*TODO*/  //        	}
 /*TODO*/  //        }
 /*TODO*/  //    }
@@ -1530,8 +1530,8 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //        // loadcore.prx and sysmem.prx are being loaded and relocated by
 /*TODO*/  //        // the PSP reboot code. It is using a different type mapping.
 /*TODO*/  //        // See https://github.com/uofw/uofw/blob/master/src/reboot/elf.c#L327
-/*TODO*/  //    	if ("flash0:/kd/loadcore.prx".equals(module.pspfilename) ||
-          //    "flash0:/kd/sysmem.prx".equals(module.pspfilename)) {
+/*TODO*/  //    	if ("flash0:/kd/loadcore.prx".equals(_module->pspfilename) ||
+          //    "flash0:/kd/sysmem.prx".equals(_module->pspfilename)) {
 /*TODO*/  //    		final int[] rebootTypeRemapping = new int[] { 0, 3, 6, 7, 1, 2, 4, 5 };
 /*TODO*/  //    		for (int i = 1; i < types.length; i++) {
 /*TODO*/  //    			types[i] = rebootTypeRemapping[types[i]];
@@ -1636,8 +1636,8 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //    private void LoadSDKVersion(ByteBuffer f, SceModule module, Elf32 elf, int elfOffset) throws IOException
           //    {
 /*TODO*/  //        int entHeadersOffset = elfOffset + elf.getProgramHeader(0).getP_offset();
-/*TODO*/  //        int entHeadersAddress = module.ent_top;
-/*TODO*/  //        int entHeadersEndAddress = module.ent_top + module.ent_size;
+/*TODO*/  //        int entHeadersAddress = _module->ent_top;
+/*TODO*/  //        int entHeadersEndAddress = _module->ent_top + _module->ent_size;
 /*TODO*/  //        while (entHeadersAddress < entHeadersEndAddress) {
 /*TODO*/  //            f.position(entHeadersOffset + entHeadersAddress);
 /*TODO*/  //        	Elf32EntHeader entHeader = new Elf32EntHeader(f);
@@ -1674,10 +1674,10 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //            	switch (variableNids[j]) {
 /*TODO*/  //            		case 0x11B97506: // module_sdk_version
 /*TODO*/  //            			f.position(elfOffset + variableTable[j]);
-/*TODO*/  //            			module.moduleVersion = readUWord(f);
+/*TODO*/  //            			_module->moduleVersion = readUWord(f);
 /*TODO*/  //            			if (log.isDebugEnabled()) {
 /*TODO*/  //            				log.debug(String.format("Found sdkVersion=0x%08X",
-          //            module.moduleVersion));
+          //            _module->moduleVersion));
 /*TODO*/  //            			}
 /*TODO*/  //            			break;
 /*TODO*/  //            	}
@@ -1689,8 +1689,8 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //    private void LoadELFExports(SceModule module, TPointer baseAddress) throws IOException {
 /*TODO*/  //        NIDMapper nidMapper = NIDMapper.getInstance();
 /*TODO*/  //        Memory mem = baseAddress.getMemory();
-/*TODO*/  //        int entHeadersAddress = module.ent_top;
-/*TODO*/  //        int entHeadersEndAddress = module.ent_top + module.ent_size;
+/*TODO*/  //        int entHeadersAddress = _module->ent_top;
+/*TODO*/  //        int entHeadersEndAddress = _module->ent_top + _module->ent_size;
 /*TODO*/  //        int entCount = 0;
 /*TODO*/  //
 /*TODO*/  //        // n modules to export, 1 ent header per module to export.
@@ -1707,7 +1707,7 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //                    moduleName = Utilities.readStringNZ((int) entHeader.getOffsetModuleName(), 64);
 /*TODO*/  //                } else {
 /*TODO*/  //                    // Generate a module name.
-/*TODO*/  //                    moduleName = module.modname;
+/*TODO*/  //                    moduleName = _module->modname;
 /*TODO*/  //                }
 /*TODO*/  //                entHeader.setModuleNamez(moduleName);
 /*TODO*/  //
@@ -1749,11 +1749,11 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //                        // Only accept exports with valid export addresses and
 /*TODO*/  //	                    // from custom modules (attr != 0x4000) unless
 /*TODO*/  //	                    // the module is a homebrew (loaded from MemoryStick) or
-/*TODO*/  //	                    // this is the EBOOT module.
+/*TODO*/  //	                    // this is the EBOOT _module->
 /*TODO*/  //                        if (Memory.isAddressGood(exportAddress) && ((entHeader.getAttr() & 0x4000) !=
-          //                        0x4000) || module.pspfilename.startsWith("ms0:") ||
-          //                        module.pspfilename.startsWith("disc0:/PSP_GAME/SYSDIR/EBOOT.") ||
-          //                        module.pspfilename.startsWith("flash0:")) {
+          //                        0x4000) || _module->pspfilename.startsWith("ms0:") ||
+          //                        _module->pspfilename.startsWith("disc0:/PSP_GAME/SYSDIR/EBOOT.") ||
+          //                        _module->pspfilename.startsWith("flash0:")) {
 /*TODO*/  //                            nidMapper.addModuleNid(module, moduleName, nid, exportAddress, false);
 /*TODO*/  //                            entCount++;
 /*TODO*/  //                            if (log.isDebugEnabled()) {
@@ -1769,35 +1769,35 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //
 /*TODO*/  //	                    switch (nid) {
 /*TODO*/  //	                        case 0xD632ACDB: // module_start
-/*TODO*/  //	                            module.module_start_func = exportAddress;
+/*TODO*/  //	                            _module->module_start_func = exportAddress;
 /*TODO*/  //	                            if (log.isDebugEnabled()) {
 /*TODO*/  //	                                log.debug(String.format("module_start found: nid=0x%08X,
           //function=0x%08X", nid, exportAddress));
 /*TODO*/  //	                            }
 /*TODO*/  //	                            break;
 /*TODO*/  //	                        case 0xCEE8593C: // module_stop
-/*TODO*/  //	                            module.module_stop_func = exportAddress;
+/*TODO*/  //	                            _module->module_stop_func = exportAddress;
 /*TODO*/  //	                            if (log.isDebugEnabled()) {
 /*TODO*/  //	                                log.debug(String.format("module_stop found: nid=0x%08X,
           //function=0x%08X", nid, exportAddress));
 /*TODO*/  //	                            }
 /*TODO*/  //	                            break;
 /*TODO*/  //	                        case 0x2F064FA6: // module_reboot_before
-/*TODO*/  //	                            module.module_reboot_before_func = exportAddress;
+/*TODO*/  //	                            _module->module_reboot_before_func = exportAddress;
 /*TODO*/  //	                            if (log.isDebugEnabled()) {
 /*TODO*/  //	                                log.debug(String.format("module_reboot_before found: nid=0x%08X,
           //function=0x%08X", nid, exportAddress));
 /*TODO*/  //	                            }
 /*TODO*/  //	                            break;
 /*TODO*/  //	                        case 0xADF12745: // module_reboot_phase
-/*TODO*/  //	                            module.module_reboot_phase_func = exportAddress;
+/*TODO*/  //	                            _module->module_reboot_phase_func = exportAddress;
 /*TODO*/  //	                            if (log.isDebugEnabled()) {
 /*TODO*/  //	                                log.debug(String.format("module_reboot_phase found: nid=0x%08X,
           //function=0x%08X", nid, exportAddress));
 /*TODO*/  //	                            }
 /*TODO*/  //	                            break;
 /*TODO*/  //	                        case 0xD3744BE0: // module_bootstart
-/*TODO*/  //	                            module.module_bootstart_func = exportAddress;
+/*TODO*/  //	                            _module->module_bootstart_func = exportAddress;
 /*TODO*/  //	                            if (log.isDebugEnabled()) {
 /*TODO*/  //	                                log.debug(String.format("module_bootstart found: nid=0x%08X,
           //function=0x%08X", nid, exportAddress));
@@ -1836,44 +1836,44 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //                            }
 /*TODO*/  //                            break;
 /*TODO*/  //                        case 0x0F7C276C: // module_start_thread_parameter
-/*TODO*/  //                            module.module_start_thread_priority = mem.read32(variableAddr + 4);
-/*TODO*/  //                            module.module_start_thread_stacksize = mem.read32(variableAddr + 8);
-/*TODO*/  //                            module.module_start_thread_attr = mem.read32(variableAddr + 12);
+/*TODO*/  //                            _module->module_start_thread_priority = mem.read32(variableAddr + 4);
+/*TODO*/  //                            _module->module_start_thread_stacksize = mem.read32(variableAddr + 8);
+/*TODO*/  //                            _module->module_start_thread_attr = mem.read32(variableAddr + 12);
 /*TODO*/  //                            if (log.isDebugEnabled()) {
 /*TODO*/  //                                log.debug(String.format("module_start_thread_parameter found: nid=0x%08X,
           //                                priority=%d, stacksize=%d, attr=0x%08X", nid,
-          //                                module.module_start_thread_priority, module.module_start_thread_stacksize,
-          //                                module.module_start_thread_attr));
+          //                                _module->module_start_thread_priority, _module->module_start_thread_stacksize,
+          //                                _module->module_start_thread_attr));
 /*TODO*/  //                            }
 /*TODO*/  //                            break;
 /*TODO*/  //                        case 0xCF0CC697: // module_stop_thread_parameter
-/*TODO*/  //                            module.module_stop_thread_priority = mem.read32(variableAddr + 4);
-/*TODO*/  //                            module.module_stop_thread_stacksize = mem.read32(variableAddr + 8);
-/*TODO*/  //                            module.module_stop_thread_attr = mem.read32(variableAddr + 12);
+/*TODO*/  //                            _module->module_stop_thread_priority = mem.read32(variableAddr + 4);
+/*TODO*/  //                            _module->module_stop_thread_stacksize = mem.read32(variableAddr + 8);
+/*TODO*/  //                            _module->module_stop_thread_attr = mem.read32(variableAddr + 12);
 /*TODO*/  //                            if (log.isDebugEnabled()) {
 /*TODO*/  //                                log.debug(String.format("module_stop_thread_parameter found: nid=0x%08X,
           //                                priority=%d, stacksize=%d, attr=0x%08X", nid,
-          //                                module.module_stop_thread_priority, module.module_stop_thread_stacksize,
-          //                                module.module_stop_thread_attr));
+          //                                _module->module_stop_thread_priority, _module->module_stop_thread_stacksize,
+          //                                _module->module_stop_thread_attr));
 /*TODO*/  //                            }
 /*TODO*/  //                            break;
 /*TODO*/  //                        case 0xF4F4299D: // module_reboot_before_thread_parameter
-/*TODO*/  //                            module.module_reboot_before_thread_priority = mem.read32(variableAddr + 4);
-/*TODO*/  //                            module.module_reboot_before_thread_stacksize = mem.read32(variableAddr + 8);
-/*TODO*/  //                            module.module_reboot_before_thread_attr = mem.read32(variableAddr + 12);
+/*TODO*/  //                            _module->module_reboot_before_thread_priority = mem.read32(variableAddr + 4);
+/*TODO*/  //                            _module->module_reboot_before_thread_stacksize = mem.read32(variableAddr + 8);
+/*TODO*/  //                            _module->module_reboot_before_thread_attr = mem.read32(variableAddr + 12);
 /*TODO*/  //                            if (log.isDebugEnabled()) {
 /*TODO*/  //                                log.debug(String.format("module_reboot_before_thread_parameter found:
           //                                nid=0x%08X, priority=%d, stacksize=%d, attr=0x%08X", nid,
-          //                                module.module_reboot_before_thread_priority,
-          //                                module.module_reboot_before_thread_stacksize,
-          //                                module.module_reboot_before_thread_attr));
+          //                                _module->module_reboot_before_thread_priority,
+          //                                _module->module_reboot_before_thread_stacksize,
+          //                                _module->module_reboot_before_thread_attr));
 /*TODO*/  //                            }
 /*TODO*/  //                            break;
 /*TODO*/  //                        case 0x11B97506: // module_sdk_version
-/*TODO*/  //                            module.moduleVersion = mem.read32(variableAddr);
+/*TODO*/  //                            _module->moduleVersion = mem.read32(variableAddr);
 /*TODO*/  //                            if (log.isDebugEnabled()) {
 /*TODO*/  //                                log.debug(String.format("module_sdk_version found: nid=0x%08X,
-          //                                sdkVersion=0x%08X", nid, module.moduleVersion));
+          //                                sdkVersion=0x%08X", nid, _module->moduleVersion));
 /*TODO*/  //                            }
 /*TODO*/  //                            break;
 /*TODO*/  //                        default:
@@ -1911,20 +1911,20 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //
 /*TODO*/  //        shdr = elf.getSectionHeader(".init");
 /*TODO*/  //        if (shdr != null) {
-/*TODO*/  //            module.initsection[0] = shdr.getSh_addr(baseAddress);
-/*TODO*/  //            module.initsection[1] = shdr.getSh_size();
+/*TODO*/  //            _module->initsection[0] = shdr.getSh_addr(baseAddress);
+/*TODO*/  //            _module->initsection[1] = shdr.getSh_size();
 /*TODO*/  //        }
 /*TODO*/  //
 /*TODO*/  //        shdr = elf.getSectionHeader(".fini");
 /*TODO*/  //        if (shdr != null) {
-/*TODO*/  //            module.finisection[0] = shdr.getSh_addr(baseAddress);
-/*TODO*/  //            module.finisection[1] = shdr.getSh_size();
+/*TODO*/  //            _module->finisection[0] = shdr.getSh_addr(baseAddress);
+/*TODO*/  //            _module->finisection[1] = shdr.getSh_size();
 /*TODO*/  //        }
 /*TODO*/  //
 /*TODO*/  //        shdr = elf.getSectionHeader(".sceStub.text");
 /*TODO*/  //        if (shdr != null) {
-/*TODO*/  //            module.stubtextsection[0] = shdr.getSh_addr(baseAddress);
-/*TODO*/  //            module.stubtextsection[1] = shdr.getSh_size();
+/*TODO*/  //            _module->stubtextsection[0] = shdr.getSh_addr(baseAddress);
+/*TODO*/  //            _module->stubtextsection[1] = shdr.getSh_size();
 /*TODO*/  //        }
 /*TODO*/  //
 /*TODO*/  //        if (!fromSyscall) {
@@ -1943,7 +1943,7 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //    	Memory mem = Emulator.getMemory();
 /*TODO*/  //
 /*TODO*/  //    	// Same patches as ProCFW
-/*TODO*/  //    	if ("vsh_module".equals(module.modname)) {
+/*TODO*/  //    	if ("vsh_module".equals(_module->modname)) {
 /*TODO*/  //    		patch(mem, module, 0x000122B0, 0x506000E0, NOP());
 /*TODO*/  //    		patch(mem, module, 0x00012058, 0x1440003B, NOP());
 /*TODO*/  //    		patch(mem, module, 0x00012060, 0x14400039, NOP());
@@ -1951,19 +1951,19 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //
 /*TODO*/  //    	// Patches to replace "https" with "http" so that the URL calls
 /*TODO*/  //    	// can be proxied through the internal HTTP server.
-/*TODO*/  //    	if ("sceNpCommerce2".equals(module.modname)) {
+/*TODO*/  //    	if ("sceNpCommerce2".equals(_module->modname)) {
 /*TODO*/  //    		patch(mem, module, 0x0000A598, 0x00000073, 0x00000000); // replace "https" with "http"
 /*TODO*/  //    		patch(mem, module, 0x00003A60, 0x240701BB, 0x24070050); // replace port 443 with 80
 /*TODO*/  //    	}
-/*TODO*/  //    	if ("sceNpCore".equals(module.modname)) {
+/*TODO*/  //    	if ("sceNpCore".equals(_module->modname)) {
 /*TODO*/  //    		patchRemoveStringChar(mem, module, 0x00000D50, 's'); // replace "https" with "http" in
           //    "https://auth.%s.ac.playstation.net/nav/auth"
 /*TODO*/  //    	}
-/*TODO*/  //    	if ("sceNpService".equals(module.modname)) {
+/*TODO*/  //    	if ("sceNpService".equals(_module->modname)) {
 /*TODO*/  //    		patch(mem, module, 0x0001075C, 0x00000073, 0x00000000); // replace "https" with "http"
           //    for "https://getprof.%s.np.community.playstation.net/basic_view/sec/get_self_profile"
 /*TODO*/  //    	}
-/*TODO*/  //    	if ("sceVshNpInstaller_Module".equals(module.modname)) {
+/*TODO*/  //    	if ("sceVshNpInstaller_Module".equals(_module->modname)) {
 /*TODO*/  //    		patchRemoveStringChar(mem, module, 0x00016F90, 's'); // replace "https" with "http" in
           //    "https://commerce.%s.ac.playstation.net/cap.m"
 /*TODO*/  //    		patchRemoveStringChar(mem, module, 0x00016FC0, 's'); // replace "https" with "http" in
@@ -1975,25 +1975,25 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
 /*TODO*/  //    		patchRemoveStringChar(mem, module, 0x00017064, 's'); // replace "https" with "http" in
           //    "https://account.%s.ac.playstation.net/ecomm/ingame/finishDownloadDRM"
 /*TODO*/  //    	}
-/*TODO*/  //    	if ("marlindownloader".equals(module.modname)) {
+/*TODO*/  //    	if ("marlindownloader".equals(_module->modname)) {
 /*TODO*/  //    		patchRemoveStringChar(mem, module, 0x000046C8, 's'); // replace "https" with "http" in
           //    "https://mds.%s.ac.playstation.net/"
 /*TODO*/  //    	}
-/*TODO*/  //    	if ("sceVshStoreBrowser_Module".equals(module.modname)) {
+/*TODO*/  //    	if ("sceVshStoreBrowser_Module".equals(_module->modname)) {
 /*TODO*/  //    		patchRemoveStringChar(mem, module, 0x0005A244, 's'); // replace "https" with "http" in
           //    "https://nsx-e.sec.%s.dl.playstation.net/nsx/sec/..."
 /*TODO*/  //    		patchRemoveStringChar(mem, module, 0x0005A2D8, 's'); // replace "https" with "http" in
           //    "https://nsx.sec.%s.dl.playstation.net/nsx/sec/..."
 /*TODO*/  //    	}
-/*TODO*/  //    	if ("sceGameUpdate_Library".equals(module.modname)) {
+/*TODO*/  //    	if ("sceGameUpdate_Library".equals(_module->modname)) {
 /*TODO*/  //    		patchRemoveStringChar(mem, module, 0x000030C4, 's'); // replace "https" with "http" in
           //    "https://a0.ww.%s.dl.playstation.net/tpl/..."
 /*TODO*/  //    	}
 /*TODO*/  //
-/*TODO*/  //    	if ("sceMemlmd".equals(module.modname)) {
+/*TODO*/  //    	if ("sceMemlmd".equals(_module->modname)) {
 /*TODO*/  //    		patch(mem, module, 0x000017EC, 0x0E000000, MOVE(_v0, _zr), 0xFE000000); // replace "jal
           //    sceUtilsBufferCopy(cmd=15)" with "move $v0, $zr"
-/*TODO*/  //    		SysMemInfo dummyArea = Modules.SysMemUserForUserModule.malloc(KERNEL_PARTITION_ID,
+/*TODO*/  //    		SysMemInfo dummyArea = Modules.SysMemUserForUser_module->malloc(KERNEL_PARTITION_ID,
           //    "patch-sceMemlmd", PSP_SMEM_Low, 256, 0);
 /*TODO*/  //    		patch(mem, module, 0x000024C0, 0xBFC00220, dummyArea.addr); // replace hardware register
           //    address with dummy address
@@ -2016,12 +2016,12 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
           //    0($v0)" with "li $a2, 0"
 /*TODO*/  //    	}
 /*TODO*/  //
-/*TODO*/  //    	if ("sceModuleManager".equals(module.modname)) {
+/*TODO*/  //    	if ("sceModuleManager".equals(_module->modname)) {
 /*TODO*/  //    		patch(mem, module, 0x000030CC, 0x24030020, 0x24030010); // replace "li $v1, 32" with "li
           //    $v1, 16" (this will be stored at SceLoadCoreExecFileInfo.apiType)
 /*TODO*/  //    	}
 /*TODO*/  //
-/*TODO*/  //    	if ("sceLoaderCore".equals(module.modname)) {
+/*TODO*/  //    	if ("sceLoaderCore".equals(_module->modname)) {
 /*TODO*/  //    		patch(mem, module, 0x0000469C, 0x15C0FFA0, NOP()); // Allow loading of privileged
           //    modules being not encrypted (https://github.com/uofw/uofw/blob/master/src/loadcore/loadelf.c#L339)
 /*TODO*/  //    		patch(mem, module, 0x00004548, 0x7C0F6244, NOP()); // Allow loading of privileged
@@ -2033,5 +2033,5 @@ void Loader::LoadELFSections(std::ifstream& f, SceModule* _module, u32& baseAddr
           //    lib
 /*TODO*/  //    	}
 /*TODO*/  //
-/*TODO*/  //    	Modules.scePopsManModule.patchModule(mem, module);
+/*TODO*/  //    	Modules.scePopsMan_module->patchModule(mem, module);
 /*TODO*/  //    }

@@ -18,9 +18,10 @@ std::string Elf32SectionHeader::toString() const {
 
     sprintf(tmp, "sh_name      %08X\n", data.sh_name);
     str.append(tmp);
-    /*TODO*/  //        if (sh_namez != null && sh_namez.length() > 0) {
-    /*TODO*/  //        	str.append("sh_namez \t '" + sh_namez + "'\n");
-    /*TODO*/  //        }
+    if (sh_namez.size()>0) {
+        sprintf(tmp, "sh_namez      %s\n", sh_namez.c_str());
+        str.append(tmp);
+    }
     sprintf(tmp, "sh_type      %08X\n", data.sh_type);
     str.append(tmp);
     sprintf(tmp, "sh_flags     %08X\n", data.sh_flags);
